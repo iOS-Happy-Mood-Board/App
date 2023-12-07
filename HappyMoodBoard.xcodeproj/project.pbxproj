@@ -10,6 +10,14 @@
 		54425D4B796EBA4291131BD8 /* Pods_HappyMoodBoardTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D7E7028B519838157110D33 /* Pods_HappyMoodBoardTests.framework */; };
 		5D54D3F12B19CCD40008A5D7 /* ViewAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D54D3F02B19CCD40008A5D7 /* ViewAttributes.swift */; };
 		5D54D3F32B19CD4F0008A5D7 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D54D3F22B19CD4F0008A5D7 /* ViewModel.swift */; };
+		5D7252762B21ADD100CF6688 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7252752B21ADD100CF6688 /* OnboardingViewModel.swift */; };
+		5D7252782B21ADE000CF6688 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7252772B21ADE000CF6688 /* OnboardingViewController.swift */; };
+		5D72527D2B21AE2F00CF6688 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5D72527A2B21AE2E00CF6688 /* Pretendard-Regular.otf */; };
+		5D72527E2B21AE2F00CF6688 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5D72527A2B21AE2E00CF6688 /* Pretendard-Regular.otf */; };
+		5D72527F2B21AE2F00CF6688 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5D72527B2B21AE2E00CF6688 /* Pretendard-Bold.otf */; };
+		5D7252802B21AE2F00CF6688 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5D72527B2B21AE2E00CF6688 /* Pretendard-Bold.otf */; };
+		5D7252812B21AE2F00CF6688 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5D72527C2B21AE2E00CF6688 /* Pretendard-Medium.otf */; };
+		5D7252822B21AE2F00CF6688 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5D72527C2B21AE2E00CF6688 /* Pretendard-Medium.otf */; };
 		A2F0FA3F2B06599E00ADA84C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A2F0FA3E2B06599E00ADA84C /* .swiftlint.yml */; };
 		A2F0FA402B06599E00ADA84C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A2F0FA3E2B06599E00ADA84C /* .swiftlint.yml */; };
 		A2F0FA412B06599E00ADA84C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A2F0FA3E2B06599E00ADA84C /* .swiftlint.yml */; };
@@ -45,6 +53,11 @@
 		4BA4A6BD2A08666D1E7F0BA9 /* Pods-HappyMoodBoardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyMoodBoardTests.debug.xcconfig"; path = "Target Support Files/Pods-HappyMoodBoardTests/Pods-HappyMoodBoardTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5D54D3F02B19CCD40008A5D7 /* ViewAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAttributes.swift; sourceTree = "<group>"; };
 		5D54D3F22B19CD4F0008A5D7 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		5D7252752B21ADD100CF6688 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		5D7252772B21ADE000CF6688 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		5D72527A2B21AE2E00CF6688 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		5D72527B2B21AE2E00CF6688 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		5D72527C2B21AE2E00CF6688 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		770EB42EEC0C5E26690C4DBA /* Pods-HappyMoodBoard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyMoodBoard.debug.xcconfig"; path = "Target Support Files/Pods-HappyMoodBoard/Pods-HappyMoodBoard.debug.xcconfig"; sourceTree = "<group>"; };
 		7DB0036E0DF4880FF188512F /* Pods-HappyMoodBoard-HappyMoodBoardUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyMoodBoard-HappyMoodBoardUITests.debug.xcconfig"; path = "Target Support Files/Pods-HappyMoodBoard-HappyMoodBoardUITests/Pods-HappyMoodBoard-HappyMoodBoardUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		856C8EB45D34A77850140391 /* Pods_HappyMoodBoard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyMoodBoard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +116,8 @@
 		5D54D3E82B19B0C90008A5D7 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				5D7252772B21ADE000CF6688 /* OnboardingViewController.swift */,
+				5D7252752B21ADD100CF6688 /* OnboardingViewModel.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -114,6 +129,16 @@
 				5D54D3F22B19CD4F0008A5D7 /* ViewModel.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		5D7252792B21AE2000CF6688 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				5D72527B2B21AE2E00CF6688 /* Pretendard-Bold.otf */,
+				5D72527C2B21AE2E00CF6688 /* Pretendard-Medium.otf */,
+				5D72527A2B21AE2E00CF6688 /* Pretendard-Regular.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		7AD8AC484AFEE6DFF9A6945A /* Frameworks */ = {
@@ -130,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				AC3A3BC82B049FBA0081BF32 /* Assets.xcassets */,
+				5D7252792B21AE2000CF6688 /* Fonts */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -328,6 +354,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2F0FA3F2B06599E00ADA84C /* .swiftlint.yml in Resources */,
+				5D7252812B21AE2F00CF6688 /* Pretendard-Medium.otf in Resources */,
+				5D72527F2B21AE2F00CF6688 /* Pretendard-Bold.otf in Resources */,
+				5D72527D2B21AE2F00CF6688 /* Pretendard-Regular.otf in Resources */,
 				AC3A3BC92B049FBA0081BF32 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -345,6 +374,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2F0FA412B06599E00ADA84C /* .swiftlint.yml in Resources */,
+				5D7252802B21AE2F00CF6688 /* Pretendard-Bold.otf in Resources */,
+				5D72527E2B21AE2F00CF6688 /* Pretendard-Regular.otf in Resources */,
+				5D7252822B21AE2F00CF6688 /* Pretendard-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,6 +508,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D54D3F32B19CD4F0008A5D7 /* ViewModel.swift in Sources */,
+				5D7252782B21ADE000CF6688 /* OnboardingViewController.swift in Sources */,
+				5D7252762B21ADD100CF6688 /* OnboardingViewModel.swift in Sources */,
 				5D54D3F12B19CCD40008A5D7 /* ViewAttributes.swift in Sources */,
 				AC3A3BC02B049FB90081BF32 /* AppDelegate.swift in Sources */,
 				AC3A3BC22B049FB90081BF32 /* SceneDelegate.swift in Sources */,
