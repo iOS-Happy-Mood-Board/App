@@ -181,6 +181,13 @@ extension AgreeViewController: ViewAttributes {
         output.agreeToAllOptions.asDriver(onErrorJustReturn: false)
             .drive(nextButton.rx.isEnabled)
             .disposed(by: disposeBag)
+
+        output.navigateToNextStep
+            .bind { [weak self] in
+                let viewController = EnterNicknameViewController()
+                self?.show(viewController, sender: nil)
+            }
+            .disposed(by: disposeBag)
     }
     
 }
