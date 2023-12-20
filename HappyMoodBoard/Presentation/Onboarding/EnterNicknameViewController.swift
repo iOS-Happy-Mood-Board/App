@@ -55,15 +55,17 @@ final class EnterNicknameViewController: UIViewController, ViewAttributes {
         $0.text = "* 특수문자는 쓸 수 없어요"
     }
     
-    private let nextButton = UIButton().then {
-        var container = AttributeContainer()
-        container.font = UIFont(name: "Pretendard-Bold", size: 16)
-        container.foregroundColor = .init(hexString: "#555555")
-        var configuration = UIButton.Configuration.filled()
-        configuration.baseBackgroundColor = .init(hexString: "#FFCE53")
-        configuration.cornerStyle = .capsule
-        configuration.attributedTitle = AttributedString("다음", attributes: container)
-        $0.configuration = configuration
+    private let nextButton = UIButton(type: .system).then {
+        $0.configurationUpdateHandler = { button in
+            var container = AttributeContainer()
+            container.font = UIFont(name: "Pretendard-Bold", size: 16)
+            container.foregroundColor = button.isEnabled ? .init(hexString: "#555555") : .init(hexString: "#888888")
+            var configuration = UIButton.Configuration.filled()
+            configuration.cornerStyle = .capsule
+            configuration.background.backgroundColor = button.isEnabled ? .init(hexString: "#FFCE53") : .init(hexString: "#DFDFDF")
+            configuration.attributedTitle = AttributedString("다음", attributes: container)
+            button.configuration = configuration
+        }
         $0.isEnabled = false
     }
 
@@ -126,7 +128,7 @@ final class EnterNicknameViewController: UIViewController, ViewAttributes {
         
         nextButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(24)
-            make.bottom.equalToSuperview().offset(-8)
+            make.bottom.equalToSuperview().offset(-60)
             make.height.equalTo(52)
         }
     }
