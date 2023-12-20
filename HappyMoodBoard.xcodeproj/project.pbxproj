@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		54425D4B796EBA4291131BD8 /* Pods_HappyMoodBoardTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D7E7028B519838157110D33 /* Pods_HappyMoodBoardTests.framework */; };
+		5D4977B32B327E4D00059120 /* UIViewController+backgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4977B22B327E4D00059120 /* UIViewController+backgroundColor.swift */; };
 		5D54D3F12B19CCD40008A5D7 /* ViewAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D54D3F02B19CCD40008A5D7 /* ViewAttributes.swift */; };
 		5D54D3F32B19CD4F0008A5D7 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D54D3F22B19CD4F0008A5D7 /* ViewModel.swift */; };
 		5D7252762B21ADD100CF6688 /* AgreeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7252752B21ADD100CF6688 /* AgreeViewModel.swift */; };
@@ -57,6 +58,7 @@
 /* Begin PBXFileReference section */
 		186BF015464321EBD2F53053 /* Pods-HappyMoodBoardTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyMoodBoardTests.release.xcconfig"; path = "Target Support Files/Pods-HappyMoodBoardTests/Pods-HappyMoodBoardTests.release.xcconfig"; sourceTree = "<group>"; };
 		4BA4A6BD2A08666D1E7F0BA9 /* Pods-HappyMoodBoardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyMoodBoardTests.debug.xcconfig"; path = "Target Support Files/Pods-HappyMoodBoardTests/Pods-HappyMoodBoardTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5D4977B22B327E4D00059120 /* UIViewController+backgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+backgroundColor.swift"; sourceTree = "<group>"; };
 		5D54D3F02B19CCD40008A5D7 /* ViewAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAttributes.swift; sourceTree = "<group>"; };
 		5D54D3F22B19CD4F0008A5D7 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		5D7252752B21ADD100CF6688 /* AgreeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreeViewModel.swift; sourceTree = "<group>"; };
@@ -139,10 +141,11 @@
 		5D54D3EF2B19CCC60008A5D7 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				5D7252862B21BEC100CF6688 /* CheckboxButton.swift */,
+				5D7252892B231CE300CF6688 /* UIColor+BeeHappy.swift */,
+				5D4977B22B327E4D00059120 /* UIViewController+backgroundColor.swift */,
 				5D54D3F02B19CCD40008A5D7 /* ViewAttributes.swift */,
 				5D54D3F22B19CD4F0008A5D7 /* ViewModel.swift */,
-				5D7252892B231CE300CF6688 /* UIColor+BeeHappy.swift */,
-				5D7252862B21BEC100CF6688 /* CheckboxButton.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				5D54D3F32B19CD4F0008A5D7 /* ViewModel.swift in Sources */,
 				5D7252782B21ADE000CF6688 /* AgreeViewController.swift in Sources */,
 				5D7252872B21BEC100CF6688 /* CheckboxButton.swift in Sources */,
+				5D4977B32B327E4D00059120 /* UIViewController+backgroundColor.swift in Sources */,
 				5DB28DF02B2AF9DD00C4E594 /* EnterNicknameViewModel.swift in Sources */,
 				5D7252762B21ADD100CF6688 /* AgreeViewModel.swift in Sources */,
 				5D54D3F12B19CCD40008A5D7 /* ViewAttributes.swift in Sources */,

@@ -81,6 +81,7 @@ final class AgreeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setCommonBackgroundColor()
         setupSubviews()
         setupLayouts()
         setupBindings()

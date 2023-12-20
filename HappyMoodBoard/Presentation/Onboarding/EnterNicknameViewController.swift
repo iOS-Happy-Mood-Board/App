@@ -75,6 +75,7 @@ final class EnterNicknameViewController: UIViewController, ViewAttributes {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setCommonBackgroundColor()
         setupSubviews()
         setupLayouts()
         setupBindings()
