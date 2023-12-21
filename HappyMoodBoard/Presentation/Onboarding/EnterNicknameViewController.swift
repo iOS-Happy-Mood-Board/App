@@ -151,8 +151,32 @@ final class EnterNicknameViewController: UIViewController, ViewAttributes {
 
         output.navigateTohome
             .bind { [weak self] in
-                let viewController = UIViewController()
-                self?.show(viewController, sender: nil)
+                let imageInsets: UIEdgeInsets = .init(top: 13, left: 0, bottom: 0, right: 0)
+                
+                let homeViewController = HomeViewController()
+                homeViewController.navigationItem.title = "BEE HAPPY"
+                homeViewController.tabBarItem.image = .init(named: "tabbar.home")
+                homeViewController.tabBarItem.selectedImage = .init(named: "tabbar.home.selected")
+                homeViewController.tabBarItem.imageInsets = imageInsets
+                let homeNavigationController = UINavigationController(rootViewController: homeViewController)
+
+                let registerViewController = RegisterViewController()
+                registerViewController.tabBarItem.image = .init(named: "tabbar.register")
+                //                registerViewController.tabBarItem.selectedImage = .init(named: "tabbar.register.selected")
+                registerViewController.tabBarItem.imageInsets = imageInsets
+
+                let listViewController = ListViewController()
+                listViewController.tabBarItem.image = .init(named: "tabbar.list")
+                listViewController.tabBarItem.selectedImage = .init(named: "tabbar.list.selected")
+                listViewController.tabBarItem.imageInsets = imageInsets
+                
+                let tabBarController = TabBarController()
+                tabBarController.viewControllers = [
+                    homeNavigationController,
+                    registerViewController,
+                    listViewController
+                ]
+                self?.show(tabBarController, sender: nil)
             }
             .disposed(by: disposeBag)
     }
