@@ -25,6 +25,34 @@
 		5DB28DEC2B2AD0CD00C4E594 /* EnterNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB28DEB2B2AD0CD00C4E594 /* EnterNicknameViewController.swift */; };
 		5DB28DF02B2AF9DD00C4E594 /* EnterNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB28DEF2B2AF9DD00C4E594 /* EnterNicknameViewModel.swift */; };
 		676E999C798E7795F8DED6EC /* Pods_HappyMoodBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6E437ECCF20FBB94EF85D6F /* Pods_HappyMoodBoard.framework */; };
+		A2DFB7DA2B37C37C008B95AC /* SettingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7D92B37C37C008B95AC /* SettingType.swift */; };
+		A2DFB7DB2B37C37C008B95AC /* SettingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7D92B37C37C008B95AC /* SettingType.swift */; };
+		A2DFB7DC2B37C37C008B95AC /* SettingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7D92B37C37C008B95AC /* SettingType.swift */; };
+		A2DFB7DF2B383150008B95AC /* SettingIndexButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7DE2B383150008B95AC /* SettingIndexButton.swift */; };
+		A2DFB7E42B392A71008B95AC /* VersionInfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7E32B392A71008B95AC /* VersionInfoButton.swift */; };
+		A2DFB7E52B392A71008B95AC /* VersionInfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7E32B392A71008B95AC /* VersionInfoButton.swift */; };
+		A2DFB7E62B392A71008B95AC /* VersionInfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7E32B392A71008B95AC /* VersionInfoButton.swift */; };
+		A2DFB7E92B392E4B008B95AC /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7E82B392E4B008B95AC /* Version.swift */; };
+		A2DFB7EA2B392E4B008B95AC /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7E82B392E4B008B95AC /* Version.swift */; };
+		A2DFB7EB2B392E4B008B95AC /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7E82B392E4B008B95AC /* Version.swift */; };
+		A2DFB7ED2B3930DB008B95AC /* SettingIndexViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7EC2B3930DB008B95AC /* SettingIndexViewModel.swift */; };
+		A2DFB7EE2B3930DB008B95AC /* SettingIndexViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7EC2B3930DB008B95AC /* SettingIndexViewModel.swift */; };
+		A2DFB7EF2B3930DB008B95AC /* SettingIndexViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7EC2B3930DB008B95AC /* SettingIndexViewModel.swift */; };
+		A2DFB7F22B3935E1008B95AC /* SettingMyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7F12B3935E1008B95AC /* SettingMyAccountViewController.swift */; };
+		A2DFB7F32B3935E1008B95AC /* SettingMyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7F12B3935E1008B95AC /* SettingMyAccountViewController.swift */; };
+		A2DFB7F42B3935E1008B95AC /* SettingMyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7F12B3935E1008B95AC /* SettingMyAccountViewController.swift */; };
+		A2DFB7F72B393873008B95AC /* SettingNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7F62B393873008B95AC /* SettingNotificationViewController.swift */; };
+		A2DFB7F82B393873008B95AC /* SettingNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7F62B393873008B95AC /* SettingNotificationViewController.swift */; };
+		A2DFB7F92B393873008B95AC /* SettingNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7F62B393873008B95AC /* SettingNotificationViewController.swift */; };
+		A2DFB7FC2B39B4F7008B95AC /* SettingWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7FB2B39B4F7008B95AC /* SettingWebViewController.swift */; };
+		A2DFB7FD2B39B4F7008B95AC /* SettingWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7FB2B39B4F7008B95AC /* SettingWebViewController.swift */; };
+		A2DFB7FE2B39B4F7008B95AC /* SettingWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7FB2B39B4F7008B95AC /* SettingWebViewController.swift */; };
+		A2DFB8002B39C4C1008B95AC /* UIViewController+alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7FF2B39C4C1008B95AC /* UIViewController+alert.swift */; };
+		A2DFB8012B39C4C1008B95AC /* UIViewController+alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7FF2B39C4C1008B95AC /* UIViewController+alert.swift */; };
+		A2DFB8022B39C4C1008B95AC /* UIViewController+alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7FF2B39C4C1008B95AC /* UIViewController+alert.swift */; };
+		A2DFB8052B39C647008B95AC /* SettingOpenSourceLicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB8042B39C647008B95AC /* SettingOpenSourceLicenseViewController.swift */; };
+		A2DFB8062B39C647008B95AC /* SettingOpenSourceLicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB8042B39C647008B95AC /* SettingOpenSourceLicenseViewController.swift */; };
+		A2DFB8072B39C647008B95AC /* SettingOpenSourceLicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB8042B39C647008B95AC /* SettingOpenSourceLicenseViewController.swift */; };
 		A2F0FA3F2B06599E00ADA84C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A2F0FA3E2B06599E00ADA84C /* .swiftlint.yml */; };
 		A2F0FA402B06599E00ADA84C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A2F0FA3E2B06599E00ADA84C /* .swiftlint.yml */; };
 		A2F0FA412B06599E00ADA84C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A2F0FA3E2B06599E00ADA84C /* .swiftlint.yml */; };
@@ -34,9 +62,9 @@
 		AC3A3BD72B049FBA0081BF32 /* HappyMoodBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3A3BD62B049FBA0081BF32 /* HappyMoodBoardTests.swift */; };
 		AC3A3BE12B049FBA0081BF32 /* HappyMoodBoardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3A3BE02B049FBA0081BF32 /* HappyMoodBoardUITests.swift */; };
 		AC3A3BE32B049FBA0081BF32 /* HappyMoodBoardUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3A3BE22B049FBA0081BF32 /* HappyMoodBoardUITestsLaunchTests.swift */; };
-		AC9E33BF2B35486E00B0D9AE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9E33BE2B35486E00B0D9AE /* SettingViewController.swift */; };
-		AC9E33C02B35486E00B0D9AE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9E33BE2B35486E00B0D9AE /* SettingViewController.swift */; };
-		AC9E33C12B35486E00B0D9AE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9E33BE2B35486E00B0D9AE /* SettingViewController.swift */; };
+		AC9E33BF2B35486E00B0D9AE /* SettingIndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9E33BE2B35486E00B0D9AE /* SettingIndexViewController.swift */; };
+		AC9E33C02B35486E00B0D9AE /* SettingIndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9E33BE2B35486E00B0D9AE /* SettingIndexViewController.swift */; };
+		AC9E33C12B35486E00B0D9AE /* SettingIndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9E33BE2B35486E00B0D9AE /* SettingIndexViewController.swift */; };
 		AC9E33CC2B35614000B0D9AE /* NavigationTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9E33CB2B35614000B0D9AE /* NavigationTitle.swift */; };
 		AC9E33CD2B35614000B0D9AE /* NavigationTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9E33CB2B35614000B0D9AE /* NavigationTitle.swift */; };
 		AC9E33CE2B35614000B0D9AE /* NavigationTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9E33CB2B35614000B0D9AE /* NavigationTitle.swift */; };
@@ -85,6 +113,16 @@
 		6575D7DDF37C8F4547644BF0 /* Pods-HappyMoodBoardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyMoodBoardTests.debug.xcconfig"; path = "Target Support Files/Pods-HappyMoodBoardTests/Pods-HappyMoodBoardTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7AD9B74EF4837EEE55C75F63 /* Pods_HappyMoodBoardTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyMoodBoardTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		928F15A5095CBB78C4957AD4 /* Pods-HappyMoodBoard-HappyMoodBoardUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyMoodBoard-HappyMoodBoardUITests.release.xcconfig"; path = "Target Support Files/Pods-HappyMoodBoard-HappyMoodBoardUITests/Pods-HappyMoodBoard-HappyMoodBoardUITests.release.xcconfig"; sourceTree = "<group>"; };
+		A2DFB7D92B37C37C008B95AC /* SettingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingType.swift; sourceTree = "<group>"; };
+		A2DFB7DE2B383150008B95AC /* SettingIndexButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingIndexButton.swift; sourceTree = "<group>"; };
+		A2DFB7E32B392A71008B95AC /* VersionInfoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionInfoButton.swift; sourceTree = "<group>"; };
+		A2DFB7E82B392E4B008B95AC /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
+		A2DFB7EC2B3930DB008B95AC /* SettingIndexViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingIndexViewModel.swift; sourceTree = "<group>"; };
+		A2DFB7F12B3935E1008B95AC /* SettingMyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMyAccountViewController.swift; sourceTree = "<group>"; };
+		A2DFB7F62B393873008B95AC /* SettingNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotificationViewController.swift; sourceTree = "<group>"; };
+		A2DFB7FB2B39B4F7008B95AC /* SettingWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingWebViewController.swift; sourceTree = "<group>"; };
+		A2DFB7FF2B39C4C1008B95AC /* UIViewController+alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+alert.swift"; sourceTree = "<group>"; };
+		A2DFB8042B39C647008B95AC /* SettingOpenSourceLicenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingOpenSourceLicenseViewController.swift; sourceTree = "<group>"; };
 		A2F0FA3E2B06599E00ADA84C /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		A6E437ECCF20FBB94EF85D6F /* Pods_HappyMoodBoard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyMoodBoard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC3A3BBC2B049FB90081BF32 /* HappyMoodBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyMoodBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,7 +135,7 @@
 		AC3A3BDC2B049FBA0081BF32 /* HappyMoodBoardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HappyMoodBoardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC3A3BE02B049FBA0081BF32 /* HappyMoodBoardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyMoodBoardUITests.swift; sourceTree = "<group>"; };
 		AC3A3BE22B049FBA0081BF32 /* HappyMoodBoardUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyMoodBoardUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		AC9E33BE2B35486E00B0D9AE /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		AC9E33BE2B35486E00B0D9AE /* SettingIndexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingIndexViewController.swift; sourceTree = "<group>"; };
 		AC9E33CB2B35614000B0D9AE /* NavigationTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTitle.swift; sourceTree = "<group>"; };
 		AC9E33D02B35643000B0D9AE /* NavigtaionItemBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigtaionItemBack.swift; sourceTree = "<group>"; };
 		DC16FAC9EF5C81E2F6F03D73 /* Pods_HappyMoodBoard_HappyMoodBoardUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyMoodBoard_HappyMoodBoardUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +191,7 @@
 		5D54D3EF2B19CCC60008A5D7 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				A2DFB7E72B392E3D008B95AC /* Function */,
 				AC9E33C82B35555600B0D9AE /* Extension */,
 				AC9E33C72B35554B00B0D9AE /* Protocol */,
 				AC9E33C92B3558A100B0D9AE /* UI */,
@@ -192,11 +231,61 @@
 			isa = PBXGroup;
 			children = (
 				5D54D3EF2B19CCC60008A5D7 /* Common */,
-				5D54D3E72B19B0C20008A5D7 /* Login */,
 				5D54D3E82B19B0C90008A5D7 /* Onboarding */,
+				5D54D3E72B19B0C20008A5D7 /* Login */,
 				AC9E33BD2B35483700B0D9AE /* Setting */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		A2DFB7E22B3926F9008B95AC /* SettingIndex */ = {
+			isa = PBXGroup;
+			children = (
+				A2DFB7D92B37C37C008B95AC /* SettingType.swift */,
+				AC9E33BE2B35486E00B0D9AE /* SettingIndexViewController.swift */,
+				A2DFB7EC2B3930DB008B95AC /* SettingIndexViewModel.swift */,
+			);
+			path = SettingIndex;
+			sourceTree = "<group>";
+		};
+		A2DFB7E72B392E3D008B95AC /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				A2DFB7E82B392E4B008B95AC /* Version.swift */,
+			);
+			path = Function;
+			sourceTree = "<group>";
+		};
+		A2DFB7F02B3935C8008B95AC /* SettingMyAccount */ = {
+			isa = PBXGroup;
+			children = (
+				A2DFB7F12B3935E1008B95AC /* SettingMyAccountViewController.swift */,
+			);
+			path = SettingMyAccount;
+			sourceTree = "<group>";
+		};
+		A2DFB7F52B39380B008B95AC /* SettingNotification */ = {
+			isa = PBXGroup;
+			children = (
+				A2DFB7F62B393873008B95AC /* SettingNotificationViewController.swift */,
+			);
+			path = SettingNotification;
+			sourceTree = "<group>";
+		};
+		A2DFB7FA2B39B4D1008B95AC /* SettingWebView */ = {
+			isa = PBXGroup;
+			children = (
+				A2DFB7FB2B39B4F7008B95AC /* SettingWebViewController.swift */,
+			);
+			path = SettingWebView;
+			sourceTree = "<group>";
+		};
+		A2DFB8032B39C62C008B95AC /* SettingOpenSourceLicense */ = {
+			isa = PBXGroup;
+			children = (
+				A2DFB8042B39C647008B95AC /* SettingOpenSourceLicenseViewController.swift */,
+			);
+			path = SettingOpenSourceLicense;
 			sourceTree = "<group>";
 		};
 		AC3A3BB32B049FB90081BF32 = {
@@ -253,7 +342,11 @@
 		AC9E33BD2B35483700B0D9AE /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				AC9E33BE2B35486E00B0D9AE /* SettingViewController.swift */,
+				A2DFB7E22B3926F9008B95AC /* SettingIndex */,
+				A2DFB7F02B3935C8008B95AC /* SettingMyAccount */,
+				A2DFB7F52B39380B008B95AC /* SettingNotification */,
+				A2DFB7FA2B39B4D1008B95AC /* SettingWebView */,
+				A2DFB8032B39C62C008B95AC /* SettingOpenSourceLicense */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -262,6 +355,8 @@
 			isa = PBXGroup;
 			children = (
 				5D7252862B21BEC100CF6688 /* CheckboxButton.swift */,
+				A2DFB7DE2B383150008B95AC /* SettingIndexButton.swift */,
+				A2DFB7E32B392A71008B95AC /* VersionInfoButton.swift */,
 			);
 			path = UIButton;
 			sourceTree = "<group>";
@@ -280,6 +375,7 @@
 			children = (
 				5D7252892B231CE300CF6688 /* UIColor+BeeHappy.swift */,
 				5D4977B22B327E4D00059120 /* UIViewController+backgroundColor.swift */,
+				A2DFB7FF2B39C4C1008B95AC /* UIViewController+alert.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -601,14 +697,24 @@
 				AC9E33D12B35643000B0D9AE /* NavigtaionItemBack.swift in Sources */,
 				5DB28DEC2B2AD0CD00C4E594 /* EnterNicknameViewController.swift in Sources */,
 				5D54D3F32B19CD4F0008A5D7 /* ViewModel.swift in Sources */,
+				A2DFB7DF2B383150008B95AC /* SettingIndexButton.swift in Sources */,
 				5D7252782B21ADE000CF6688 /* AgreeViewController.swift in Sources */,
-				AC9E33BF2B35486E00B0D9AE /* SettingViewController.swift in Sources */,
+				AC9E33BF2B35486E00B0D9AE /* SettingIndexViewController.swift in Sources */,
 				5D7252872B21BEC100CF6688 /* CheckboxButton.swift in Sources */,
+				A2DFB8002B39C4C1008B95AC /* UIViewController+alert.swift in Sources */,
+				A2DFB8052B39C647008B95AC /* SettingOpenSourceLicenseViewController.swift in Sources */,
+				A2DFB7E42B392A71008B95AC /* VersionInfoButton.swift in Sources */,
 				5D4977B32B327E4D00059120 /* UIViewController+backgroundColor.swift in Sources */,
 				5DB28DF02B2AF9DD00C4E594 /* EnterNicknameViewModel.swift in Sources */,
 				5D7252762B21ADD100CF6688 /* AgreeViewModel.swift in Sources */,
 				5D54D3F12B19CCD40008A5D7 /* ViewAttributes.swift in Sources */,
+				A2DFB7E92B392E4B008B95AC /* Version.swift in Sources */,
+				A2DFB7F72B393873008B95AC /* SettingNotificationViewController.swift in Sources */,
 				AC3A3BC02B049FB90081BF32 /* AppDelegate.swift in Sources */,
+				A2DFB7F22B3935E1008B95AC /* SettingMyAccountViewController.swift in Sources */,
+				A2DFB7FC2B39B4F7008B95AC /* SettingWebViewController.swift in Sources */,
+				A2DFB7ED2B3930DB008B95AC /* SettingIndexViewModel.swift in Sources */,
+				A2DFB7DA2B37C37C008B95AC /* SettingType.swift in Sources */,
 				5D72528A2B231CE300CF6688 /* UIColor+BeeHappy.swift in Sources */,
 				AC3A3BC22B049FB90081BF32 /* SceneDelegate.swift in Sources */,
 				5D7252842B21BE8300CF6688 /* AgreeType.swift in Sources */,
@@ -620,7 +726,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC3A3BD72B049FBA0081BF32 /* HappyMoodBoardTests.swift in Sources */,
-				AC9E33C02B35486E00B0D9AE /* SettingViewController.swift in Sources */,
+				A2DFB7DB2B37C37C008B95AC /* SettingType.swift in Sources */,
+				A2DFB7E52B392A71008B95AC /* VersionInfoButton.swift in Sources */,
+				A2DFB7EE2B3930DB008B95AC /* SettingIndexViewModel.swift in Sources */,
+				AC9E33C02B35486E00B0D9AE /* SettingIndexViewController.swift in Sources */,
+				A2DFB7EA2B392E4B008B95AC /* Version.swift in Sources */,
+				A2DFB7F82B393873008B95AC /* SettingNotificationViewController.swift in Sources */,
+				A2DFB7F32B3935E1008B95AC /* SettingMyAccountViewController.swift in Sources */,
+				A2DFB8012B39C4C1008B95AC /* UIViewController+alert.swift in Sources */,
+				A2DFB8062B39C647008B95AC /* SettingOpenSourceLicenseViewController.swift in Sources */,
+				A2DFB7FD2B39B4F7008B95AC /* SettingWebViewController.swift in Sources */,
 				AC9E33D22B35643000B0D9AE /* NavigtaionItemBack.swift in Sources */,
 				AC9E33CD2B35614000B0D9AE /* NavigationTitle.swift in Sources */,
 			);
@@ -630,12 +745,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2DFB7E62B392A71008B95AC /* VersionInfoButton.swift in Sources */,
+				A2DFB7EB2B392E4B008B95AC /* Version.swift in Sources */,
+				A2DFB7DC2B37C37C008B95AC /* SettingType.swift in Sources */,
 				5D7252852B21BE8300CF6688 /* AgreeType.swift in Sources */,
+				A2DFB8022B39C4C1008B95AC /* UIViewController+alert.swift in Sources */,
 				AC9E33CE2B35614000B0D9AE /* NavigationTitle.swift in Sources */,
+				A2DFB7F42B3935E1008B95AC /* SettingMyAccountViewController.swift in Sources */,
+				A2DFB7FE2B39B4F7008B95AC /* SettingWebViewController.swift in Sources */,
+				A2DFB7EF2B3930DB008B95AC /* SettingIndexViewModel.swift in Sources */,
+				A2DFB8072B39C647008B95AC /* SettingOpenSourceLicenseViewController.swift in Sources */,
 				AC3A3BE12B049FBA0081BF32 /* HappyMoodBoardUITests.swift in Sources */,
 				AC3A3BE32B049FBA0081BF32 /* HappyMoodBoardUITestsLaunchTests.swift in Sources */,
 				AC9E33D32B35643000B0D9AE /* NavigtaionItemBack.swift in Sources */,
-				AC9E33C12B35486E00B0D9AE /* SettingViewController.swift in Sources */,
+				A2DFB7F92B393873008B95AC /* SettingNotificationViewController.swift in Sources */,
+				AC9E33C12B35486E00B0D9AE /* SettingIndexViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -796,7 +920,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.beside.HappyMoodBoard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -827,7 +951,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.beside.HappyMoodBoard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

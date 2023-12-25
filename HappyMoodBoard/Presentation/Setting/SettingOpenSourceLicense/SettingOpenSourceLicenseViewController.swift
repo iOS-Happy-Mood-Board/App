@@ -1,8 +1,8 @@
 //
-//  SettingViewController.swift
+//  SettingOpenSourceLicenseViewController.swift
 //  HappyMoodBoard
 //
-//  Created by ukseung.dev on 12/22/23.
+//  Created by ukBook on 12/25/23.
 //
 
 import Foundation
@@ -13,11 +13,14 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-
-final class SettingViewController: UIViewController {
+final class SettingOpenSourceLicenseViewController: UIViewController, ViewAttributes, UIGestureRecognizerDelegate {
     
-    private let navigationTitle = NavigationTitle(title: "설정")
+    // 네비게이션
+    private let navigationTitle = NavigationTitle(title: "오픈소스 라이센스")
     private let navigationItemBack = NavigtaionItemBack()
+    //
+    
+    private let disposeBag: DisposeBag = .init()
     
     override func viewDidLoad() {
         
@@ -27,14 +30,13 @@ final class SettingViewController: UIViewController {
         setupLayouts()
         setupBindings()
     }
-    
-    let disposeBag = DisposeBag()
 }
 
-extension SettingViewController: ViewAttributes {
+extension SettingOpenSourceLicenseViewController {
     func setupNavigationBar() {
         self.navigationItem.titleView = navigationTitle
         self.navigationItem.leftBarButtonItem = navigationItemBack
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     func setupSubviews() {
@@ -48,7 +50,8 @@ extension SettingViewController: ViewAttributes {
     func setupBindings() {
         navigationItemBack.rxTap
             .subscribe(onNext: { [weak self] in
-                
+                self?.navigationController?.popViewController(animated: true)
             })
+            .disposed(by: disposeBag)
     }
 }
