@@ -22,7 +22,7 @@ final class SettingIndexViewController: UIViewController, UIGestureRecognizerDel
     //
     
     private let contentStackViewTop = UIStackView().then {
-        $0.backgroundColor = .background
+        $0.backgroundColor = .primary100
         $0.axis = .vertical
         $0.alignment = .fill
         $0.distribution = .fill
@@ -34,7 +34,7 @@ final class SettingIndexViewController: UIViewController, UIGestureRecognizerDel
     }
     
     private let contentStackViewMiddle = UIStackView().then {
-        $0.backgroundColor = .background
+        $0.backgroundColor = .primary100
         $0.axis = .vertical
         $0.alignment = .fill
         $0.distribution = .fill
@@ -46,7 +46,7 @@ final class SettingIndexViewController: UIViewController, UIGestureRecognizerDel
     }
     
     private let contentStackViewBottom = UIStackView().then {
-        $0.backgroundColor = .background
+        $0.backgroundColor = .primary100
         $0.axis = .vertical
         $0.alignment = .fill
         $0.distribution = .fill
