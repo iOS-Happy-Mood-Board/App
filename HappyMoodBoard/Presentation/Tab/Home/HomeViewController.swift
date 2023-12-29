@@ -84,7 +84,7 @@ extension HomeViewController: ViewAttributes {
     func setupLayouts() {
         headerLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(8)
-            make.leading.trailing.equalToSuperview().inset(24)
+            make.leading.trailing.equalToSuperview().offset(24)
         }
         
         mainImageView.snp.makeConstraints { make in
@@ -112,7 +112,7 @@ extension HomeViewController: ViewAttributes {
             .disposed(by: disposeBag)
         output.navigateToSetting
             .bind { [weak self] _ in
-                let settingViewController = UIViewController()
+                let settingViewController = SettingIndexViewController()
                 self?.show(settingViewController, sender: nil)
             }
             .disposed(by: disposeBag)
