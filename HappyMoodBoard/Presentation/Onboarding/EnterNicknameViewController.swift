@@ -166,7 +166,7 @@ final class EnterNicknameViewController: UIViewController, ViewAttributes {
                 let homeNavigationController = UINavigationController(rootViewController: homeViewController)
                 
                 // register
-                let registerViewController = RegisterViewController()
+                let registerViewController = UIViewController()
                 registerViewController.tabBarItem.image = .init(named: "tabbar.register")
                 registerViewController.tabBarItem.imageInsets = imageInsets
                 
@@ -175,13 +175,14 @@ final class EnterNicknameViewController: UIViewController, ViewAttributes {
                 listViewController.tabBarItem.image = .init(named: "tabbar.list")
                 listViewController.tabBarItem.selectedImage = .init(named: "tabbar.list.selected")
                 listViewController.tabBarItem.imageInsets = imageInsets
+                let listNavigationController = UINavigationController(rootViewController: listViewController)
                 
                 // tab
                 let tabBarController = TabBarController()
                 tabBarController.viewControllers = [
                     homeNavigationController,
                     registerViewController,
-                    listViewController
+                    listNavigationController
                 ]
                 self?.show(tabBarController, sender: nil)
             }
