@@ -17,7 +17,7 @@ extension UIViewController {
     ///   - cancelActionTitle: 취소 타이틀 set
     ///   - confirmActionTitle: 확인 타이틀 set
     ///   - confirmActionHandler: escaping closure
-    func showAlert(title: String? = "알림", message: String?, preferredStyle: UIAlertController.Style = .alert, cancelActionTitle: String? = "취소", confirmActionTitle: String? = "확인", confirmActionHandler: (() -> Void)? = nil) {
+    func showAlert(title: String? = "알림", message: String?, preferredStyle: UIAlertController.Style = .alert, cancelActionTitle: String? = "아니오", confirmActionTitle: String? = "네", confirmActionHandler: (() -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
         
         // 취소 액션 추가
