@@ -13,33 +13,67 @@ final class RegisterViewModel: ViewModel {
     
     struct Input {
         let textChanged: Observable<String?>
-        let backTrigger: Observable<Void>
-        let saveTrigger: Observable<Void>
-        let cameraTrigger: Observable<Void>
-        let tagTrigger: Observable<Void>
-        let keyboardTrigger: Observable<Void>
+        let backButtonTapped: Observable<Void>
+        let saveButtonTapped: Observable<Void>
+        let cameraButtonTapped: Observable<Void>
+        let tagBarButtonTapped: Observable<Void>
+        let keyboardButtonTapped: Observable<Void>
+        let keyboardWillShow: Observable<Notification>
+        let imageSelected: Observable<[UIImagePickerController.InfoKey: Any]>
     }
     
     struct Output {
-        let canSave: Observable<Bool>
+        let canRegister: Observable<Bool>
         let navigateToBack: Observable<Void>
         let showAlert: Observable<Void>
-        let camera: Observable<Void>
-        let tag: Observable<Void>
+        let showImagePicker: Observable<Void>
+        let image: Observable<UIImage?>
+        let tag: Observable<Tag?>
         let keyboard: Observable<Void>
     }
     
     func transform(input: Input) -> Output {
-        // input.backTrigger && isValid 일 경우 showAlert
-        // 아닐 경우 바로 navigateToBack
+        let image = input.imageSelected
+            .map { $0[.editedImage] as? UIImage }
+        let text = input.textChanged
+        let sampleTag: Tag? = Tag(name: "휴식", color: "#FFC895")
+        let tag = Observable.just(sampleTag)
+        
+        // TODO: '뒤로가기' 눌렀을 때, 글씨, 이미지 등록, 태그 등록 중 1가지라도 되어있을 경우 -> "작성한 내용이 저장되지 않아요.\n정말 뒤로 가시겠어요?" 팝업 노출
+        
+        let textValid = text
+            .map(checkTextValid)
+            .startWith(false)
+            .distinctUntilChanged()
+            .debug()
+        
+        let imageValid = image
+            .map(checkImageValid)
+            .startWith(false)
+            .distinctUntilChanged()
+            .debug()
+        
+        // 본문이 1글자 이상 존재하거나 사진이 1개 등록인 상태일 경우
+        // 발행 버튼 활성화
+        let canRegister = Observable.combineLatest(textValid, imageValid) { $0 || $1 }
+        
         return .init(
-            canSave: .just(true),
-            navigateToBack: input.backTrigger,
-            showAlert: input.backTrigger,
-            camera: input.cameraTrigger,
-            tag: input.tagTrigger,
-            keyboard: input.keyboardTrigger
+            canRegister: canRegister,
+            navigateToBack: input.backButtonTapped,
+            showAlert: input.backButtonTapped,
+            showImagePicker: input.cameraButtonTapped,
+            image: image,
+            tag: tag,
+            keyboard: input.keyboardButtonTapped
         )
+    }
+    
+    private func checkTextValid(_ text: String?) -> Bool {
+        (text ?? "").count > 0
+    }
+    
+    private func checkImageValid(_ image: UIImage?) -> Bool {
+        image != nil
     }
     
 }

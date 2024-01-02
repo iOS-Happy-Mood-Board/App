@@ -24,14 +24,11 @@ final class RegisterViewController: UIViewController {
     )
     
     private let registerButton: UIBarButtonItem = .init(
-        image: .init(named: "navigation.register.disabled"),
+        image: .init(named: "navigation.register.normal"),
         style: .done,
         target: nil,
         action: nil
-    ).then {
-        $0.setBackgroundImage(.init(named: "navigation.register.normal"), for: .normal, barMetrics: .default)
-        $0.setBackgroundImage(.init(named: "navigation.register.disabled"), for: .disabled, barMetrics: .default)
-    }
+    )
     
     private let headerLabel: UILabel = .init().then {
         $0.text = "오늘의 행복은 어떤건가요?"
@@ -51,12 +48,30 @@ final class RegisterViewController: UIViewController {
     private let imageView: UIImageView = .init().then {
         $0.isHidden = true
         $0.contentMode = .scaleAspectFit
+        $0.layer.backgroundColor = UIColor.primary200?.cgColor
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.primary500?.cgColor
     }
     
-    private let tagLabel: UILabel = .init().then {
-        $0.text = "휴식"
-        $0.textColor = .label
-        $0.font = .systemFont(ofSize: 15, weight: .bold)
+    private let deleteButton: UIButton = .init().then {
+        $0.setImage(UIImage(named: "delete"), for: .normal)
+    }
+    
+    private let tagButton: UIButton = .init(type: .system).then {
+        var configuration = UIButton.Configuration.filled()
+        configuration.cornerStyle = .capsule
+        let verticalInset: CGFloat = 4.5
+        let horizontalInset: CGFloat = 18.5
+        configuration.contentInsets = .init(
+            top: verticalInset,
+            leading: horizontalInset,
+            bottom: verticalInset,
+            trailing: horizontalInset
+        )
+        configuration.image = .init(named: "tag.delete")
+        configuration.imagePadding = 10
+        configuration.imagePlacement = .trailing
+        $0.configuration = configuration
     }
     
     private let textView: UITextView = .init().then {
@@ -76,7 +91,7 @@ final class RegisterViewController: UIViewController {
         action: nil
     )
     
-    private let tagButton: UIBarButtonItem = .init(
+    private let tagBarButton: UIBarButtonItem = .init(
         image: .init(named: "toolbar.tag"),
         style: .plain,
         target: nil,
@@ -90,8 +105,10 @@ final class RegisterViewController: UIViewController {
         action: nil
     )
     
+    private let imagePicker: UIImagePickerController = .init()
+    
     private lazy var toolbar: UIToolbar = .init().then {
-        $0.items = [cameraButton, tagButton, .flexibleSpace(), keyboardButton]
+        $0.items = [cameraButton, tagBarButton, .flexibleSpace(), keyboardButton]
         $0.barTintColor = .primary100
     }
     
@@ -133,12 +150,13 @@ extension RegisterViewController: ViewAttributes {
         [
             headerLabel,
             contentStackView,
-            toolbar
+            toolbar,
+            deleteButton
         ].forEach { view.addSubview($0) }
         
         [
             imageView,
-            tagLabel,
+            tagButton,
             textView
         ].forEach { contentStackView.addArrangedSubview($0) }
     }
@@ -160,7 +178,11 @@ extension RegisterViewController: ViewAttributes {
         }
         
         imageView.snp.makeConstraints { make in
-            make.width.height.equalTo(200)
+            make.width.height.equalTo(216)
+        }
+        
+        deleteButton.snp.makeConstraints { make in
+            make.top.trailing.equalTo(imageView).inset(8)
         }
         
         toolbar.snp.makeConstraints { make in
@@ -173,68 +195,82 @@ extension RegisterViewController: ViewAttributes {
     func setupBindings() {
         let input = RegisterViewModel.Input(
             textChanged: textView.rx.text.asObservable(),
-            backTrigger: backButton.rx.tap.asObservable(),
-            saveTrigger: registerButton.rx.tap.asObservable(),
-            cameraTrigger: cameraButton.rx.tap.asObservable(),
-            tagTrigger: tagButton.rx.tap.asObservable(),
-            keyboardTrigger: keyboardButton.rx.tap.asObservable()
+            backButtonTapped: backButton.rx.tap.asObservable(),
+            saveButtonTapped: registerButton.rx.tap.asObservable(),
+            cameraButtonTapped: cameraButton.rx.tap.asObservable(),
+            tagBarButtonTapped: tagBarButton.rx.tap.asObservable(),
+            keyboardButtonTapped: keyboardButton.rx.tap.asObservable(),
+            keyboardWillShow: NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification),
+            imageSelected: imagePicker.rx.didFinishPickingMediaWithInfo.asObservable()
         )
         let output = viewModel.transform(input: input)
-        output.camera
-            .subscribe(onNext: { [weak self] in
-                // self?.showCameraAlert()
-                self?.openGallery()
+        output.canRegister
+            .withUnretained(self)
+            .subscribe(onNext: { owner, isEnabled in
+                let normalImage: UIImage = .init(named: "navigation.register.normal") ?? .init()
+                let disabledImage: UIImage = .init(named: "navigation.register.disabled") ?? .init()
+                owner.registerButton.image = isEnabled ? normalImage : disabledImage
             })
             .disposed(by: disposeBag)
+        
         output.navigateToBack
-            .subscribe(onNext: { [weak self] in
-                self?.navigationController?.popViewController(animated: false)
+            .withUnretained(self)
+            .subscribe(onNext: { owner, _ in
+                owner.navigationController?.popViewController(animated: false)
             })
+            .disposed(by: disposeBag)
+        
+        output.showImagePicker
+            .withUnretained(self)
+            .subscribe(onNext: { owner, _ in
+                owner.requestPhotoLibraryAuthorization()
+            })
+            .disposed(by: disposeBag)
+        
+        output.image
+            .withUnretained(self)
+            .debug()
+            .subscribe(onNext: { onwer, image in
+                let inset: CGFloat = 16
+                let edgeInsets: UIEdgeInsets = .init(top: -inset, left: -inset, bottom: -inset, right: -inset)
+                onwer.imageView.image = image?.withAlignmentRectInsets(edgeInsets)
+                onwer.imageView.isHidden = image == nil
+            })
+            .disposed(by: disposeBag)
+        
+        output.tag
+            .withUnretained(self)
+            .subscribe { owner, tag in
+                guard let tag = tag else {
+                    owner.tagButton.isHidden = true
+                    return
+                }
+                var configuration = owner.tagButton.configuration
+                var container = AttributeContainer()
+                container.font = UIFont(name: "Pretendard-Medium", size: 14)
+                configuration?.attributedTitle = AttributedString(tag.name, attributes: container)
+                configuration?.baseBackgroundColor = .init(hexString: tag.color)
+                configuration?.baseForegroundColor = .gray700
+                owner.tagButton.configuration = configuration
+                owner.tagButton.isHidden = false
+            }
             .disposed(by: disposeBag)
     }
     
 }
 
-extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension RegisterViewController {
     
-    func showCameraAlert() {
+    func showImagePickerSourceTypeSelectionAlert() {
         let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
-            self.openCamera()
+            self.showImagePickerController(for: .camera)
         }))
         alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { _ in
-            self.openGallery()
+            self.requestPhotoLibraryAuthorization()
         }))
         alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
-    }
-    
-    func openCamera() {
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.sourceType = .camera
-            imagePicker.allowsEditing = false
-            present(imagePicker, animated: true, completion: nil)
-        } else {
-            let alert = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
-        }
-    }
-    
-    func openGallery() {
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            requestPhotoLibraryAuthorization()
-        } else {
-            let alert = UIAlertController(
-                title: "Warning",
-                message: "You don't have permission to access gallery.",
-                preferredStyle: .alert
-            )
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
-        }
     }
     
     func requestPhotoLibraryAuthorization() {
@@ -243,33 +279,32 @@ extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationC
             PHPhotoLibrary.requestAuthorization { status in
                 if status == .authorized {
                     DispatchQueue.main.async { [weak self] in
-                        self?.showImagePickerController()
+                        self?.showImagePickerController(for: .photoLibrary)
                     }
                 }
             }
         case .denied:
-            // TODO: 허용 안 함 > 바텀시트 노출 > [설정 변경하러 가기] 클릭 시, 유저 기기 내 Bee Happy 설정 화면으로 이동 > 사진 접근 변동 시 앱 내 반영
-            // TODO: [설정 변경하러 가기] 미선택 시 등록 기본 화면(home/create)로 이동 > 사진 다시 클릭 시 동의 여부 재노출
-            
-            print(".denied")
             DispatchQueue.main.async { [weak self] in
                 self?.showPhotoLibraryAuthorizationAlert()
             }
         case .authorized, .limited:
             DispatchQueue.main.async { [weak self] in
-                self?.showImagePickerController()
+                self?.showImagePickerController(for: .photoLibrary)
             }
-        @unknown default:
-            print()
+        @unknown default: break
         }
     }
     
-    func showImagePickerController() {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.allowsEditing = true
-        present(imagePicker, animated: true, completion: nil)
+    func showImagePickerController(for sourceType: UIImagePickerController.SourceType) {
+        if UIImagePickerController.isSourceTypeAvailable(sourceType) {
+            imagePicker.sourceType = sourceType
+            imagePicker.allowsEditing = true
+            present(imagePicker, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: nil, message: "\(sourceType)에 접근할 수 없습니다", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     func showPhotoLibraryAuthorizationAlert() {
@@ -277,26 +312,6 @@ extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationC
         viewController.sheetPresentationController?.detents = [.medium()]
         viewController.sheetPresentationController?.prefersGrabberVisible = true
         present(viewController, animated: true, completion: nil)
-    }
-    
-    private func displayImage(_ image: UIImage?) {
-        imageView.image = image
-        imageView.isHidden = false
-    }
-    
-    private func displayEmptyImage() {
-        imageView.image = nil
-        imageView.isHidden = true
-    }
-    
-    func imagePickerController(
-        _ picker: UIImagePickerController,
-        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
-    ) {
-        if let image = info[.editedImage] as? UIImage {
-            displayImage(image)
-        }
-        picker.dismiss(animated: true, completion: nil)
     }
     
 }
