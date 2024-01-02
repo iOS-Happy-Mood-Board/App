@@ -13,4 +13,8 @@ extension UIViewController {
         view.backgroundColor = .primary100
     }
     
+    func setWhiteBackgroundColor() {
+        view.backgroundColor = .white
+    }
+    
 }
