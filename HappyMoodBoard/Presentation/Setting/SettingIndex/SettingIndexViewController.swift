@@ -163,12 +163,8 @@ extension SettingIndexViewController: ViewAttributes {
     }
     
     func setupBindings() {
-        navigationItemBack.rxTap
-            .subscribe(onNext: { [weak self] in
-                print("네비게이션 뒤로가기")
-            })
-        
         let input = SettingIndexViewModel.Input(
+            navigationBack: navigationItemBack.rxTap,
             mySettings: accountSettingButton.rx.tap.asObservable(),
             notificationSettings: notificationSettingButton.rx.tap.asObservable(),
             termsOfService: termsOfServiceButton.rx.tap.asObservable(),
@@ -181,6 +177,13 @@ extension SettingIndexViewController: ViewAttributes {
         )
         
         let output = viewModel.transform(input: input)
+        
+        // 네비게이션 뒤로가기
+        output.navigationBack.bind { [weak self] in
+            print("네비게이션 뒤로가기")
+            self?.navigationController?.popViewController(animated: true)
+        }
+        .disposed(by: disposeBag)
         
         // 내 계정
         output.mySettings.bind { [weak self] in
@@ -196,43 +199,50 @@ extension SettingIndexViewController: ViewAttributes {
         }
         .disposed(by: disposeBag)
         
+        // 이용약관
         output.termsOfService.bind { [weak self] in
             let viewController = SettingWebViewController(type: .termsOfService)
             self?.navigationController?.pushViewController(viewController, animated: true)
         }
         .disposed(by: disposeBag)
         
+        // 개인정보 처리방침
         output.privacyPolicy.bind { [weak self] in
             let viewController = SettingWebViewController(type: .privacyPolicy)
             self?.navigationController?.pushViewController(viewController, animated: true)
         }
         .disposed(by: disposeBag)
-        
+
+        // 오픈소스 라이센스
         output.openSourceLicense.bind { [weak self] in
             let viewController = SettingOpenSourceLicenseViewController()
             self?.navigationController?.pushViewController(viewController, animated: true)
         }
         .disposed(by: disposeBag)
         
+        // 리뷰 남기기
         output.leaveReview.bind { [weak self] in
             print("리뷰 남기기")
         }
         .disposed(by: disposeBag)
         
+        // 버전 정보
         output.versionInformation.bind { [weak self] in
             print("버전 정보")
         }
         .disposed(by: disposeBag)
         
+        // 로그아웃
         output.logout.bind { [weak self] in
-            self?.showAlert(title: "알림", message: "로그아웃 하시겠습니까?") {
+            self?.showAlert(title: nil, message: "로그아웃 하시겠습니까?") {
                 print("로그아웃")
             }
         }
         .disposed(by: disposeBag)
         
+        // 회원탈퇴
         output.withdrawMembership.bind { [weak self] in
-            self?.showAlert(title: "알림", message: "정말 탈퇴하시겠습니까?") {
+            self?.showAlert(title: nil, message: "정말 탈퇴하시겠습니까?") {
                 print("탈퇴")
             }
         }
