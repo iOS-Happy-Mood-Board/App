@@ -166,6 +166,7 @@ extension SettingIndexViewController: ViewAttributes {
         navigationItemBack.rxTap
             .subscribe(onNext: { [weak self] in
                 print("네비게이션 뒤로가기")
+                self?.navigationController?.popViewController(animated: true)
             })
         
         let input = SettingIndexViewModel.Input(

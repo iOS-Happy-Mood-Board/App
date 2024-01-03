@@ -12,6 +12,7 @@ target 'HappyMoodBoard' do
   pod 'SwiftLint'
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'RxGesture'
 
   target 'HappyMoodBoardTests' do
     inherit! :search_paths
