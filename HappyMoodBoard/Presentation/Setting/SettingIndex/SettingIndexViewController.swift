@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import StoreKit
 
 import Then
 import SnapKit
@@ -222,6 +223,7 @@ extension SettingIndexViewController: ViewAttributes {
         // 리뷰 남기기
         output.leaveReview.bind { [weak self] in
             print("리뷰 남기기")
+            SKStoreReviewController.requestReview()
         }
         .disposed(by: disposeBag)
 
