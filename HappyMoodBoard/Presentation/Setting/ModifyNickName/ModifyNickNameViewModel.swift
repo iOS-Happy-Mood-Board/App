@@ -12,11 +12,13 @@ import RxSwift
 final class ModifyNickNameViewModel: ViewModel {
     
     struct Input {
+        let navigateToBack: Observable<Void>
         let nickname: Observable<String>
         let navigateToHome: Observable<Void>
     }
     
     struct Output {
+        let navigateToBack: Observable<Void>
         let nickname: Observable<String>
         let isValid: Observable<Bool>
         let navigateTohome: Observable<Void>
@@ -46,6 +48,7 @@ final class ModifyNickNameViewModel: ViewModel {
             .disposed(by: disposeBag)
 
         return Output(
+            navigateToBack: input.navigateToBack,
             nickname: nickname,
             isValid: isValid,
             navigateTohome: input.navigateToHome

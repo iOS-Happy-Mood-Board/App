@@ -109,10 +109,15 @@ final class ModifyNickNameViewController: UIViewController, ViewAttributes, UIGe
     
     func setupBindings() {
         let input = ModifyNickNameViewModel.Input(
+            navigateToBack: navigationItemBack.rxTap.asObservable(),
             nickname: nicknameTextField.rx.text.orEmpty.asObservable(),
             navigateToHome: nextButton.rx.tap.asObservable()
         )
         let output = viewModel.transform(input: input)
+        
+        output.navigateToBack.bind { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
+        }
         
         output.nickname
             .bind(to: nicknameTextField.rx.text)
