@@ -12,6 +12,7 @@ import SnapKit
 
 import RxSwift
 import RxCocoa
+import RxViewController
 
 final class HomeViewController: UIViewController {
     
@@ -94,9 +95,22 @@ extension HomeViewController: ViewAttributes {
     
     func setupBindings() {
         let input = HomeViewModel.Input(
+            viewWillAppear: rx.viewWillAppear.asObservable(),
+            viewWillDisAppear: rx.viewWillDisappear.asObservable(),
             navigateToSetting: settingButton.rx.tap.asObservable()
         )
         let output = viewModel.transform(input: input)
+        
+        output.viewWillAppear.bind { [weak self] _ in
+            self?.tabBarController?.tabBar.isHidden = false
+        }
+        .disposed(by: disposeBag)
+        
+        output.viewWillDisAppear.bind { [weak self] _ in
+            self?.tabBarController?.tabBar.isHidden = true
+        }
+        .disposed(by: disposeBag)
+        
         output.username
             .bind { [weak self] username in
                 let text = "\(username) \(self?.headerLabel.text ?? Self.kHeaderLabelText)"
@@ -110,9 +124,10 @@ extension HomeViewController: ViewAttributes {
                 self?.headerLabel.attributedText = attributedString
             }
             .disposed(by: disposeBag)
+        
         output.navigateToSetting
             .bind { [weak self] _ in
-                let settingViewController = UIViewController()
+                let settingViewController = SettingIndexViewController()
                 self?.show(settingViewController, sender: nil)
             }
             .disposed(by: disposeBag)

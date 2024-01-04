@@ -12,10 +12,14 @@ import RxSwift
 final class HomeViewModel: ViewModel {
     
     struct Input {
+        let viewWillAppear: Observable<Bool>
+        let viewWillDisAppear: Observable<Bool>
         let navigateToSetting: Observable<Void>
     }
     
     struct Output {
+        let viewWillAppear: Observable<Bool>
+        let viewWillDisAppear: Observable<Bool>
         let username: Observable<String>
         let navigateToSetting: Observable<Void>
     }
@@ -25,6 +29,8 @@ final class HomeViewModel: ViewModel {
         let username = Observable.just("행복호소인")
         
         return Output(
+            viewWillAppear: input.viewWillAppear,
+            viewWillDisAppear: input.viewWillDisAppear,
             username: username,
             navigateToSetting: input.navigateToSetting
         )
