@@ -42,4 +42,15 @@ enum SettingType {
             return "회원탈퇴"
         }
     }
+  
+    var URL: String {
+        switch self {
+        case .termsOfService:
+            return "https://beehappy-official.notion.site/ba158bbbee63427bb2a84dcb7e69f5dc"
+        case .privacyPolicy:
+            return "https://beehappy-official.notion.site/1d48f3bfca2b48d5b693371e352a7232"
+        default:
+            return ""
+        }
+    }
 }

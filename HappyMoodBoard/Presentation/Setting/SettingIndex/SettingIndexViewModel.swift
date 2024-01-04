@@ -13,6 +13,7 @@ import RxCocoa
 final class SettingIndexViewModel: ViewModel {
     
     struct Input {
+        let navigationBack: ControlEvent<Void>
         let mySettings: Observable<Void>
         let notificationSettings: Observable<Void>
         let termsOfService: Observable<Void>
@@ -25,6 +26,7 @@ final class SettingIndexViewModel: ViewModel {
     }
     
     struct Output {
+        let navigationBack: Observable<Void>
         let mySettings: Observable<Void>
         let notificationSettings: Observable<Void>
         let termsOfService: Observable<Void>
@@ -39,6 +41,7 @@ final class SettingIndexViewModel: ViewModel {
     func transform(input: Input) -> Output {
         
         return Output(
+            navigationBack: input.navigationBack.asObservable(),
             mySettings: input.mySettings,
             notificationSettings: input.notificationSettings,
             termsOfService: input.termsOfService,
