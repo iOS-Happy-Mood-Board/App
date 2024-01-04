@@ -178,13 +178,14 @@ extension SettingIndexViewController: ViewAttributes {
         
         let output = viewModel.transform(input: input)
         
+
         // 네비게이션 뒤로가기
         output.navigationBack.bind { [weak self] in
             print("네비게이션 뒤로가기")
             self?.navigationController?.popViewController(animated: true)
         }
         .disposed(by: disposeBag)
-        
+
         // 내 계정
         output.mySettings.bind { [weak self] in
             let viewController = SettingMyAccountViewController()
@@ -199,6 +200,7 @@ extension SettingIndexViewController: ViewAttributes {
         }
         .disposed(by: disposeBag)
         
+
         // 이용약관
         output.termsOfService.bind { [weak self] in
             let viewController = SettingWebViewController(type: .termsOfService)
@@ -220,12 +222,14 @@ extension SettingIndexViewController: ViewAttributes {
         }
         .disposed(by: disposeBag)
         
+
         // 리뷰 남기기
         output.leaveReview.bind { [weak self] in
             print("리뷰 남기기")
         }
         .disposed(by: disposeBag)
         
+
         // 버전 정보
         output.versionInformation.bind { [weak self] in
             print("버전 정보")

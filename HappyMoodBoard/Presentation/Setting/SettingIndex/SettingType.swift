@@ -42,7 +42,7 @@ enum SettingType {
             return "회원탈퇴"
         }
     }
-    
+  
     var URL: String {
         switch self {
         case .termsOfService:

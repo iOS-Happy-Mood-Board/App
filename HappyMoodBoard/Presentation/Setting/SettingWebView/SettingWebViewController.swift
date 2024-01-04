@@ -32,7 +32,6 @@ final class SettingWebViewController: UIViewController, ViewAttributes, UIGestur
     
     init(type: SettingType) {
         super.init(nibName: nil, bundle: nil)
-        
         self.type = type
     }
     
@@ -42,6 +41,7 @@ final class SettingWebViewController: UIViewController, ViewAttributes, UIGestur
     
     override func viewDidLoad() {
         
+
         setWebView()
         setWhiteBackgroundColor()
         setupNavigationBar()
@@ -50,6 +50,7 @@ final class SettingWebViewController: UIViewController, ViewAttributes, UIGestur
         setupBindings()
     }
 }
+
 
 extension SettingWebViewController: WKNavigationDelegate {
     func setWebView() {
@@ -99,6 +100,5 @@ extension SettingWebViewController: WKNavigationDelegate {
                 self?.activityIndicator.stopAnimating()
             })
             .disposed(by: disposeBag)
-            
     }
 }
