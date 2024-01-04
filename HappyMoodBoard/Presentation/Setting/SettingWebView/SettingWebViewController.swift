@@ -40,8 +40,6 @@ final class SettingWebViewController: UIViewController, ViewAttributes, UIGestur
     }
     
     override func viewDidLoad() {
-        
-
         setWebView()
         setWhiteBackgroundColor()
         setupNavigationBar()
@@ -50,7 +48,6 @@ final class SettingWebViewController: UIViewController, ViewAttributes, UIGestur
         setupBindings()
     }
 }
-
 
 extension SettingWebViewController: WKNavigationDelegate {
     func setWebView() {
@@ -88,7 +85,7 @@ extension SettingWebViewController: WKNavigationDelegate {
                 self?.navigationController?.popViewController(animated: true)
             })
             .disposed(by: disposeBag)
-        
+
         webView.rx.didStartLoad
             .subscribe(onNext: { [weak self] _ in
                 self?.activityIndicator.startAnimating()
