@@ -42,18 +42,23 @@ final class RegisterViewController: UIViewController {
         $0.axis = .vertical
         $0.distribution = .fill
         $0.alignment = .center
-        $0.spacing = 40
+        $0.spacing = 24
     }
     
     private let imageView: UIImageView = .init().then {
         $0.isHidden = true
-        $0.contentMode = .scaleAspectFit
-        $0.layer.backgroundColor = UIColor.primary200?.cgColor
+        $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
+    }
+    
+    private let frameImageView: UIImageView = .init().then {
+        $0.isHidden = true
+        $0.image = UIImage(named: "frame")
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.primary500?.cgColor
     }
     
-    private let deleteButton: UIButton = .init().then {
+    private let deleteImageButton: UIButton = .init().then {
         $0.setImage(UIImage(named: "delete"), for: .normal)
     }
     
@@ -84,31 +89,32 @@ final class RegisterViewController: UIViewController {
         $0.textContainerInset = .init(top: 24, left: 24, bottom: 24, right: 24)
     }
     
-    private let cameraButton: UIBarButtonItem = .init(
-        image: .init(named: "toolbar.camera"),
-        style: .plain,
-        target: nil,
-        action: nil
-    )
+    private let addImageButton: UIButton = .init().then {
+        $0.tintColor = .primary900
+        $0.setImage(UIImage(named: "toolbar.camera"), for: .normal)
+        $0.setImage(UIImage(named: "toolbar.camera.disabled"), for: .disabled)
+    }
     
-    private let tagBarButton: UIBarButtonItem = .init(
+    private let addTagButton: UIBarButtonItem = .init(
         image: .init(named: "toolbar.tag"),
         style: .plain,
         target: nil,
         action: nil
     )
     
-    private let keyboardButton: UIBarButtonItem = .init(
+    private let keyboardToggleButton: UIBarButtonItem = .init(
         image: .init(named: "toolbar.keyboard.up"),
         style: .plain,
         target: nil,
         action: nil
     )
     
-    private let imagePicker: UIImagePickerController = .init()
+    private let imagePicker: UIImagePickerController = .init().then {
+        $0.navigationBar.tintColor = .primary100
+    }
     
     private lazy var toolbar: UIToolbar = .init().then {
-        $0.items = [cameraButton, tagBarButton, .flexibleSpace(), keyboardButton]
+        $0.items = [.init(customView: addImageButton), addTagButton, .flexibleSpace(), keyboardToggleButton]
         $0.barTintColor = .primary100
     }
     
@@ -149,13 +155,14 @@ extension RegisterViewController: ViewAttributes {
     func setupSubviews() {
         [
             headerLabel,
+            imageView,
             contentStackView,
-            toolbar,
-            deleteButton
+            deleteImageButton,
+            toolbar
         ].forEach { view.addSubview($0) }
         
         [
-            imageView,
+            frameImageView,
             tagButton,
             textView
         ].forEach { contentStackView.addArrangedSubview($0) }
@@ -168,7 +175,7 @@ extension RegisterViewController: ViewAttributes {
         }
         
         contentStackView.snp.makeConstraints { make in
-            make.top.equalTo(headerLabel.snp.bottom).offset(28)
+            make.top.equalTo(headerLabel.snp.bottom).offset(24)
             make.leading.trailing.equalToSuperview().inset(24)
         }
         
@@ -177,12 +184,16 @@ extension RegisterViewController: ViewAttributes {
             make.height.equalTo(200)
         }
         
-        imageView.snp.makeConstraints { make in
+        frameImageView.snp.makeConstraints { make in
             make.width.height.equalTo(216)
         }
         
-        deleteButton.snp.makeConstraints { make in
-            make.top.trailing.equalTo(imageView).inset(8)
+        imageView.snp.makeConstraints { make in
+            make.edges.equalTo(frameImageView).inset(8)
+        }
+        
+        deleteImageButton.snp.makeConstraints { make in
+            make.top.trailing.equalTo(frameImageView)
         }
         
         toolbar.snp.makeConstraints { make in
@@ -193,13 +204,27 @@ extension RegisterViewController: ViewAttributes {
     }
     
     func setupBindings() {
+        let deleteImageAlertActionTapped = deleteImageButton.rx.tap
+            .flatMap {
+                self.showAlert(
+                    title: nil,
+                    message: "사진을 삭제하시겠어요?",
+                    style: .alert,
+                    actions: [
+                        .action(title: "아니오", style: .cancel),
+                        .action(title: "네", style: .default)
+                    ]
+                )
+            }
+        
         let input = RegisterViewModel.Input(
             textChanged: textView.rx.text.asObservable(),
             backButtonTapped: backButton.rx.tap.asObservable(),
-            saveButtonTapped: registerButton.rx.tap.asObservable(),
-            cameraButtonTapped: cameraButton.rx.tap.asObservable(),
-            tagBarButtonTapped: tagBarButton.rx.tap.asObservable(),
-            keyboardButtonTapped: keyboardButton.rx.tap.asObservable(),
+            registerButtonTapped: registerButton.rx.tap.asObservable(),
+            deleteImageAlertActionTapped: deleteImageAlertActionTapped,
+            addImageButtonTapped: addImageButton.rx.tap.asObservable(),
+            addTagButtonTapped: addTagButton.rx.tap.asObservable(),
+            keyboardButtonTapped: keyboardToggleButton.rx.tap.asObservable(),
             keyboardWillShow: NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification),
             imageSelected: imagePicker.rx.didFinishPickingMediaWithInfo.asObservable()
         )
@@ -229,12 +254,12 @@ extension RegisterViewController: ViewAttributes {
         
         output.image
             .withUnretained(self)
-            .debug()
             .subscribe(onNext: { onwer, image in
-                let inset: CGFloat = 16
-                let edgeInsets: UIEdgeInsets = .init(top: -inset, left: -inset, bottom: -inset, right: -inset)
-                onwer.imageView.image = image?.withAlignmentRectInsets(edgeInsets)
-                onwer.imageView.isHidden = image == nil
+                onwer.imageView.image = image
+                onwer.imageView.isHidden = (image == nil)
+                onwer.frameImageView.isHidden = (image == nil)
+                onwer.addImageButton.isEnabled = (image == nil)
+                onwer.imagePicker.dismiss(animated: true)
             })
             .disposed(by: disposeBag)
         

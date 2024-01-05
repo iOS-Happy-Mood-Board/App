@@ -10,79 +10,75 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+typealias ImagePickerControllerDelegate = UIImagePickerControllerDelegate & UINavigationControllerDelegate
+
+extension UIImagePickerController: HasDelegate {
+    public typealias Delegate = UIImagePickerControllerDelegate & UINavigationControllerDelegate
+}
+
 extension Reactive where Base: UIImagePickerController {
     
+    public var pickerDelegate: DelegateProxy<UIImagePickerController, UIImagePickerController.Delegate> {
+        return RxImagePickerControllerProxy.proxy(for: base)
+    }
+    
+    func setDelegate(_ delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate) -> Disposable {
+        return RxImagePickerControllerProxy.installForwardDelegate(
+            delegate,
+            retainDelegate: false,
+            onProxyForObject: self.base
+        )
+    }
+    
     public var didFinishPickingMediaWithInfo: Observable<[UIImagePickerController.InfoKey: Any]> {
-        return RxImagePickerProxy.proxy(for: base)
-            .didFinishPickingMediaWithInfoSubject
-            .asObservable()
-            .do(onCompleted: {
-                self.base.dismiss(animated: true, completion: nil)
-            })
+        return pickerDelegate
+            .methodInvoked(
+                #selector(UIImagePickerControllerDelegate.imagePickerController(_:didFinishPickingMediaWithInfo:))
+            )
+            .map { try castOrThrow([UIImagePickerController.InfoKey: Any].self, $0[1]) }
     }
     
     public var didCancel: Observable<Void> {
-        return RxImagePickerProxy.proxy(for: base)
-            .didCancelSubject
-            .asObservable()
-            .do(onCompleted: {
-                self.base.dismiss(animated: true, completion: nil)
-            })
+        return pickerDelegate
+            .methodInvoked(#selector(UIImagePickerControllerDelegate.imagePickerControllerDidCancel(_:)))
+            .map {_ in () }
     }
     
 }
 
-public typealias ImagePickerDelegate = UIImagePickerControllerDelegate & UINavigationControllerDelegate
-
-extension UIImagePickerController: HasDelegate {
-    public typealias Delegate = ImagePickerDelegate
+private func castOrThrow<T>(_ resultType: T.Type, _ object: Any) throws -> T {
+    guard let returnValue = object as? T else {
+        throw RxCocoaError.castingError(object: object, targetType: resultType)
+    }
+    return returnValue
 }
 
-class RxImagePickerProxy: DelegateProxy<UIImagePickerController, ImagePickerDelegate>, DelegateProxyType, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class RxImagePickerControllerProxy
+: DelegateProxy<UIImagePickerController, UIImagePickerController.Delegate>, DelegateProxyType {
     
-    public init(imagePicker: UIImagePickerController) {
-        super.init(parentObject: imagePicker, delegateProxy: RxImagePickerProxy.self)
+    public weak private(set) var imagePickerController: UIImagePickerController?
+    
+    public init(imagePickerController: UIImagePickerController) {
+        self.imagePickerController = imagePickerController
+        super.init(parentObject: imagePickerController, delegateProxy: RxImagePickerControllerProxy.self)
     }
-    
-    // MARK: - DelegateProxyType
     
     public static func registerKnownImplementations() {
-        self.register { RxImagePickerProxy(imagePicker: $0) }
+        self.register { RxImagePickerControllerProxy(imagePickerController: $0) }
     }
     
-    static func currentDelegate(for object: UIImagePickerController) -> ImagePickerDelegate? {
+    public static func currentDelegate(for object: UIImagePickerController)
+    -> (UIImagePickerControllerDelegate & UINavigationControllerDelegate)? {
         return object.delegate
     }
     
-    static func setCurrentDelegate(_ delegate: ImagePickerDelegate?, to object: UIImagePickerController) {
+    public static func setCurrentDelegate(
+        _ delegate: (UIImagePickerController.Delegate)?,
+        to object: UIImagePickerController
+    ) {
         object.delegate = delegate
     }
     
-    // MARK: - Proxy Subject
-    
-    internal lazy var didFinishPickingMediaWithInfoSubject = PublishSubject<[UIImagePickerController.InfoKey: Any]>()
-    internal lazy var didCancelSubject = PublishSubject<Void>()
-    
-    // MARK: - UIImagePickerControllerDelegate
-    
-    func imagePickerController(_ picker: UIImagePickerController,
-                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        didFinishPickingMediaWithInfoSubject.onNext(info)
-        didFinishPickingMediaWithInfoSubject.onCompleted()
-        didCancelSubject.onCompleted()
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        didCancelSubject.onNext(())
-        didCancelSubject.onCompleted()
-        didFinishPickingMediaWithInfoSubject.onCompleted()
-    }
-    
-    // MARK: - Completed
-    
-    deinit {
-        self.didFinishPickingMediaWithInfoSubject.onCompleted()
-        self.didCancelSubject.onCompleted()
-    }
-    
 }
+
+extension RxImagePickerControllerProxy: UIImagePickerControllerDelegate, UINavigationControllerDelegate { }

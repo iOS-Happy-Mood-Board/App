@@ -14,9 +14,10 @@ final class RegisterViewModel: ViewModel {
     struct Input {
         let textChanged: Observable<String?>
         let backButtonTapped: Observable<Void>
-        let saveButtonTapped: Observable<Void>
-        let cameraButtonTapped: Observable<Void>
-        let tagBarButtonTapped: Observable<Void>
+        let registerButtonTapped: Observable<Void>
+        let deleteImageAlertActionTapped: Observable<Int>
+        let addImageButtonTapped: Observable<Void>
+        let addTagButtonTapped: Observable<Void>
         let keyboardButtonTapped: Observable<Void>
         let keyboardWillShow: Observable<Notification>
         let imageSelected: Observable<[UIImagePickerController.InfoKey: Any]>
@@ -33,8 +34,15 @@ final class RegisterViewModel: ViewModel {
     }
     
     func transform(input: Input) -> Output {
-        let image = input.imageSelected
-            .map { $0[.editedImage] as? UIImage }
+        let image = Observable.merge(
+            input.imageSelected
+                .map { $0[.editedImage] as? UIImage },
+            input.deleteImageAlertActionTapped
+                .filter { $0 == 1 }
+                .map { _ in nil }
+        )
+            .share()
+            
         let text = input.textChanged
         let sampleTag: Tag? = Tag(name: "휴식", color: "#FFC895")
         let tag = Observable.just(sampleTag)
@@ -45,13 +53,11 @@ final class RegisterViewModel: ViewModel {
             .map(checkTextValid)
             .startWith(false)
             .distinctUntilChanged()
-            .debug()
         
         let imageValid = image
             .map(checkImageValid)
             .startWith(false)
             .distinctUntilChanged()
-            .debug()
         
         // 본문이 1글자 이상 존재하거나 사진이 1개 등록인 상태일 경우
         // 발행 버튼 활성화
@@ -61,7 +67,7 @@ final class RegisterViewModel: ViewModel {
             canRegister: canRegister,
             navigateToBack: input.backButtonTapped,
             showAlert: input.backButtonTapped,
-            showImagePicker: input.cameraButtonTapped,
+            showImagePicker: input.addImageButtonTapped,
             image: image,
             tag: tag,
             keyboard: input.keyboardButtonTapped
