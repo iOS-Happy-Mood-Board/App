@@ -28,35 +28,6 @@
 		5D72528A2B231CE300CF6688 /* UIColor+BeeHappy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7252892B231CE300CF6688 /* UIColor+BeeHappy.swift */; };
 		5DB28DEC2B2AD0CD00C4E594 /* EnterNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB28DEB2B2AD0CD00C4E594 /* EnterNicknameViewController.swift */; };
 		5DB28DF02B2AF9DD00C4E594 /* EnterNicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB28DEF2B2AF9DD00C4E594 /* EnterNicknameViewModel.swift */; };
-		676E999C798E7795F8DED6EC /* Pods_HappyMoodBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6E437ECCF20FBB94EF85D6F /* Pods_HappyMoodBoard.framework */; };
-		A2DFB7DA2B37C37C008B95AC /* SettingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7D92B37C37C008B95AC /* SettingType.swift */; };
-		A2DFB7DB2B37C37C008B95AC /* SettingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7D92B37C37C008B95AC /* SettingType.swift */; };
-		A2DFB7DC2B37C37C008B95AC /* SettingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7D92B37C37C008B95AC /* SettingType.swift */; };
-		A2DFB7DF2B383150008B95AC /* SettingIndexButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7DE2B383150008B95AC /* SettingIndexButton.swift */; };
-		A2DFB7E42B392A71008B95AC /* VersionInfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7E32B392A71008B95AC /* VersionInfoButton.swift */; };
-		A2DFB7E52B392A71008B95AC /* VersionInfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7E32B392A71008B95AC /* VersionInfoButton.swift */; };
-		A2DFB7E62B392A71008B95AC /* VersionInfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7E32B392A71008B95AC /* VersionInfoButton.swift */; };
-		A2DFB7E92B392E4B008B95AC /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7E82B392E4B008B95AC /* Version.swift */; };
-		A2DFB7EA2B392E4B008B95AC /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7E82B392E4B008B95AC /* Version.swift */; };
-		A2DFB7EB2B392E4B008B95AC /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7E82B392E4B008B95AC /* Version.swift */; };
-		A2DFB7ED2B3930DB008B95AC /* SettingIndexViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7EC2B3930DB008B95AC /* SettingIndexViewModel.swift */; };
-		A2DFB7EE2B3930DB008B95AC /* SettingIndexViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7EC2B3930DB008B95AC /* SettingIndexViewModel.swift */; };
-		A2DFB7EF2B3930DB008B95AC /* SettingIndexViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7EC2B3930DB008B95AC /* SettingIndexViewModel.swift */; };
-		A2DFB7F22B3935E1008B95AC /* SettingMyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7F12B3935E1008B95AC /* SettingMyAccountViewController.swift */; };
-		A2DFB7F32B3935E1008B95AC /* SettingMyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7F12B3935E1008B95AC /* SettingMyAccountViewController.swift */; };
-		A2DFB7F42B3935E1008B95AC /* SettingMyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7F12B3935E1008B95AC /* SettingMyAccountViewController.swift */; };
-		A2DFB7F72B393873008B95AC /* SettingNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7F62B393873008B95AC /* SettingNotificationViewController.swift */; };
-		A2DFB7F82B393873008B95AC /* SettingNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7F62B393873008B95AC /* SettingNotificationViewController.swift */; };
-		A2DFB7F92B393873008B95AC /* SettingNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7F62B393873008B95AC /* SettingNotificationViewController.swift */; };
-		A2DFB7FC2B39B4F7008B95AC /* SettingWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7FB2B39B4F7008B95AC /* SettingWebViewController.swift */; };
-		A2DFB7FD2B39B4F7008B95AC /* SettingWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7FB2B39B4F7008B95AC /* SettingWebViewController.swift */; };
-		A2DFB7FE2B39B4F7008B95AC /* SettingWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7FB2B39B4F7008B95AC /* SettingWebViewController.swift */; };
-		A2DFB8002B39C4C1008B95AC /* UIViewController+alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7FF2B39C4C1008B95AC /* UIViewController+alert.swift */; };
-		A2DFB8012B39C4C1008B95AC /* UIViewController+alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7FF2B39C4C1008B95AC /* UIViewController+alert.swift */; };
-		A2DFB8022B39C4C1008B95AC /* UIViewController+alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB7FF2B39C4C1008B95AC /* UIViewController+alert.swift */; };
-		A2DFB8052B39C647008B95AC /* SettingOpenSourceLicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB8042B39C647008B95AC /* SettingOpenSourceLicenseViewController.swift */; };
-		A2DFB8062B39C647008B95AC /* SettingOpenSourceLicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB8042B39C647008B95AC /* SettingOpenSourceLicenseViewController.swift */; };
-		A2DFB8072B39C647008B95AC /* SettingOpenSourceLicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DFB8042B39C647008B95AC /* SettingOpenSourceLicenseViewController.swift */; };
 		5DF686032B35151700479D54 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF686022B35151700479D54 /* HomeViewModel.swift */; };
 		676E999C798E7795F8DED6EC /* Pods_HappyMoodBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6E437ECCF20FBB94EF85D6F /* Pods_HappyMoodBoard.framework */; };
 		A28402D22B4589B0007C0A0D /* MyAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28402D12B4589B0007C0A0D /* MyAccount.swift */; };
@@ -120,6 +91,18 @@
 		A2F0FA3F2B06599E00ADA84C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A2F0FA3E2B06599E00ADA84C /* .swiftlint.yml */; };
 		A2F0FA402B06599E00ADA84C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A2F0FA3E2B06599E00ADA84C /* .swiftlint.yml */; };
 		A2F0FA412B06599E00ADA84C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A2F0FA3E2B06599E00ADA84C /* .swiftlint.yml */; };
+		AC185D002B478BFF007304CE /* SettingNotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC185CFF2B478BFF007304CE /* SettingNotificationViewModel.swift */; };
+		AC185D012B478BFF007304CE /* SettingNotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC185CFF2B478BFF007304CE /* SettingNotificationViewModel.swift */; };
+		AC185D022B478BFF007304CE /* SettingNotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC185CFF2B478BFF007304CE /* SettingNotificationViewModel.swift */; };
+		AC185D042B479581007304CE /* HalfModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC185D032B479581007304CE /* HalfModalPresentationController.swift */; };
+		AC185D052B479581007304CE /* HalfModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC185D032B479581007304CE /* HalfModalPresentationController.swift */; };
+		AC185D062B479581007304CE /* HalfModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC185D032B479581007304CE /* HalfModalPresentationController.swift */; };
+		AC185D082B4795E3007304CE /* NotificationModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC185D072B4795E3007304CE /* NotificationModalViewController.swift */; };
+		AC185D092B4795E3007304CE /* NotificationModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC185D072B4795E3007304CE /* NotificationModalViewController.swift */; };
+		AC185D0A2B4795E3007304CE /* NotificationModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC185D072B4795E3007304CE /* NotificationModalViewController.swift */; };
+		AC185D0E2B47AD58007304CE /* NotificationModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC185D0D2B47AD58007304CE /* NotificationModalViewModel.swift */; };
+		AC185D0F2B47AD58007304CE /* NotificationModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC185D0D2B47AD58007304CE /* NotificationModalViewModel.swift */; };
+		AC185D102B47AD58007304CE /* NotificationModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC185D0D2B47AD58007304CE /* NotificationModalViewModel.swift */; };
 		AC3A3BC02B049FB90081BF32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3A3BBF2B049FB90081BF32 /* AppDelegate.swift */; };
 		AC3A3BC22B049FB90081BF32 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3A3BC12B049FB90081BF32 /* SceneDelegate.swift */; };
 		AC3A3BC92B049FBA0081BF32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC3A3BC82B049FBA0081BF32 /* Assets.xcassets */; };
@@ -178,19 +161,6 @@
 		5D7252892B231CE300CF6688 /* UIColor+BeeHappy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+BeeHappy.swift"; sourceTree = "<group>"; };
 		5DB28DEB2B2AD0CD00C4E594 /* EnterNicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterNicknameViewController.swift; sourceTree = "<group>"; };
 		5DB28DEF2B2AF9DD00C4E594 /* EnterNicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterNicknameViewModel.swift; sourceTree = "<group>"; };
-		6575D7DDF37C8F4547644BF0 /* Pods-HappyMoodBoardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyMoodBoardTests.debug.xcconfig"; path = "Target Support Files/Pods-HappyMoodBoardTests/Pods-HappyMoodBoardTests.debug.xcconfig"; sourceTree = "<group>"; };
-		7AD9B74EF4837EEE55C75F63 /* Pods_HappyMoodBoardTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyMoodBoardTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		928F15A5095CBB78C4957AD4 /* Pods-HappyMoodBoard-HappyMoodBoardUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyMoodBoard-HappyMoodBoardUITests.release.xcconfig"; path = "Target Support Files/Pods-HappyMoodBoard-HappyMoodBoardUITests/Pods-HappyMoodBoard-HappyMoodBoardUITests.release.xcconfig"; sourceTree = "<group>"; };
-		A2DFB7D92B37C37C008B95AC /* SettingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingType.swift; sourceTree = "<group>"; };
-		A2DFB7DE2B383150008B95AC /* SettingIndexButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingIndexButton.swift; sourceTree = "<group>"; };
-		A2DFB7E32B392A71008B95AC /* VersionInfoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionInfoButton.swift; sourceTree = "<group>"; };
-		A2DFB7E82B392E4B008B95AC /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
-		A2DFB7EC2B3930DB008B95AC /* SettingIndexViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingIndexViewModel.swift; sourceTree = "<group>"; };
-		A2DFB7F12B3935E1008B95AC /* SettingMyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMyAccountViewController.swift; sourceTree = "<group>"; };
-		A2DFB7F62B393873008B95AC /* SettingNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotificationViewController.swift; sourceTree = "<group>"; };
-		A2DFB7FB2B39B4F7008B95AC /* SettingWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingWebViewController.swift; sourceTree = "<group>"; };
-		A2DFB7FF2B39C4C1008B95AC /* UIViewController+alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+alert.swift"; sourceTree = "<group>"; };
-		A2DFB8042B39C647008B95AC /* SettingOpenSourceLicenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingOpenSourceLicenseViewController.swift; sourceTree = "<group>"; };
 		5DF686022B35151700479D54 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		6575D7DDF37C8F4547644BF0 /* Pods-HappyMoodBoardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyMoodBoardTests.debug.xcconfig"; path = "Target Support Files/Pods-HappyMoodBoardTests/Pods-HappyMoodBoardTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7AD9B74EF4837EEE55C75F63 /* Pods_HappyMoodBoardTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyMoodBoardTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,6 +188,10 @@
 		A2DFB8042B39C647008B95AC /* SettingOpenSourceLicenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingOpenSourceLicenseViewController.swift; sourceTree = "<group>"; };
 		A2F0FA3E2B06599E00ADA84C /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		A6E437ECCF20FBB94EF85D6F /* Pods_HappyMoodBoard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyMoodBoard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC185CFF2B478BFF007304CE /* SettingNotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotificationViewModel.swift; sourceTree = "<group>"; };
+		AC185D032B479581007304CE /* HalfModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalPresentationController.swift; sourceTree = "<group>"; };
+		AC185D072B4795E3007304CE /* NotificationModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModalViewController.swift; sourceTree = "<group>"; };
+		AC185D0D2B47AD58007304CE /* NotificationModalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModalViewModel.swift; sourceTree = "<group>"; };
 		AC3A3BBC2B049FB90081BF32 /* HappyMoodBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyMoodBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC3A3BBF2B049FB90081BF32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC3A3BC12B049FB90081BF32 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -395,7 +369,9 @@
 		A2DFB7F52B39380B008B95AC /* SettingNotification */ = {
 			isa = PBXGroup;
 			children = (
+				AC185D0B2B47AD1D007304CE /* Modal */,
 				A2DFB7F62B393873008B95AC /* SettingNotificationViewController.swift */,
+				AC185CFF2B478BFF007304CE /* SettingNotificationViewModel.swift */,
 			);
 			path = SettingNotification;
 			sourceTree = "<group>";
@@ -414,6 +390,23 @@
 				A2DFB8042B39C647008B95AC /* SettingOpenSourceLicenseViewController.swift */,
 			);
 			path = SettingOpenSourceLicense;
+			sourceTree = "<group>";
+		};
+		AC185D0B2B47AD1D007304CE /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				AC185D072B4795E3007304CE /* NotificationModalViewController.swift */,
+				AC185D0D2B47AD58007304CE /* NotificationModalViewModel.swift */,
+			);
+			path = Modal;
+			sourceTree = "<group>";
+		};
+		AC185D0C2B47AD2E007304CE /* UIPresentationController */ = {
+			isa = PBXGroup;
+			children = (
+				AC185D032B479581007304CE /* HalfModalPresentationController.swift */,
+			);
+			path = UIPresentationController;
 			sourceTree = "<group>";
 		};
 		AC3A3BB32B049FB90081BF32 = {
@@ -514,6 +507,7 @@
 		AC9E33C92B3558A100B0D9AE /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				AC185D0C2B47AD2E007304CE /* UIPresentationController */,
 				A28402D92B459526007C0A0D /* UILabel */,
 				AC9E33CF2B35642200B0D9AE /* UIBarButtonItem */,
 				AC9E33CA2B35613200B0D9AE /* UIView */,
@@ -832,6 +826,7 @@
 				5DF686032B35151700479D54 /* HomeViewModel.swift in Sources */,
 				5DB28DEC2B2AD0CD00C4E594 /* EnterNicknameViewController.swift in Sources */,
 				5D4978812B32F26700059120 /* TabBarController.swift in Sources */,
+				AC185D0E2B47AD58007304CE /* NotificationModalViewModel.swift in Sources */,
 				A2D4CBBE2B3D8E0D0066E89D /* LoginType.swift in Sources */,
 				5D54D3F32B19CD4F0008A5D7 /* ViewModel.swift in Sources */,
 				A2DFB7DF2B383150008B95AC /* SettingIndexButton.swift in Sources */,
@@ -846,6 +841,7 @@
 				A2DFB7E42B392A71008B95AC /* VersionInfoButton.swift in Sources */,
 				A28402E82B45A79F007C0A0D /* ModifyNickNameViewModel.swift in Sources */,
 				A28402DF2B459DBE007C0A0D /* SettingMyAccountViewModel.swift in Sources */,
+				AC185D042B479581007304CE /* HalfModalPresentationController.swift in Sources */,
 				A2D4CBBA2B3D8C730066E89D /* LoginViewController.swift in Sources */,
 				5D4978832B32F27300059120 /* HomeViewController.swift in Sources */,
 				A2D4CBC22B3D8F1C0066E89D /* SocialLoginButton.swift in Sources */,
@@ -862,10 +858,12 @@
 				A2DFB7FC2B39B4F7008B95AC /* SettingWebViewController.swift in Sources */,
 				A2DFB7ED2B3930DB008B95AC /* SettingIndexViewModel.swift in Sources */,
 				A2DFB7DA2B37C37C008B95AC /* SettingType.swift in Sources */,
+				AC185D002B478BFF007304CE /* SettingNotificationViewModel.swift in Sources */,
 				5D72528A2B231CE300CF6688 /* UIColor+BeeHappy.swift in Sources */,
 				AC3A3BC22B049FB90081BF32 /* SceneDelegate.swift in Sources */,
 				5D4978872B32F36D00059120 /* ListViewController.swift in Sources */,
 				5D7252842B21BE8300CF6688 /* AgreeType.swift in Sources */,
+				AC185D082B4795E3007304CE /* NotificationModalViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -885,7 +883,9 @@
 				A28402D32B4589B0007C0A0D /* MyAccount.swift in Sources */,
 				A2DFB7F32B3935E1008B95AC /* SettingMyAccountViewController.swift in Sources */,
 				A28402DC2B45952F007C0A0D /* CustomLabel.swift in Sources */,
+				AC185D052B479581007304CE /* HalfModalPresentationController.swift in Sources */,
 				A2D4CBC72B3D9A200066E89D /* LoginViewModel.swift in Sources */,
+				AC185D092B4795E3007304CE /* NotificationModalViewController.swift in Sources */,
 				A2DFB8012B39C4C1008B95AC /* UIViewController+alert.swift in Sources */,
 				A28402E52B45A4A0007C0A0D /* ModifyNickNameViewController.swift in Sources */,
 				A28402D72B458AB3007C0A0D /* AccountView.swift in Sources */,
@@ -895,6 +895,8 @@
 				A28402E92B45A79F007C0A0D /* ModifyNickNameViewModel.swift in Sources */,
 				A2DFB7FD2B39B4F7008B95AC /* SettingWebViewController.swift in Sources */,
 				AC9E33D22B35643000B0D9AE /* NavigtaionItemBack.swift in Sources */,
+				AC185D0F2B47AD58007304CE /* NotificationModalViewModel.swift in Sources */,
+				AC185D012B478BFF007304CE /* SettingNotificationViewModel.swift in Sources */,
 				AC9E33CD2B35614000B0D9AE /* NavigationTitle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -911,12 +913,14 @@
 				A28402E12B459DBE007C0A0D /* SettingMyAccountViewModel.swift in Sources */,
 				A2DFB8022B39C4C1008B95AC /* UIViewController+alert.swift in Sources */,
 				AC9E33CE2B35614000B0D9AE /* NavigationTitle.swift in Sources */,
+				AC185D0A2B4795E3007304CE /* NotificationModalViewController.swift in Sources */,
 				A2DFB7F42B3935E1008B95AC /* SettingMyAccountViewController.swift in Sources */,
 				A2DFB7FE2B39B4F7008B95AC /* SettingWebViewController.swift in Sources */,
 				A28402E62B45A4A0007C0A0D /* ModifyNickNameViewController.swift in Sources */,
 				A28402D42B4589B0007C0A0D /* MyAccount.swift in Sources */,
 				A2DFB7EF2B3930DB008B95AC /* SettingIndexViewModel.swift in Sources */,
 				A2DFB8072B39C647008B95AC /* SettingOpenSourceLicenseViewController.swift in Sources */,
+				AC185D062B479581007304CE /* HalfModalPresentationController.swift in Sources */,
 				AC3A3BE12B049FBA0081BF32 /* HappyMoodBoardUITests.swift in Sources */,
 				A28402DD2B45952F007C0A0D /* CustomLabel.swift in Sources */,
 				AC3A3BE32B049FBA0081BF32 /* HappyMoodBoardUITestsLaunchTests.swift in Sources */,
@@ -925,8 +929,10 @@
 				AC9E33D32B35643000B0D9AE /* NavigtaionItemBack.swift in Sources */,
 				A2DFB7F92B393873008B95AC /* SettingNotificationViewController.swift in Sources */,
 				A2D4CBC42B3D8F1C0066E89D /* SocialLoginButton.swift in Sources */,
+				AC185D102B47AD58007304CE /* NotificationModalViewModel.swift in Sources */,
 				A28402D82B458AB3007C0A0D /* AccountView.swift in Sources */,
 				A2D4CBC82B3D9A200066E89D /* LoginViewModel.swift in Sources */,
+				AC185D022B478BFF007304CE /* SettingNotificationViewModel.swift in Sources */,
 				AC9E33C12B35486E00B0D9AE /* SettingIndexViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1075,7 +1081,7 @@
 				CODE_SIGN_ENTITLEMENTS = HappyMoodBoard/HappyMoodBoardDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = XQ24HP64B3;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HappyMoodBoard/Info.plist;
@@ -1106,7 +1112,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = XQ24HP64B3;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HappyMoodBoard/Info.plist;

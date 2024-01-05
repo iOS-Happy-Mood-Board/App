@@ -22,7 +22,6 @@ final class SettingMyAccountViewController: UIViewController ,ViewAttributes, UI
     //
     
     private let contentStackView = UIStackView().then {
-//        $0.backgroundColor = .black
         $0.axis = .vertical
         $0.alignment = .fill
         $0.distribution = .fill
