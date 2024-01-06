@@ -67,7 +67,7 @@ extension SettingMyAccountViewController {
             nicknameView,
             connectAccountView,
             emailView
-        ].forEach{
+        ].forEach {
             $0.snp.makeConstraints {
                 $0.height.equalTo(56)
             }

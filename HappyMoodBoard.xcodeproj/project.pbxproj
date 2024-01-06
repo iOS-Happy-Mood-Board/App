@@ -48,6 +48,24 @@
 		A28402E82B45A79F007C0A0D /* ModifyNickNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28402E72B45A79F007C0A0D /* ModifyNickNameViewModel.swift */; };
 		A28402E92B45A79F007C0A0D /* ModifyNickNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28402E72B45A79F007C0A0D /* ModifyNickNameViewModel.swift */; };
 		A28402EA2B45A79F007C0A0D /* ModifyNickNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28402E72B45A79F007C0A0D /* ModifyNickNameViewModel.swift */; };
+		A2C8867A2B496ED1008E5437 /* TitleToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C886792B496ED1008E5437 /* TitleToggleView.swift */; };
+		A2C8867B2B496ED1008E5437 /* TitleToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C886792B496ED1008E5437 /* TitleToggleView.swift */; };
+		A2C8867C2B496ED1008E5437 /* TitleToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C886792B496ED1008E5437 /* TitleToggleView.swift */; };
+		A2C8867E2B49700F008E5437 /* SettingNotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C8867D2B49700F008E5437 /* SettingNotificationType.swift */; };
+		A2C8867F2B49700F008E5437 /* SettingNotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C8867D2B49700F008E5437 /* SettingNotificationType.swift */; };
+		A2C886802B49700F008E5437 /* SettingNotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C8867D2B49700F008E5437 /* SettingNotificationType.swift */; };
+		A2C886822B4977E1008E5437 /* TitleTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C886812B4977E1008E5437 /* TitleTimeView.swift */; };
+		A2C886832B4977E1008E5437 /* TitleTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C886812B4977E1008E5437 /* TitleTimeView.swift */; };
+		A2C886842B4977E1008E5437 /* TitleTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C886812B4977E1008E5437 /* TitleTimeView.swift */; };
+		A2C886862B497C70008E5437 /* TitleDayOfWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C886852B497C70008E5437 /* TitleDayOfWeekView.swift */; };
+		A2C886872B497C70008E5437 /* TitleDayOfWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C886852B497C70008E5437 /* TitleDayOfWeekView.swift */; };
+		A2C886882B497C70008E5437 /* TitleDayOfWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C886852B497C70008E5437 /* TitleDayOfWeekView.swift */; };
+		A2C8868A2B497D14008E5437 /* PushNotificationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C886892B497D14008E5437 /* PushNotificationButton.swift */; };
+		A2C8868B2B497D14008E5437 /* PushNotificationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C886892B497D14008E5437 /* PushNotificationButton.swift */; };
+		A2C8868C2B497D14008E5437 /* PushNotificationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C886892B497D14008E5437 /* PushNotificationButton.swift */; };
+		A2C8868E2B497D93008E5437 /* DayOfTheWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C8868D2B497D93008E5437 /* DayOfTheWeek.swift */; };
+		A2C8868F2B497D93008E5437 /* DayOfTheWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C8868D2B497D93008E5437 /* DayOfTheWeek.swift */; };
+		A2C886902B497D93008E5437 /* DayOfTheWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C8868D2B497D93008E5437 /* DayOfTheWeek.swift */; };
 		A2D4CBBA2B3D8C730066E89D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D4CBB92B3D8C730066E89D /* LoginViewController.swift */; };
 		A2D4CBBB2B3D8C730066E89D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D4CBB92B3D8C730066E89D /* LoginViewController.swift */; };
 		A2D4CBBC2B3D8C730066E89D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D4CBB92B3D8C730066E89D /* LoginViewController.swift */; };
@@ -172,6 +190,12 @@
 		A28402E32B45A4A0007C0A0D /* ModifyNickNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyNickNameViewController.swift; sourceTree = "<group>"; };
 		A28402E72B45A79F007C0A0D /* ModifyNickNameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyNickNameViewModel.swift; sourceTree = "<group>"; };
 		A2A3D01D2B0BA0960041DCDE /* HappyMoodBoardDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HappyMoodBoardDebug.entitlements; sourceTree = "<group>"; };
+		A2C886792B496ED1008E5437 /* TitleToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleToggleView.swift; sourceTree = "<group>"; };
+		A2C8867D2B49700F008E5437 /* SettingNotificationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotificationType.swift; sourceTree = "<group>"; };
+		A2C886812B4977E1008E5437 /* TitleTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTimeView.swift; sourceTree = "<group>"; };
+		A2C886852B497C70008E5437 /* TitleDayOfWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleDayOfWeekView.swift; sourceTree = "<group>"; };
+		A2C886892B497D14008E5437 /* PushNotificationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationButton.swift; sourceTree = "<group>"; };
+		A2C8868D2B497D93008E5437 /* DayOfTheWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayOfTheWeek.swift; sourceTree = "<group>"; };
 		A2D4CBB92B3D8C730066E89D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = HappyMoodBoard/Presentation/Setting/SettingOpenSourceLicense/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
 		A2D4CBBD2B3D8E0D0066E89D /* LoginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginType.swift; path = HappyMoodBoard/Presentation/Setting/SettingOpenSourceLicense/LoginType.swift; sourceTree = SOURCE_ROOT; };
 		A2D4CBC12B3D8F1C0066E89D /* SocialLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginButton.swift; sourceTree = "<group>"; };
@@ -370,6 +394,8 @@
 			isa = PBXGroup;
 			children = (
 				AC185D0B2B47AD1D007304CE /* Modal */,
+				A2C8868D2B497D93008E5437 /* DayOfTheWeek.swift */,
+				A2C8867D2B49700F008E5437 /* SettingNotificationType.swift */,
 				A2DFB7F62B393873008B95AC /* SettingNotificationViewController.swift */,
 				AC185CFF2B478BFF007304CE /* SettingNotificationViewModel.swift */,
 			);
@@ -481,6 +507,7 @@
 				A2DFB7DE2B383150008B95AC /* SettingIndexButton.swift */,
 				A2DFB7E32B392A71008B95AC /* VersionInfoButton.swift */,
 				A2D4CBC12B3D8F1C0066E89D /* SocialLoginButton.swift */,
+				A2C886892B497D14008E5437 /* PushNotificationButton.swift */,
 			);
 			path = UIButton;
 			sourceTree = "<group>";
@@ -521,6 +548,9 @@
 			children = (
 				AC9E33CB2B35614000B0D9AE /* NavigationTitle.swift */,
 				A28402D52B458AB3007C0A0D /* AccountView.swift */,
+				A2C886792B496ED1008E5437 /* TitleToggleView.swift */,
+				A2C886812B4977E1008E5437 /* TitleTimeView.swift */,
+				A2C886852B497C70008E5437 /* TitleDayOfWeekView.swift */,
 			);
 			path = UIView;
 			sourceTree = "<group>";
@@ -835,6 +865,7 @@
 				AC9E33BF2B35486E00B0D9AE /* SettingIndexViewController.swift in Sources */,
 				A2D4CBC62B3D9A200066E89D /* LoginViewModel.swift in Sources */,
 				A28402E42B45A4A0007C0A0D /* ModifyNickNameViewController.swift in Sources */,
+				A2C886862B497C70008E5437 /* TitleDayOfWeekView.swift in Sources */,
 				5D7252872B21BEC100CF6688 /* CheckboxButton.swift in Sources */,
 				A2DFB8002B39C4C1008B95AC /* UIViewController+alert.swift in Sources */,
 				A2DFB8052B39C647008B95AC /* SettingOpenSourceLicenseViewController.swift in Sources */,
@@ -842,6 +873,7 @@
 				A28402E82B45A79F007C0A0D /* ModifyNickNameViewModel.swift in Sources */,
 				A28402DF2B459DBE007C0A0D /* SettingMyAccountViewModel.swift in Sources */,
 				AC185D042B479581007304CE /* HalfModalPresentationController.swift in Sources */,
+				A2C886822B4977E1008E5437 /* TitleTimeView.swift in Sources */,
 				A2D4CBBA2B3D8C730066E89D /* LoginViewController.swift in Sources */,
 				5D4978832B32F27300059120 /* HomeViewController.swift in Sources */,
 				A2D4CBC22B3D8F1C0066E89D /* SocialLoginButton.swift in Sources */,
@@ -852,10 +884,14 @@
 				5D54D3F12B19CCD40008A5D7 /* ViewAttributes.swift in Sources */,
 				A28402D62B458AB3007C0A0D /* AccountView.swift in Sources */,
 				A2DFB7E92B392E4B008B95AC /* Version.swift in Sources */,
+				A2C8867E2B49700F008E5437 /* SettingNotificationType.swift in Sources */,
+				A2C8868A2B497D14008E5437 /* PushNotificationButton.swift in Sources */,
 				A2DFB7F72B393873008B95AC /* SettingNotificationViewController.swift in Sources */,
 				AC3A3BC02B049FB90081BF32 /* AppDelegate.swift in Sources */,
+				A2C8867A2B496ED1008E5437 /* TitleToggleView.swift in Sources */,
 				A2DFB7F22B3935E1008B95AC /* SettingMyAccountViewController.swift in Sources */,
 				A2DFB7FC2B39B4F7008B95AC /* SettingWebViewController.swift in Sources */,
+				A2C8868E2B497D93008E5437 /* DayOfTheWeek.swift in Sources */,
 				A2DFB7ED2B3930DB008B95AC /* SettingIndexViewModel.swift in Sources */,
 				A2DFB7DA2B37C37C008B95AC /* SettingType.swift in Sources */,
 				AC185D002B478BFF007304CE /* SettingNotificationViewModel.swift in Sources */,
@@ -881,11 +917,14 @@
 				A2DFB7EA2B392E4B008B95AC /* Version.swift in Sources */,
 				A2DFB7F82B393873008B95AC /* SettingNotificationViewController.swift in Sources */,
 				A28402D32B4589B0007C0A0D /* MyAccount.swift in Sources */,
+				A2C886832B4977E1008E5437 /* TitleTimeView.swift in Sources */,
 				A2DFB7F32B3935E1008B95AC /* SettingMyAccountViewController.swift in Sources */,
 				A28402DC2B45952F007C0A0D /* CustomLabel.swift in Sources */,
+				A2C8867F2B49700F008E5437 /* SettingNotificationType.swift in Sources */,
 				AC185D052B479581007304CE /* HalfModalPresentationController.swift in Sources */,
 				A2D4CBC72B3D9A200066E89D /* LoginViewModel.swift in Sources */,
 				AC185D092B4795E3007304CE /* NotificationModalViewController.swift in Sources */,
+				A2C8867B2B496ED1008E5437 /* TitleToggleView.swift in Sources */,
 				A2DFB8012B39C4C1008B95AC /* UIViewController+alert.swift in Sources */,
 				A28402E52B45A4A0007C0A0D /* ModifyNickNameViewController.swift in Sources */,
 				A28402D72B458AB3007C0A0D /* AccountView.swift in Sources */,
@@ -894,8 +933,11 @@
 				A2DFB8062B39C647008B95AC /* SettingOpenSourceLicenseViewController.swift in Sources */,
 				A28402E92B45A79F007C0A0D /* ModifyNickNameViewModel.swift in Sources */,
 				A2DFB7FD2B39B4F7008B95AC /* SettingWebViewController.swift in Sources */,
+				A2C8868B2B497D14008E5437 /* PushNotificationButton.swift in Sources */,
 				AC9E33D22B35643000B0D9AE /* NavigtaionItemBack.swift in Sources */,
+				A2C8868F2B497D93008E5437 /* DayOfTheWeek.swift in Sources */,
 				AC185D0F2B47AD58007304CE /* NotificationModalViewModel.swift in Sources */,
+				A2C886872B497C70008E5437 /* TitleDayOfWeekView.swift in Sources */,
 				AC185D012B478BFF007304CE /* SettingNotificationViewModel.swift in Sources */,
 				AC9E33CD2B35614000B0D9AE /* NavigationTitle.swift in Sources */,
 			);
@@ -909,9 +951,11 @@
 				A2D4CBC02B3D8E0D0066E89D /* LoginType.swift in Sources */,
 				A2DFB7EB2B392E4B008B95AC /* Version.swift in Sources */,
 				A2DFB7DC2B37C37C008B95AC /* SettingType.swift in Sources */,
+				A2C8868C2B497D14008E5437 /* PushNotificationButton.swift in Sources */,
 				5D7252852B21BE8300CF6688 /* AgreeType.swift in Sources */,
 				A28402E12B459DBE007C0A0D /* SettingMyAccountViewModel.swift in Sources */,
 				A2DFB8022B39C4C1008B95AC /* UIViewController+alert.swift in Sources */,
+				A2C886802B49700F008E5437 /* SettingNotificationType.swift in Sources */,
 				AC9E33CE2B35614000B0D9AE /* NavigationTitle.swift in Sources */,
 				AC185D0A2B4795E3007304CE /* NotificationModalViewController.swift in Sources */,
 				A2DFB7F42B3935E1008B95AC /* SettingMyAccountViewController.swift in Sources */,
@@ -924,14 +968,18 @@
 				AC3A3BE12B049FBA0081BF32 /* HappyMoodBoardUITests.swift in Sources */,
 				A28402DD2B45952F007C0A0D /* CustomLabel.swift in Sources */,
 				AC3A3BE32B049FBA0081BF32 /* HappyMoodBoardUITestsLaunchTests.swift in Sources */,
+				A2C8867C2B496ED1008E5437 /* TitleToggleView.swift in Sources */,
 				A2D4CBBC2B3D8C730066E89D /* LoginViewController.swift in Sources */,
 				A28402EA2B45A79F007C0A0D /* ModifyNickNameViewModel.swift in Sources */,
 				AC9E33D32B35643000B0D9AE /* NavigtaionItemBack.swift in Sources */,
 				A2DFB7F92B393873008B95AC /* SettingNotificationViewController.swift in Sources */,
 				A2D4CBC42B3D8F1C0066E89D /* SocialLoginButton.swift in Sources */,
+				A2C886842B4977E1008E5437 /* TitleTimeView.swift in Sources */,
 				AC185D102B47AD58007304CE /* NotificationModalViewModel.swift in Sources */,
 				A28402D82B458AB3007C0A0D /* AccountView.swift in Sources */,
 				A2D4CBC82B3D9A200066E89D /* LoginViewModel.swift in Sources */,
+				A2C886902B497D93008E5437 /* DayOfTheWeek.swift in Sources */,
+				A2C886882B497C70008E5437 /* TitleDayOfWeekView.swift in Sources */,
 				AC185D022B478BFF007304CE /* SettingNotificationViewModel.swift in Sources */,
 				AC9E33C12B35486E00B0D9AE /* SettingIndexViewController.swift in Sources */,
 			);
