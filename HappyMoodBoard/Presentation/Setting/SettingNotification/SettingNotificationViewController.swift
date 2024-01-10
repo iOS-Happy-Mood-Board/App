@@ -22,11 +22,6 @@ final class SettingNotificationViewController: UIViewController, ViewAttributes,
     private let navigationItemBack = NavigtaionItemBack()
     //
     
-    private lazy var dimView = UIView(frame: view.bounds).then {
-//        $0.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        $0.alpha = 0
-    }
-    
     private let contentStackView = UIStackView().then {
         $0.axis = .vertical
         $0.alignment = .fill
@@ -61,7 +56,6 @@ extension SettingNotificationViewController {
     
     func setupSubviews() {
         [
-            dimView,
             contentStackView
         ].forEach { self.view.addSubview($0) }
         
@@ -99,7 +93,6 @@ extension SettingNotificationViewController {
     
     func setupBindings() {
         let input = SettingNotificationViewModel.Input(
-            viewWillAppear: rx.viewWillAppear.asObservable(),
             navigateToBack: navigationItemBack.rxTap.asObservable()
         )
         let output = viewModel.transform(input: input)
@@ -107,27 +100,5 @@ extension SettingNotificationViewController {
         output.navigateToBack.bind { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }
-        
-        output.systemNotification
-            .bind { [weak self] handler in
-                
-                if !handler {
-                    self?.dimView.alpha = 0.0 // 투명도를 조정하여 딤 효과를 줍니다.
-                } else {
-                    self?.dimView.alpha = 1.0 // 투명도를 조정하여 딤 효과를 줍니다.
-                    
-                    let VC = NotificationModalViewController()
-                    VC.modalPresentationStyle = .custom
-                    VC.transitioningDelegate = self
-                    self?.present(VC, animated: true, completion: nil)
-                }
-            }
-            .disposed(by: disposeBag)
-    }
-}
-
-extension SettingNotificationViewController: UIViewControllerTransitioningDelegate {
-    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return HalfModalPresentationController(presentedViewController: presented, presenting: presenting)
     }
 }

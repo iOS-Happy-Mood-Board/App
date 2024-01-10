@@ -13,16 +13,19 @@ import RxCocoa
 final class NotificationModalViewModel: ViewModel {
     struct Input {
         let prefNotification: Observable<Void>
+        let dismiss: Observable<Void>
     }
     
     struct Output {
         let prefNotification: Observable<Void>
+        let dismiss: Observable<Void>
     }
     
     func transform(input: Input) -> Output {
         
         return Output(
-            prefNotification: input.prefNotification
+            prefNotification: input.prefNotification,
+            dismiss: input.dismiss
         )
     }
 }

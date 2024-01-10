@@ -79,7 +79,7 @@ final class SettingIndexViewController: UIViewController, UIGestureRecognizerDel
     private let disposeBag: DisposeBag = .init()
 }
 
-extension SettingIndexViewController: ViewAttributes {
+extension SettingIndexViewController: ViewAttributes, UIViewControllerTransitioningDelegate {
     func setupNavigationBar() {
         self.navigationItem.titleView = navigationTitle
         self.navigationItem.leftBarButtonItem = navigationItemBack
@@ -165,6 +165,7 @@ extension SettingIndexViewController: ViewAttributes {
     
     func setupBindings() {
         let input = SettingIndexViewModel.Input(
+            checkNotification: Observable.just(()),
             navigationBack: navigationItemBack.rxTap,
             mySettings: accountSettingButton.rx.tap.asObservable(),
             notificationSettings: notificationSettingButton.rx.tap.asObservable(),
@@ -178,6 +179,23 @@ extension SettingIndexViewController: ViewAttributes {
         )
         
         let output = viewModel.transform(input: input)
+        
+        output.checkNotification
+            .bind { [weak self] handler in
+                
+                if !handler {
+                    
+                } else {
+                    
+                    let VC = NotificationModalViewController()
+                    VC.modalPresentationStyle = .custom
+                    VC.transitioningDelegate = self
+                    VC.sheetPresentationController?.largestUndimmedDetentIdentifier = .medium
+                    self?.present(VC, animated: true, completion: nil)
+                }
+            }
+            .disposed(by: disposeBag)
+        
         // 네비게이션 뒤로가기
         output.navigationBack.bind { [weak self] in
             print("네비게이션 뒤로가기")
@@ -215,7 +233,7 @@ extension SettingIndexViewController: ViewAttributes {
 
         // 오픈소스 라이센스
         output.openSourceLicense.bind { [weak self] in
-            let viewController = SettingOpenSourceLicenseViewController()
+            let viewController = SettingWebViewController(type: .openSourceLicense)
             self?.navigationController?.pushViewController(viewController, animated: true)
         }
         .disposed(by: disposeBag)
@@ -235,7 +253,7 @@ extension SettingIndexViewController: ViewAttributes {
         
         // 로그아웃
         output.logout.bind { [weak self] in
-            self?.showAlert(title: nil, message: "로그아웃 하시겠습니까?") {
+            self?.showAlert(title: "로그아웃", message: "로그아웃 하시겠습니까?") {
                 print("로그아웃")
             }
         }
@@ -243,10 +261,14 @@ extension SettingIndexViewController: ViewAttributes {
         
         // 회원탈퇴
         output.withdrawMembership.bind { [weak self] in
-            self?.showAlert(title: nil, message: "정말 탈퇴하시겠습니까?") {
+            self?.showAlert(title: "회원탈퇴", message: "회원탈퇴 이후에는 기록한 행복 아이템과\n저장된 모든 것을 볼 수 없어요.\n정말로 탈퇴하시겠습니까?") {
                 print("탈퇴")
             }
         }
         .disposed(by: disposeBag)
+    }
+    
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        return HalfModalPresentationController(presentedViewController: presented, presenting: presenting)
     }
 }

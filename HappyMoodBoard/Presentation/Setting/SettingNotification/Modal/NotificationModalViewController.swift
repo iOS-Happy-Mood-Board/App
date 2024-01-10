@@ -45,6 +45,17 @@ final class NotificationModalViewController: UIViewController, ViewAttributes {
         }
     }
     
+    private let dismissButton = UIButton(type: .system).then {
+        let title = "닫기"
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont(name: "Pretendard-Medium", size: 16),
+            .underlineStyle: NSUnderlineStyle.single.rawValue,
+            .foregroundColor: UIColor.black // 원하는 색상으로 설정
+        ]
+        let attributedTitle = NSAttributedString(string: title, attributes: attributes)
+        $0.setAttributedTitle(attributedTitle, for: .normal)
+    }
+    
     private let disposeBag: DisposeBag = .init()
     private let viewModel: NotificationModalViewModel = .init()
     
@@ -61,7 +72,8 @@ extension NotificationModalViewController {
         [
             guideLabel,
             descriptionLabel,
-            goToSettingButton
+            goToSettingButton,
+            dismissButton
         ].forEach { self.view.addSubview($0) }
         
         self.view.layer.cornerRadius = 15
@@ -81,26 +93,37 @@ extension NotificationModalViewController {
         }
         
         goToSettingButton.snp.makeConstraints {
-            $0.top.equalTo(descriptionLabel.snp.bottom).offset(40)
+            $0.top.equalTo(descriptionLabel.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview().inset(24)
             $0.height.equalTo(52)
+        }
+        
+        dismissButton.snp.makeConstraints {
+            $0.top.equalTo(goToSettingButton.snp.bottom).offset(10)
+            $0.centerX.equalToSuperview()
         }
     }
     
     func setupBindings() {
         let input = NotificationModalViewModel.Input(
-            prefNotification: goToSettingButton.rx.tap.asObservable()
+            prefNotification: goToSettingButton.rx.tap.asObservable(),
+            dismiss: dismissButton.rx.tap.asObservable()
         )
         let output = viewModel.transform(input: input)
         
         output.prefNotification
             .bind {
-                self.dismiss(animated: true)
-                
                 let prefURL = NSURL(string:"App-prefs:root=NOTIFICATIONS_ID")! as URL
                 UIApplication.shared.open(prefURL)
+                
+                self.dismiss(animated: true)
             }
             .disposed(by: disposeBag)
         
+        output.dismiss
+            .bind {
+                self.dismiss(animated: true)
+            }
+            .disposed(by: disposeBag)
     }
 }
