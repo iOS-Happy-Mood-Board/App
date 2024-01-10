@@ -57,7 +57,7 @@ final class EnterNicknameViewController: UIViewController, ViewAttributes {
     private let infoLabel = UILabel().then {
         $0.textColor = .gray400
         $0.font = UIFont(name: "Pretendard-Regular", size: 14)
-        $0.text = "* 특수문자는 쓸 수 없어요"
+        $0.text = "닉네임은 나중에도 변경 가능해요."
     }
     
     private let nextButton = UIButton(type: .system).then {
@@ -146,11 +146,11 @@ final class EnterNicknameViewController: UIViewController, ViewAttributes {
         )
         let output = viewModel.transform(input: input)
         
-        output.nickname.asDriver(onErrorJustReturn: "")
+        output.nickname.asDriver(onErrorRecover: { _ in .empty() })
             .drive(nicknameTextField.rx.text)
             .disposed(by: disposeBag)
         
-        output.isValid.asDriver(onErrorJustReturn: false)
+        output.nextButtonEnabled.asDriver(onErrorJustReturn: false)
             .drive(nextButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
