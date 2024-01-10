@@ -28,7 +28,9 @@ final class RegisterViewModel: ViewModel {
         let navigateToBack: Observable<Void>
         let showAlert: Observable<Void>
         let showImagePicker: Observable<Void>
+        let showTagListViewController: Observable<Void>
         let image: Observable<UIImage?>
+        let text: Observable<String?>
         let tag: Observable<Tag?>
         let keyboard: Observable<Void>
     }
@@ -44,9 +46,11 @@ final class RegisterViewModel: ViewModel {
             .share()
             
         let text = input.textChanged
+            .filter { $0 != RegisterViewController.Constants.textViewPlaceholder }
+            .share()
+        
         let sampleTag: Tag? = Tag(name: "휴식", color: "#FFC895")
         let tag = Observable.just(sampleTag)
-        
         // TODO: '뒤로가기' 눌렀을 때, 글씨, 이미지 등록, 태그 등록 중 1가지라도 되어있을 경우 -> "작성한 내용이 저장되지 않아요.\n정말 뒤로 가시겠어요?" 팝업 노출
         
         let textValid = text
@@ -68,7 +72,9 @@ final class RegisterViewModel: ViewModel {
             navigateToBack: input.backButtonTapped,
             showAlert: input.backButtonTapped,
             showImagePicker: input.addImageButtonTapped,
+            showTagListViewController: input.addTagButtonTapped,
             image: image,
+            text: text,
             tag: tag,
             keyboard: input.keyboardButtonTapped
         )

@@ -21,7 +21,7 @@ final class EnterNicknameViewModel: ViewModel {
         let isValid: Observable<Bool>
         let navigateTohome: Observable<Void>
     }
-
+    
     private let disposeBag: DisposeBag = .init()
     
     func transform(input: Input) -> Output {
@@ -37,18 +37,27 @@ final class EnterNicknameViewModel: ViewModel {
                     return new
                 }
             }
-
+        
         nickname
             .map { $0.count <= maxCount && $0.count > 0 }
             .subscribe(onNext: {
                 isValid.onNext($0)
             })
             .disposed(by: disposeBag)
-
+        
+        let navigateToHome = input.navigateToHome
+            .withLatestFrom(nickname)
+            .map { MemberTarget.nickname(.init(nickname: $0)) }
+            .debug("닉네임설정")
+            .flatMapLatest {
+                ApiService().request(type: Empty.self, target: $0)
+            }
+            .map { _ in }
+        
         return Output(
             nickname: nickname,
             isValid: isValid,
-            navigateTohome: input.navigateToHome
+            navigateTohome: navigateToHome
         )
     }
     

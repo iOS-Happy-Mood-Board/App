@@ -146,16 +146,16 @@ final class EnterNicknameViewController: UIViewController, ViewAttributes {
         )
         let output = viewModel.transform(input: input)
         
-        output.nickname
-            .bind(to: nicknameTextField.rx.text)
+        output.nickname.asDriver(onErrorJustReturn: "")
+            .drive(nicknameTextField.rx.text)
             .disposed(by: disposeBag)
         
-        output.isValid
-            .bind(to: nextButton.rx.isEnabled)
+        output.isValid.asDriver(onErrorJustReturn: false)
+            .drive(nextButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        output.navigateTohome
-            .bind { [weak self] in
+        output.navigateTohome.asDriver(onErrorRecover: { _ in .empty() })
+            .drive(with: self) { owner, _ in
                 let imageInsets: UIEdgeInsets = .init(top: 13, left: 0, bottom: 0, right: 0)
                 
                 // home
@@ -184,7 +184,7 @@ final class EnterNicknameViewController: UIViewController, ViewAttributes {
                     registerViewController,
                     listNavigationController
                 ]
-                self?.show(tabBarController, sender: nil)
+                owner.show(tabBarController, sender: nil)
             }
             .disposed(by: disposeBag)
     }

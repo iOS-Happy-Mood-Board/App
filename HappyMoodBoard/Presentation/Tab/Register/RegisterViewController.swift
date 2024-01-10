@@ -13,8 +13,17 @@ import SnapKit
 
 import RxSwift
 import RxCocoa
+import RxKeyboard
 
 final class RegisterViewController: UIViewController {
+    
+    enum Constants {
+        static let normalImage: UIImage = .init(named: "navigation.register.normal") ?? .init()
+        static let disabledImage: UIImage = .init(named: "navigation.register.disabled") ?? .init()
+        static let textViewPlaceholder: String = "최대 1000자까지 작성 가능해요."
+        static let textViewPlaceholderColor: UIColor? = .gray400
+        static let textViewTextColor: UIColor? = .gray900
+    }
     
     private let backButton: UIBarButtonItem = .init(
         image: .init(named: "navigation.back"),
@@ -80,8 +89,8 @@ final class RegisterViewController: UIViewController {
     }
     
     private let textView: UITextView = .init().then {
-        $0.text = nil // "최대 1000자까지 작성 가능해요."
-        $0.textColor = .gray700
+        $0.text = Constants.textViewPlaceholder
+        $0.textColor = Constants.textViewPlaceholderColor
         $0.backgroundColor = .clear
         $0.layer.cornerRadius = 16
         $0.layer.borderWidth = 1
@@ -113,8 +122,15 @@ final class RegisterViewController: UIViewController {
         $0.navigationBar.tintColor = .primary100
     }
     
-    private lazy var toolbar: UIToolbar = .init().then {
-        $0.items = [.init(customView: addImageButton), addTagButton, .flexibleSpace(), keyboardToggleButton]
+    private lazy var toolbar: UIToolbar = .init(
+        frame: .init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 48)
+    ).then {
+        $0.items = [
+            .init(customView: addImageButton),
+            addTagButton,
+            .flexibleSpace(),
+            keyboardToggleButton
+        ]
         $0.barTintColor = .primary100
     }
     
@@ -163,8 +179,8 @@ extension RegisterViewController: ViewAttributes {
         
         [
             frameImageView,
-            tagButton,
-            textView
+            textView,
+            tagButton
         ].forEach { contentStackView.addArrangedSubview($0) }
     }
     
@@ -199,7 +215,7 @@ extension RegisterViewController: ViewAttributes {
         toolbar.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
-            make.height.equalTo(52)
+            make.height.equalTo(48)
         }
     }
     
@@ -217,6 +233,11 @@ extension RegisterViewController: ViewAttributes {
                 )
             }
         
+        let addTagButtonTapped = addTagButton.rx.tap
+            .flatMap {
+                self.showTagListViewController()
+            }
+        
         let input = RegisterViewModel.Input(
             textChanged: textView.rx.text.asObservable(),
             backButtonTapped: backButton.rx.tap.asObservable(),
@@ -232,9 +253,7 @@ extension RegisterViewController: ViewAttributes {
         output.canRegister
             .withUnretained(self)
             .subscribe(onNext: { owner, isEnabled in
-                let normalImage: UIImage = .init(named: "navigation.register.normal") ?? .init()
-                let disabledImage: UIImage = .init(named: "navigation.register.disabled") ?? .init()
-                owner.registerButton.image = isEnabled ? normalImage : disabledImage
+                owner.registerButton.image = isEnabled ? Constants.normalImage : Constants.disabledImage
             })
             .disposed(by: disposeBag)
         
@@ -250,6 +269,12 @@ extension RegisterViewController: ViewAttributes {
             .subscribe(onNext: { owner, _ in
                 owner.requestPhotoLibraryAuthorization()
             })
+            .disposed(by: disposeBag)
+        
+        output.showTagListViewController.asDriver(onErrorJustReturn: ())
+            .drive(with: self) { owner, _ in
+                owner.showTagListViewController()
+            }
             .disposed(by: disposeBag)
         
         output.image
@@ -278,6 +303,45 @@ extension RegisterViewController: ViewAttributes {
                 configuration?.baseForegroundColor = .gray700
                 owner.tagButton.configuration = configuration
                 owner.tagButton.isHidden = false
+            }
+            .disposed(by: disposeBag)
+        
+        keyboardToggleButton.rx.tap.asDriver()
+            .drive(with: self) { owner, _ in
+                if owner.textView.isFirstResponder {
+                    owner.keyboardToggleButton.image = .init(named: "toolbar.keyboard.up")
+                    owner.textView.resignFirstResponder()
+                } else {
+                    owner.keyboardToggleButton.image = .init(named: "toolbar.keyboard.down")
+                    owner.textView.becomeFirstResponder()
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        RxKeyboard.instance.visibleHeight
+            .drive(with: self) { owner, keyboardVisibleHeight in
+                owner.toolbar.snp.updateConstraints { make in
+                    make.bottom.equalTo(owner.view.safeAreaLayoutGuide.snp.bottom).offset(-keyboardVisibleHeight)
+                }
+                owner.view.setNeedsLayout()
+            }
+            .disposed(by: disposeBag)
+        
+        textView.rx.didBeginEditing.asDriver()
+            .drive(with: self) { owner, _ in
+                if owner.textView.textColor == Constants.textViewPlaceholderColor {
+                    owner.textView.text = nil
+                    owner.textView.textColor = Constants.textViewTextColor
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        textView.rx.didEndEditing.asDriver()
+            .drive(with: self) { owner, _ in
+                if owner.textView.text.isEmpty {
+                    owner.textView.text = Constants.textViewPlaceholder
+                    owner.textView.textColor = Constants.textViewPlaceholderColor
+                }
             }
             .disposed(by: disposeBag)
     }
@@ -337,6 +401,18 @@ extension RegisterViewController {
         viewController.sheetPresentationController?.detents = [.medium()]
         viewController.sheetPresentationController?.prefersGrabberVisible = true
         present(viewController, animated: true, completion: nil)
+    }
+    
+    func showTagListViewController() -> Observable<Void> {
+        return Observable.create { observer in
+            let viewController = UIViewController()
+            viewController.sheetPresentationController?.detents = [.medium()]
+            viewController.sheetPresentationController?.prefersGrabberVisible = true
+            self.present(viewController, animated: true, completion: nil)
+            return Disposables.create {
+                viewController.dismiss(animated: true, completion: nil)
+            }
+        }
     }
     
 }
