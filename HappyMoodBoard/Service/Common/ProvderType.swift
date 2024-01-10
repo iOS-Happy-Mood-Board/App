@@ -7,9 +7,7 @@
 
 import Foundation
 
-enum ProviderType: String, Encodable {
-    case kakao
-    case apple
+enum ProviderType: String, Codable {
+    case kakao = "KAKAO"
+    case apple = "APPLE"
 }
-
-
