@@ -13,7 +13,12 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
+protocol NotificationModalDelegate: AnyObject {
+    func didDismissModal()
+}
+
 final class NotificationModalViewController: UIViewController, ViewAttributes {
+    weak var delegate: NotificationModalDelegate?
     
     private let guideLabel = UILabel().then {
         $0.font = UIFont(name: "Pretendard-Bold", size: 22)
@@ -112,17 +117,20 @@ extension NotificationModalViewController {
         let output = viewModel.transform(input: input)
         
         output.prefNotification
-            .bind {
+            .bind { [weak self] in
                 let prefURL = NSURL(string:"App-prefs:root=NOTIFICATIONS_ID")! as URL
                 UIApplication.shared.open(prefURL)
                 
-                self.dismiss(animated: true)
+                self?.delegate?.didDismissModal()
+                self?.dismiss(animated: true)
             }
             .disposed(by: disposeBag)
         
         output.dismiss
-            .bind {
-                self.dismiss(animated: true)
+            .bind { [weak self] in
+                
+                self?.delegate?.didDismissModal()
+                self?.dismiss(animated: true)
             }
             .disposed(by: disposeBag)
     }

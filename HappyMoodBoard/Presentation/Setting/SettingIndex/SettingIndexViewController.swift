@@ -54,6 +54,11 @@ final class SettingIndexViewController: UIViewController, UIGestureRecognizerDel
         $0.spacing = 0
     }
     
+    let dimView = UIView().then {
+        $0.backgroundColor = .black
+        $0.alpha = 0.0
+    }
+    
     private let accountSettingButton = SettingIndexButton(type: .mySettings)
     private let notificationSettingButton = SettingIndexButton(type: .notificationSettings)
     private let termsOfServiceButton = SettingIndexButton(type: .termsOfService)
@@ -79,7 +84,11 @@ final class SettingIndexViewController: UIViewController, UIGestureRecognizerDel
     private let disposeBag: DisposeBag = .init()
 }
 
-extension SettingIndexViewController: ViewAttributes, UIViewControllerTransitioningDelegate {
+extension SettingIndexViewController: ViewAttributes, UIViewControllerTransitioningDelegate, NotificationModalDelegate {
+    func didDismissModal() {
+        self.dimView.alpha = 0.0
+    }
+    
     func setupNavigationBar() {
         self.navigationItem.titleView = navigationTitle
         self.navigationItem.leftBarButtonItem = navigationItemBack
@@ -92,7 +101,8 @@ extension SettingIndexViewController: ViewAttributes, UIViewControllerTransition
             dividerViewTop,
             contentStackViewMiddle,
             dividerViewBottom,
-            contentStackViewBottom
+            contentStackViewBottom,
+            dimView
         ].forEach { self.view.addSubview($0) }
         
         [
@@ -133,6 +143,10 @@ extension SettingIndexViewController: ViewAttributes, UIViewControllerTransition
             }
             
 //            object.layer.borderWidth = 1
+        }
+        
+        dimView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
         
         contentStackViewTop.snp.makeConstraints {
@@ -179,18 +193,19 @@ extension SettingIndexViewController: ViewAttributes, UIViewControllerTransition
         )
         
         let output = viewModel.transform(input: input)
-        
         output.checkNotification
             .bind { [weak self] handler in
                 
                 if !handler {
-                    
+                    self?.dimView.alpha = 0.0
                 } else {
+                    self?.dimView.alpha = 0.5
                     
                     let VC = NotificationModalViewController()
                     VC.modalPresentationStyle = .custom
                     VC.transitioningDelegate = self
-                    VC.sheetPresentationController?.largestUndimmedDetentIdentifier = .medium
+                    VC.delegate = self
+                    
                     self?.present(VC, animated: true, completion: nil)
                 }
             }
@@ -253,17 +268,33 @@ extension SettingIndexViewController: ViewAttributes, UIViewControllerTransition
         
         // 로그아웃
         output.logout.bind { [weak self] in
-            self?.showAlert(title: "로그아웃", message: "로그아웃 하시겠습니까?") {
-                print("로그아웃")
-            }
+            self?.showPopUp(
+                title: "로그아웃",
+                message: "로그아웃 하시겠습니까?",
+                leftActionTitle: "취소",
+                rightActionTitle: "네",
+                leftActionCompletion: {
+                    print("취소")
+                },
+                rightActionCompletion: {
+                    print("네")
+                })
         }
         .disposed(by: disposeBag)
         
         // 회원탈퇴
         output.withdrawMembership.bind { [weak self] in
-            self?.showAlert(title: "회원탈퇴", message: "회원탈퇴 이후에는 기록한 행복 아이템과\n저장된 모든 것을 볼 수 없어요.\n정말로 탈퇴하시겠습니까?") {
-                print("탈퇴")
-            }
+            self?.showPopUp(
+                title: "회원탈퇴",
+                message: "회원탈퇴 이후에는 기록한 행복 아이템과\n저장된 모든 것을 볼 수 없어요.\n정말로 탈퇴하시겠습니까?",
+                leftActionTitle: "탈퇴하기",
+                rightActionTitle: "유지하기",
+                leftActionCompletion: {
+                    print("탈퇴하기")
+                },
+                rightActionCompletion: {
+                    print("유지하기")
+                })
         }
         .disposed(by: disposeBag)
     }

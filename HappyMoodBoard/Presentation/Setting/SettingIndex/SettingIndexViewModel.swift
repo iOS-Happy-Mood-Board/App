@@ -40,6 +40,8 @@ final class SettingIndexViewModel: ViewModel {
         let withdrawMembership: Observable<Void>
     }
     
+    let disposeBag: DisposeBag = .init()
+    
     func transform(input: Input) -> Output {
         
         let pushNotification = input.checkNotification

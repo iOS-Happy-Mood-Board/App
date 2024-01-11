@@ -41,7 +41,7 @@ final class SettingWebViewController: UIViewController, ViewAttributes, UIGestur
     
     override func viewDidLoad() {
         setWebView()
-        setWhiteBackgroundColor()
+        setCommonBackgroundColor()
         setupNavigationBar()
         setupSubviews()
         setupLayouts()
