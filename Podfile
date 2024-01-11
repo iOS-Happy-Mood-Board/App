@@ -13,6 +13,9 @@ target 'HappyMoodBoard' do
   pod 'RxSwift'
   pod 'RxCocoa'
 
+  pod 'Firebase/Messaging'
+  pod 'Firebase/Analytics'
+
   target 'HappyMoodBoardTests' do
     inherit! :search_paths
     # Pods for testing

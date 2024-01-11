@@ -13,6 +13,23 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
+enum LoginResponseStatus {
+    case requiredConsent // 이용약관 동의 전(=회원가입 플로우)
+    case active // 실제 활성 회원
+    case suspend // 차단된 회원
+    
+    var value: String {
+        switch self {
+        case .requiredConsent:
+            return "REQUIRED_CONSENT"
+        case .active:
+            return "ACTIVE"
+        case .suspend:
+            return "SUSPEND"
+        }
+    }
+}
+
 final class LoginViewController: UIViewController, ViewAttributes {
     
     private let kakaoLoginButton = SocialLoginButton(type: .kakao)
@@ -51,7 +68,7 @@ extension LoginViewController {
     }
     
     func setupBindings() {
-     
+        
         let input = LoginViewModel.Input(
             kakaoLogin: kakaoLoginButton.rx.tap.asObservable(),
             appleLogin: appleLoginButton.rx.tap.asObservable()
@@ -63,10 +80,27 @@ extension LoginViewController {
         output.kakaoLogin.bind { [weak self] in
             print("카카오 로그인")
         }
+        .disposed(by: disposeBag)
         
         // 애플 로그인
-        output.appleLogin.bind { [weak self] in
-            print("애플 로그인")
-        }
+        output.appleLogin
+            .map {
+                $0.data.status
+            }
+            .bind { [weak self] handler in
+                
+                switch handler {
+                case LoginResponseStatus.requiredConsent.value: // 회원 아님, 회원가입 플로우
+                    let viewController = AgreeViewController()
+                    self?.show(viewController, sender: nil)
+                case LoginResponseStatus.active.value: // 회원
+                    traceLog("2")
+                case LoginResponseStatus.suspend.value: // 차단된 사용자
+                    traceLog("3")
+                default:
+                    traceLog("오류")
+                }
+            }
+            .disposed(by: disposeBag)
     }
 }
