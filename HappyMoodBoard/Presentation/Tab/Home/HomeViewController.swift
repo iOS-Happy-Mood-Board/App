@@ -12,6 +12,7 @@ import SnapKit
 
 import RxSwift
 import RxCocoa
+import RxViewController
 
 final class HomeViewController: UIViewController {
     
@@ -84,7 +85,7 @@ extension HomeViewController: ViewAttributes {
     func setupLayouts() {
         headerLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(8)
-            make.leading.trailing.equalToSuperview().inset(24)
+            make.leading.trailing.equalToSuperview().offset(24)
         }
         
         mainImageView.snp.makeConstraints { make in
@@ -94,26 +95,40 @@ extension HomeViewController: ViewAttributes {
     
     func setupBindings() {
         let input = HomeViewModel.Input(
+            viewWillAppear: rx.viewWillAppear.asObservable(),
+            viewWillDisAppear: rx.viewWillDisappear.asObservable(),
             navigateToSetting: settingButton.rx.tap.asObservable()
         )
         let output = viewModel.transform(input: input)
-        output.username
-            .bind { [weak self] username in
-                let text = "\(username) \(self?.headerLabel.text ?? Self.kHeaderLabelText)"
-                self?.headerLabel.text = text
+        
+        output.viewWillAppear.bind { [weak self] _ in
+            self?.tabBarController?.tabBar.isHidden = false
+        }
+        .disposed(by: disposeBag)
+        
+        output.viewWillDisAppear.bind { [weak self] _ in
+            self?.tabBarController?.tabBar.isHidden = true
+        }
+        .disposed(by: disposeBag)
+        
+        output.username.asDriver(onErrorJustReturn: "")
+            .drive(with: self) { owner, username in
+                let text = "\(username) \(owner.headerLabel.text ?? Self.kHeaderLabelText)"
+                owner.headerLabel.text = text
                 let attributedString = NSMutableAttributedString(string: text)
                 attributedString.addAttribute(
                     .foregroundColor,
                     value: UIColor.primary900,
                     range: (text as NSString).range(of: username)
                 )
-                self?.headerLabel.attributedText = attributedString
+                owner.headerLabel.attributedText = attributedString
             }
             .disposed(by: disposeBag)
-        output.navigateToSetting
-            .bind { [weak self] _ in
-                let settingViewController = UIViewController()
-                self?.show(settingViewController, sender: nil)
+        
+        output.navigateToSetting.asDriver(onErrorJustReturn: ())
+            .drive(with: self) { owner, _ in
+                let settingViewController = SettingIndexViewController()
+                owner.show(settingViewController, sender: nil)
             }
             .disposed(by: disposeBag)
     }
