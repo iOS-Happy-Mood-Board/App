@@ -31,7 +31,7 @@ final class EnterNicknameViewModel: ViewModel {
         let nickname = input.nickname
             .scan("") { previous, new -> String in
                 // TODO: 앞뒤 공백 제거
-                if new.count >= maxCount {
+                if new.count > maxCount {
                     return previous
                 } else {
                     return new
