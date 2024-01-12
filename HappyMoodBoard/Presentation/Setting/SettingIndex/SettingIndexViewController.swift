@@ -58,7 +58,6 @@ final class SettingIndexViewController: UIViewController, UIGestureRecognizerDel
         $0.backgroundColor = .black
         $0.alpha = 0.0
     }
-    
     private let accountSettingButton = SettingIndexButton(type: .mySettings)
     private let notificationSettingButton = SettingIndexButton(type: .notificationSettings)
     private let termsOfServiceButton = SettingIndexButton(type: .termsOfService)
@@ -142,7 +141,7 @@ extension SettingIndexViewController: ViewAttributes, UIViewControllerTransition
                 $0.height.equalTo(56)
             }
             
-//            object.layer.borderWidth = 1
+            //            object.layer.borderWidth = 1
         }
         
         dimView.snp.makeConstraints {
@@ -217,7 +216,7 @@ extension SettingIndexViewController: ViewAttributes, UIViewControllerTransition
             self?.navigationController?.popViewController(animated: true)
         }
         .disposed(by: disposeBag)
-      
+        
         // 내 계정
         output.mySettings.bind { [weak self] in
             let viewController = SettingMyAccountViewController()
@@ -245,22 +244,33 @@ extension SettingIndexViewController: ViewAttributes, UIViewControllerTransition
             self?.navigationController?.pushViewController(viewController, animated: true)
         }
         .disposed(by: disposeBag)
-
+        
         // 오픈소스 라이센스
         output.openSourceLicense.bind { [weak self] in
             let viewController = SettingWebViewController(type: .openSourceLicense)
             self?.navigationController?.pushViewController(viewController, animated: true)
         }
         .disposed(by: disposeBag)
-
+        
         // 리뷰 남기기
         output.leaveReview.bind { [weak self] in
             print("리뷰 남기기")
             SKStoreReviewController.requestReview()
         }
         .disposed(by: disposeBag)
-
+        
         // 버전 정보
+        output.openSourceLicense.bind { [weak self] in
+            let viewController = SettingOpenSourceLicenseViewController()
+            self?.navigationController?.pushViewController(viewController, animated: true)
+        }
+        .disposed(by: disposeBag)
+        
+        output.leaveReview.bind { [weak self] in
+            print("리뷰 남기기")
+        }
+        .disposed(by: disposeBag)
+        
         output.versionInformation.bind { [weak self] in
             print("버전 정보")
         }

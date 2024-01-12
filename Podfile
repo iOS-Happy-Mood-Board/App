@@ -8,12 +8,13 @@ target 'HappyMoodBoard' do
   # Pods for HappyMoodBoard
   pod 'Then'
   pod 'SnapKit'
-  pod 'Alamofire'
+  pod 'RxAlamofire'
   pod 'SwiftLint'
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxGesture'
   pod 'RxViewController'
+  pod 'RxKeyboard'
 
   target 'HappyMoodBoardTests' do
     inherit! :search_paths
