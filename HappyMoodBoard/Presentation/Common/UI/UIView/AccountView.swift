@@ -10,6 +10,8 @@ import UIKit
 
 final class AccountView: UIView {
     
+    var socialImage: UIImage?
+    
     private let label = CustomLabel(
         font: UIFont(name: "Pretendard-Regular", size: 16),
         textColor: UIColor.black,
@@ -20,7 +22,7 @@ final class AccountView: UIView {
     private lazy var nicknameLabel = CustomLabel(
         font: UIFont(name: "Pretendard-Regular", size: 16),
         textColor: UIColor.gray500,
-        text: "행복호소인 🐝"
+        text: nil
     )
     private let disclosureButton = UIButton().then {
         $0.setImage(UIImage(named: "arrow.right"), for: .normal)
@@ -32,7 +34,7 @@ final class AccountView: UIView {
     private lazy var socialLoginLabel = CustomLabel(
         font: UIFont(name: "Pretendard-Regular", size: 16),
         textColor: UIColor.black,
-        text: "카카오"
+        text: nil
     )
     private let socialImageView = UIImageView().then {
         $0.image = UIImage(named: "KakaoLogin")
@@ -45,7 +47,7 @@ final class AccountView: UIView {
     private lazy var emailLabel = CustomLabel(
         font: UIFont(name: "Pretendard-Regular", size: 16),
         textColor: UIColor.black,
-        text: "beehappy@naver.com"
+        text: nil
     )
     
     init(type: MyAccount) {
@@ -120,5 +122,28 @@ final class AccountView: UIView {
             $0.centerY.equalTo(label)
             $0.trailing.equalTo(-24)
         }
+    }
+    
+    func bindNickname(nickname: String) {
+        nicknameLabel.text = nickname
+    }
+    
+    func bindEmail(email: String) {
+        emailLabel.text = email
+    }
+    
+    func bindSocialLogin(provider: String) {
+        
+        switch provider {
+        case ProviderType.apple.rawValue:
+            socialImage = UIImage(named: "AppleLogin")
+        case ProviderType.kakao.rawValue:
+            socialImage = UIImage(named: "KakaoLogin")
+        default:
+            break
+        }
+        
+        socialImageView.image = socialImage
+        socialLoginLabel.text = provider
     }
 }

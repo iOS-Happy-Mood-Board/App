@@ -23,7 +23,9 @@ final class SettingIndexViewModel: ViewModel {
         let leaveReview: Observable<Void>
         let versionInformation: Observable<Void>
         let logout: Observable<Void>
+        let logoutAction: Observable<Void>
         let withdrawMembership: Observable<Void>
+        let withdrawAction: Observable<Void>
     }
     
     struct Output {
@@ -37,7 +39,9 @@ final class SettingIndexViewModel: ViewModel {
         let leaveReview: Observable<Void>
         let versionInformation: Observable<Void>
         let logout: Observable<Void>
+        let logoutAction: Observable<Void>
         let withdrawMembership: Observable<Void>
+        let withdrawAction: Observable<Void>
     }
     
     let disposeBag: DisposeBag = .init()
@@ -49,6 +53,33 @@ final class SettingIndexViewModel: ViewModel {
                 return self.isSystemNotificationEnabled()
             }
         
+        let logout = input.logoutAction
+            .map {
+                AuthTarget.logout(
+                    .init(
+                        deviceType: DeviceType.ios.rawValue,
+                        deviceId: getDeviceUUID() ?? ""
+                    )
+                )
+            }
+            .debug("로그아웃")
+            .flatMapLatest {
+                ApiService().request(type: Empty.self, target: $0)
+            }
+            .map { _ in }
+        
+        let withdraw = input.withdrawAction
+            .map {
+                MemberTarget.retire
+            }
+            .debug("탈퇴하기")
+            .flatMapLatest {
+                ApiService().request(type: Empty.self, target: $0)
+            }
+            .map { _ in
+                UserDefaults.standard.removeObject(forKey: "accessToekn")
+                UserDefaults.standard.removeObject(forKey: "refreshToken")
+            }
         
         return Output(
             checkNotification: pushNotification,
@@ -61,7 +92,9 @@ final class SettingIndexViewModel: ViewModel {
             leaveReview: input.leaveReview,
             versionInformation: input.versionInformation,
             logout: input.logout,
-            withdrawMembership: input.withdrawMembership
+            logoutAction: logout,
+            withdrawMembership: input.withdrawMembership,
+            withdrawAction: withdraw
         )
     }
     

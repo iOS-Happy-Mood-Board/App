@@ -14,7 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let rootViewController = AgreeViewController()
+        let rootViewController = handleAutoLogin() ? LoginViewController() : LoginViewController()
         let navigationController = UINavigationController(rootViewController: rootViewController)
         navigationController.isNavigationBarHidden = true
         window?.rootViewController = navigationController
@@ -50,5 +50,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
     
-    
+    /// 자동로그인 분기 함수
+    /// - Returns: AccessToken, RefreshToken이 UserDefaults에 존재하면 True, 그렇지 않다면 false
+    func handleAutoLogin() -> Bool {
+        guard let _ = UserDefaults.standard.string(forKey: "accessToken"),
+              let _ = UserDefaults.standard.string(forKey: "refreshToken") else {
+                  return true
+              }
+        return false
+    }
 }

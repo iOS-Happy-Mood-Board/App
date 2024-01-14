@@ -177,6 +177,9 @@ extension SettingIndexViewController: ViewAttributes, UIViewControllerTransition
     }
     
     func setupBindings() {
+        let logoutAction = PublishSubject<Void>()
+        let withdrawAction = PublishSubject<Void>()
+        
         let input = SettingIndexViewModel.Input(
             checkNotification: Observable.just(()),
             navigationBack: navigationItemBack.rxTap,
@@ -188,7 +191,9 @@ extension SettingIndexViewController: ViewAttributes, UIViewControllerTransition
             leaveReview: leaveReviewButton.rx.tap.asObservable(),
             versionInformation: versionInformationButton.rx.tap.asObservable(),
             logout: logoutButton.rx.tap.asObservable(),
-            withdrawMembership: withdrawMembershipButton.rx.tap.asObservable()
+            logoutAction: logoutAction.asObservable(),
+            withdrawMembership: withdrawMembershipButton.rx.tap.asObservable(),
+            withdrawAction: withdrawAction.asObservable()
         )
         
         let output = viewModel.transform(input: input)
@@ -283,14 +288,15 @@ extension SettingIndexViewController: ViewAttributes, UIViewControllerTransition
                 message: "로그아웃 하시겠습니까?",
                 leftActionTitle: "취소",
                 rightActionTitle: "네",
-                leftActionCompletion: {
-                    print("취소")
-                },
                 rightActionCompletion: {
-                    print("네")
+                    logoutAction.onNext(())
                 })
         }
         .disposed(by: disposeBag)
+        
+        output.logoutAction.bind { [weak self] in
+            self?.setRootViewController(LoginViewController())
+        }
         
         // 회원탈퇴
         output.withdrawMembership.bind { [weak self] in
@@ -300,16 +306,29 @@ extension SettingIndexViewController: ViewAttributes, UIViewControllerTransition
                 leftActionTitle: "탈퇴하기",
                 rightActionTitle: "유지하기",
                 leftActionCompletion: {
-                    print("탈퇴하기")
-                },
-                rightActionCompletion: {
-                    print("유지하기")
+                    withdrawAction.onNext(())
                 })
         }
         .disposed(by: disposeBag)
+        
+        output.withdrawAction.bind { [weak self] in
+            self?.setRootViewController(LoginViewController())
+        }
     }
     
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         return HalfModalPresentationController(presentedViewController: presented, presenting: presenting)
+    }
+    
+    // 루트 뷰 컨트롤러를 설정하는 함수
+    func setRootViewController(_ viewController: UIViewController) {
+        if let window = UIApplication.shared.windows.first {
+            let rootViewController = viewController
+            let navigationController = UINavigationController(rootViewController: rootViewController)
+            navigationController.isNavigationBarHidden = true
+            window.rootViewController = navigationController
+            window.backgroundColor = .primary100
+            window.makeKeyAndVisible()
+        }
     }
 }

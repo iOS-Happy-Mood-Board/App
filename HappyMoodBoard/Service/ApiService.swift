@@ -22,7 +22,7 @@ final class ApiService {
                 case 200...299:
                     do {
                         let result = try JSONDecoder().decode(BaseResponse<T>.self, from: data)
-                        return result.data
+                        return result.responseData
                     } catch {
                         // TODO: 성공시 디코딩 에러 처리
                         print(

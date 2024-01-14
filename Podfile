@@ -15,6 +15,9 @@ target 'HappyMoodBoard' do
   pod 'RxGesture'
   pod 'RxViewController'
   pod 'RxKeyboard'
+  
+  pod 'Firebase/Messaging'
+  pod 'Firebase/Analytics'
 
   target 'HappyMoodBoardTests' do
     inherit! :search_paths
