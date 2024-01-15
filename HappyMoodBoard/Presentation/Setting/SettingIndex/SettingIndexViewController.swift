@@ -181,6 +181,7 @@ extension SettingIndexViewController: ViewAttributes, UIViewControllerTransition
         let withdrawAction = PublishSubject<Void>()
         
         let input = SettingIndexViewModel.Input(
+            viewWillAppear: rx.viewWillAppear.asObservable(),
             checkNotification: Observable.just(()),
             navigationBack: navigationItemBack.rxTap,
             mySettings: accountSettingButton.rx.tap.asObservable(),
@@ -215,7 +216,7 @@ extension SettingIndexViewController: ViewAttributes, UIViewControllerTransition
             }
             .disposed(by: disposeBag)
         
-        // 네비게이션 뒤로가기
+        // MARK: - 네비게이션 뒤로가기
         output.navigationBack.bind { [weak self] in
             print("네비게이션 뒤로가기")
             self?.navigationController?.popViewController(animated: true)
@@ -223,27 +224,28 @@ extension SettingIndexViewController: ViewAttributes, UIViewControllerTransition
         .disposed(by: disposeBag)
         
         // 내 계정
+        // MARK: - 내 계정
         output.mySettings.bind { [weak self] in
             let viewController = SettingMyAccountViewController()
             self?.navigationController?.pushViewController(viewController, animated: true)
         }
         .disposed(by: disposeBag)
         
-        // 알림 설정
+        // MARK: - 알림 설정
         output.notificationSettings.bind { [weak self] in
             let viewController = SettingNotificationViewController()
             self?.navigationController?.pushViewController(viewController, animated: true)
         }
         .disposed(by: disposeBag)
         
-        // 이용약관
+        // MARK: - 이용 약관
         output.termsOfService.bind { [weak self] in
             let viewController = SettingWebViewController(type: .termsOfService)
             self?.navigationController?.pushViewController(viewController, animated: true)
         }
         .disposed(by: disposeBag)
         
-        // 개인정보 처리방침
+        // MARK: - 개인정보 처리방침
         output.privacyPolicy.bind { [weak self] in
             let viewController = SettingWebViewController(type: .privacyPolicy)
             self?.navigationController?.pushViewController(viewController, animated: true)
@@ -251,37 +253,31 @@ extension SettingIndexViewController: ViewAttributes, UIViewControllerTransition
         .disposed(by: disposeBag)
         
         // 오픈소스 라이센스
+        // MARK: - 오픈소스 라이센스
         output.openSourceLicense.bind { [weak self] in
             let viewController = SettingWebViewController(type: .openSourceLicense)
             self?.navigationController?.pushViewController(viewController, animated: true)
         }
         .disposed(by: disposeBag)
         
-        // 리뷰 남기기
-        output.leaveReview.bind { [weak self] in
-            print("리뷰 남기기")
+        // MARK: - 리뷰 남기기
+        output.leaveReview.bind {
             SKStoreReviewController.requestReview()
         }
         .disposed(by: disposeBag)
         
-        // 버전 정보
-        output.openSourceLicense.bind { [weak self] in
-            let viewController = SettingOpenSourceLicenseViewController()
-            self?.navigationController?.pushViewController(viewController, animated: true)
-        }
-        .disposed(by: disposeBag)
+        // MARK: - 리뷰 description
+        output.checkVersion.asDriver(onErrorJustReturn: "")
+            .drive(versionInformationButton.descriptionLabel.rx.text)
+            .disposed(by: disposeBag)
         
-        output.leaveReview.bind { [weak self] in
-            print("리뷰 남기기")
-        }
-        .disposed(by: disposeBag)
-        
+        // MARK: - 리뷰 터치시, 업데이트가 필요하면 OpenAppStore
         output.versionInformation.bind { [weak self] in
-            print("버전 정보")
+            $0 ? self?.viewModel.openAppStore() : nil
         }
         .disposed(by: disposeBag)
         
-        // 로그아웃
+        // MARK: - 로그아웃
         output.logout.bind { [weak self] in
             self?.showPopUp(
                 title: "로그아웃",
@@ -294,11 +290,13 @@ extension SettingIndexViewController: ViewAttributes, UIViewControllerTransition
         }
         .disposed(by: disposeBag)
         
+        // MARK: - 로그아웃 서버 response 이후
         output.logoutAction.bind { [weak self] in
             self?.setRootViewController(LoginViewController())
         }
+        .disposed(by: disposeBag)
         
-        // 회원탈퇴
+        // MARK: - 회원탈퇴
         output.withdrawMembership.bind { [weak self] in
             self?.showPopUp(
                 title: "회원탈퇴",
@@ -311,9 +309,11 @@ extension SettingIndexViewController: ViewAttributes, UIViewControllerTransition
         }
         .disposed(by: disposeBag)
         
+        // MARK: - 회원탈퇴 서버 response 이후
         output.withdrawAction.bind { [weak self] in
             self?.setRootViewController(LoginViewController())
         }
+        .disposed(by: disposeBag)
     }
     
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {

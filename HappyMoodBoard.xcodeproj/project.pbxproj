@@ -170,6 +170,12 @@
 		AC9E33D12B35643000B0D9AE /* NavigtaionItemBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9E33D02B35643000B0D9AE /* NavigtaionItemBack.swift */; };
 		AC9E33D22B35643000B0D9AE /* NavigtaionItemBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9E33D02B35643000B0D9AE /* NavigtaionItemBack.swift */; };
 		AC9E33D32B35643000B0D9AE /* NavigtaionItemBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9E33D02B35643000B0D9AE /* NavigtaionItemBack.swift */; };
+		ACD6D0FF2B55195D0039E5AE /* NotificationTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD6D0FE2B55195D0039E5AE /* NotificationTarget.swift */; };
+		ACD6D1002B55195D0039E5AE /* NotificationTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD6D0FE2B55195D0039E5AE /* NotificationTarget.swift */; };
+		ACD6D1012B55195D0039E5AE /* NotificationTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD6D0FE2B55195D0039E5AE /* NotificationTarget.swift */; };
+		ACD6D1032B5524670039E5AE /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD6D1022B5524670039E5AE /* Member.swift */; };
+		ACD6D1042B5524670039E5AE /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD6D1022B5524670039E5AE /* Member.swift */; };
+		ACD6D1052B5524670039E5AE /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD6D1022B5524670039E5AE /* Member.swift */; };
 		E17C57EBA50B363CF865CBF2 /* Pods_HappyMoodBoardTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD9B74EF4837EEE55C75F63 /* Pods_HappyMoodBoardTests.framework */; };
 		E34BC6A879C8BCCA61AE2BF9 /* Pods_HappyMoodBoard_HappyMoodBoardUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC16FAC9EF5C81E2F6F03D73 /* Pods_HappyMoodBoard_HappyMoodBoardUITests.framework */; };
 /* End PBXBuildFile section */
@@ -290,6 +296,8 @@
 		AC9E33BE2B35486E00B0D9AE /* SettingIndexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingIndexViewController.swift; sourceTree = "<group>"; };
 		AC9E33CB2B35614000B0D9AE /* NavigationTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTitle.swift; sourceTree = "<group>"; };
 		AC9E33D02B35643000B0D9AE /* NavigtaionItemBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigtaionItemBack.swift; sourceTree = "<group>"; };
+		ACD6D0FE2B55195D0039E5AE /* NotificationTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTarget.swift; sourceTree = "<group>"; };
+		ACD6D1022B5524670039E5AE /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		DC16FAC9EF5C81E2F6F03D73 /* Pods_HappyMoodBoard_HappyMoodBoardUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyMoodBoard_HappyMoodBoardUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -358,7 +366,6 @@
 			isa = PBXGroup;
 			children = (
 				A2B58B7B2B5293E0003FCFA9 /* Util */,
-				A2DFB7E72B392E3D008B95AC /* Function */,
 				AC9E33C82B35555600B0D9AE /* Extension */,
 				AC9E33C72B35554B00B0D9AE /* Protocol */,
 				AC9E33C92B3558A100B0D9AE /* UI */,
@@ -379,6 +386,7 @@
 		5D751F662B4CC87B003BAC2C /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				ACD6D0FD2B5519480039E5AE /* Notification */,
 				5D751F862B4D205B003BAC2C /* Member */,
 				5D751F7F2B4CE02A003BAC2C /* Common */,
 				5D751F692B4CC8FA003BAC2C /* Auth */,
@@ -518,6 +526,7 @@
 		A2B58B7B2B5293E0003FCFA9 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				AC680A422B54C3A1003D4729 /* Version */,
 				A2B58B7C2B5293F6003FCFA9 /* Device */,
 				A2B58B762B528E11003FCFA9 /* Log */,
 			);
@@ -548,14 +557,6 @@
 				A2DFB7EC2B3930DB008B95AC /* SettingIndexViewModel.swift */,
 			);
 			path = SettingIndex;
-			sourceTree = "<group>";
-		};
-		A2DFB7E72B392E3D008B95AC /* Function */ = {
-			isa = PBXGroup;
-			children = (
-				A2DFB7E82B392E4B008B95AC /* Version.swift */,
-			);
-			path = Function;
 			sourceTree = "<group>";
 		};
 		A2DFB7F02B3935C8008B95AC /* SettingMyAccount */ = {
@@ -668,6 +669,14 @@
 			path = HappyMoodBoardUITests;
 			sourceTree = "<group>";
 		};
+		AC680A422B54C3A1003D4729 /* Version */ = {
+			isa = PBXGroup;
+			children = (
+				A2DFB7E82B392E4B008B95AC /* Version.swift */,
+			);
+			path = Version;
+			sourceTree = "<group>";
+		};
 		AC9E33BD2B35483700B0D9AE /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -745,6 +754,15 @@
 				AC9E33D02B35643000B0D9AE /* NavigtaionItemBack.swift */,
 			);
 			path = UIBarButtonItem;
+			sourceTree = "<group>";
+		};
+		ACD6D0FD2B5519480039E5AE /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				ACD6D0FE2B55195D0039E5AE /* NotificationTarget.swift */,
+				ACD6D1022B5524670039E5AE /* Member.swift */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		B7095465C023B9A3BA4A747D /* Pods */ = {
@@ -1038,6 +1056,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A28402DB2B45952F007C0A0D /* CustomLabel.swift in Sources */,
+				ACD6D1032B5524670039E5AE /* Member.swift in Sources */,
 				AC9E33CC2B35614000B0D9AE /* NavigationTitle.swift in Sources */,
 				AC9E33D12B35643000B0D9AE /* NavigtaionItemBack.swift in Sources */,
 				5DF686032B35151700479D54 /* HomeViewModel.swift in Sources */,
@@ -1057,6 +1076,7 @@
 				A2D4CBC62B3D9A200066E89D /* LoginViewModel.swift in Sources */,
 				A28402E42B45A4A0007C0A0D /* ModifyNickNameViewController.swift in Sources */,
 				A2C886862B497C70008E5437 /* TitleDayOfWeekView.swift in Sources */,
+				ACD6D0FF2B55195D0039E5AE /* NotificationTarget.swift in Sources */,
 				5D7252872B21BEC100CF6688 /* CheckboxButton.swift in Sources */,
 				A2DFB8002B39C4C1008B95AC /* UIViewController+alert.swift in Sources */,
 				A2DFB8052B39C647008B95AC /* SettingOpenSourceLicenseViewController.swift in Sources */,
@@ -1140,6 +1160,7 @@
 				AC3A3BD72B049FBA0081BF32 /* HappyMoodBoardTests.swift in Sources */,
 				A2D4CBC32B3D8F1C0066E89D /* SocialLoginButton.swift in Sources */,
 				A2DFB7DB2B37C37C008B95AC /* SettingType.swift in Sources */,
+				ACD6D1042B5524670039E5AE /* Member.swift in Sources */,
 				A2DFB7E52B392A71008B95AC /* VersionInfoButton.swift in Sources */,
 				A2DFB7EE2B3930DB008B95AC /* SettingIndexViewModel.swift in Sources */,
 				AC9E33C02B35486E00B0D9AE /* SettingIndexViewController.swift in Sources */,
@@ -1149,6 +1170,7 @@
 				A2C886832B4977E1008E5437 /* TitleTimeView.swift in Sources */,
 				A2DFB7F32B3935E1008B95AC /* SettingMyAccountViewController.swift in Sources */,
 				A28402DC2B45952F007C0A0D /* CustomLabel.swift in Sources */,
+				ACD6D1002B55195D0039E5AE /* NotificationTarget.swift in Sources */,
 				A2C8867F2B49700F008E5437 /* SettingNotificationType.swift in Sources */,
 				A2B58B792B528E1D003FCFA9 /* TraceLog.swift in Sources */,
 				AC185D052B479581007304CE /* HalfModalPresentationController.swift in Sources */,
@@ -1203,6 +1225,7 @@
 				A28402E62B45A4A0007C0A0D /* ModifyNickNameViewController.swift in Sources */,
 				A28402D42B4589B0007C0A0D /* MyAccount.swift in Sources */,
 				A2B58B802B529418003FCFA9 /* UUID.swift in Sources */,
+				ACD6D1012B55195D0039E5AE /* NotificationTarget.swift in Sources */,
 				A2DFB7EF2B3930DB008B95AC /* SettingIndexViewModel.swift in Sources */,
 				A2DFB8072B39C647008B95AC /* SettingOpenSourceLicenseViewController.swift in Sources */,
 				AC185D062B479581007304CE /* HalfModalPresentationController.swift in Sources */,
@@ -1220,6 +1243,7 @@
 				A2D4CBBC2B3D8C730066E89D /* LoginViewController.swift in Sources */,
 				A28402EA2B45A79F007C0A0D /* ModifyNickNameViewModel.swift in Sources */,
 				AC9E33D32B35643000B0D9AE /* NavigtaionItemBack.swift in Sources */,
+				ACD6D1052B5524670039E5AE /* Member.swift in Sources */,
 				A2DFB7F92B393873008B95AC /* SettingNotificationViewController.swift in Sources */,
 				A2D4CBC42B3D8F1C0066E89D /* SocialLoginButton.swift in Sources */,
 				A2B58B7A2B528E1D003FCFA9 /* TraceLog.swift in Sources */,
@@ -1387,6 +1411,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HappyMoodBoard/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Bee Happy";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app will use camera\n";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "You can select photo";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1399,7 +1424,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bside.BeeHappy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1421,6 +1446,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HappyMoodBoard/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Bee Happy";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app will use camera\n";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "You can select photo";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1433,7 +1459,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bside.BeeHappy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

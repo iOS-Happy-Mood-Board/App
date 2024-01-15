@@ -91,6 +91,17 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (7.12.0):
     - GoogleUtilities/Logger
+  - KakaoSDKAuth (2.20.0):
+    - KakaoSDKCommon (= 2.20.0)
+  - KakaoSDKCommon (2.20.0):
+    - KakaoSDKCommon/Common (= 2.20.0)
+    - KakaoSDKCommon/Network (= 2.20.0)
+  - KakaoSDKCommon/Common (2.20.0)
+  - KakaoSDKCommon/Network (2.20.0):
+    - Alamofire (~> 5.1)
+    - KakaoSDKCommon/Common (= 2.20.0)
+  - KakaoSDKUser (2.20.0):
+    - KakaoSDKAuth (= 2.20.0)
   - nanopb (2.30909.1):
     - nanopb/decode (= 2.30909.1)
     - nanopb/encode (= 2.30909.1)
@@ -108,6 +119,23 @@ PODS:
   - RxGesture (4.0.4):
     - RxCocoa (~> 6.0)
     - RxSwift (~> 6.0)
+  - RxKakaoSDKAuth (2.20.0):
+    - KakaoSDKAuth (= 2.20.0)
+    - RxKakaoSDKCommon (= 2.20.0)
+  - RxKakaoSDKCommon (2.20.0):
+    - RxKakaoSDKCommon/Common (= 2.20.0)
+    - RxKakaoSDKCommon/Network (= 2.20.0)
+  - RxKakaoSDKCommon/Common (2.20.0):
+    - KakaoSDKCommon/Common (= 2.20.0)
+    - RxCocoa
+    - RxSwift (~> 6.0)
+  - RxKakaoSDKCommon/Network (2.20.0):
+    - KakaoSDKCommon/Network (= 2.20.0)
+    - RxAlamofire (~> 6.0)
+    - RxKakaoSDKCommon/Common (= 2.20.0)
+  - RxKakaoSDKUser (2.20.0):
+    - KakaoSDKUser (= 2.20.0)
+    - RxKakaoSDKAuth (= 2.20.0)
   - RxKeyboard (2.0.0):
     - RxCocoa (~> 6.0)
     - RxSwift (~> 6.0)
@@ -127,6 +155,9 @@ DEPENDENCIES:
   - RxAlamofire
   - RxCocoa
   - RxGesture
+  - RxKakaoSDKAuth
+  - RxKakaoSDKCommon
+  - RxKakaoSDKUser
   - RxKeyboard
   - RxSwift
   - RxViewController
@@ -146,11 +177,17 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUtilities
+    - KakaoSDKAuth
+    - KakaoSDKCommon
+    - KakaoSDKUser
     - nanopb
     - PromisesObjC
     - RxAlamofire
     - RxCocoa
     - RxGesture
+    - RxKakaoSDKAuth
+    - RxKakaoSDKCommon
+    - RxKakaoSDKUser
     - RxKeyboard
     - RxRelay
     - RxSwift
@@ -170,11 +207,17 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 68afe759316673c6554dac35a0c7ae8f5d6cb4ed
   GoogleDataTransport: 57c22343ab29bc686febbf7cbb13bad167c2d8fe
   GoogleUtilities: 0759d1a57ebb953965c2dfe0ba4c82e95ccc2e34
+  KakaoSDKAuth: 02742f4681af6da8c4aa7b0f71df98ca9e7df834
+  KakaoSDKCommon: 060a8085733a215a048f9bf9b39a846d1be1daee
+  KakaoSDKUser: 0594b37675fb634304da3ecc83830c0ec84ceef5
   nanopb: d4d75c12cd1316f4a64e3c6963f879ecd4b5e0d5
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   RxAlamofire: beb75a1c452d0de225651db4903f5d29d034a620
   RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
   RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
+  RxKakaoSDKAuth: b516c70a37074ad9b0f285e33f309d973f3c522c
+  RxKakaoSDKCommon: 61fb2457dcd90f0d4d984896fc3333518734f262
+  RxKakaoSDKUser: 21ac2e7b775e21310bb636c8d066f91221d3f12f
   RxKeyboard: 4f5863f43b4ff0cbb2a20b94688d6b80c8a43c14
   RxRelay: 45eaa5db8ee4fb50e5ebd57deec0159e97fa51e6
   RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
@@ -183,6 +226,6 @@ SPEC CHECKSUMS:
   SwiftLint: c1de071d9d08c8aba837545f6254315bc900e211
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
-PODFILE CHECKSUM: 84e0d8922271f5a296e2e6e7dc5a814ce509eed9
+PODFILE CHECKSUM: 72fdad836f0c228e0f642d082a0fe27fbcf8e47a
 
-COCOAPODS: 1.14.3
+COCOAPODS: 1.13.0

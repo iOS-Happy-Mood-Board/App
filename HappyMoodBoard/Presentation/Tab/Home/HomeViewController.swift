@@ -115,7 +115,7 @@ extension HomeViewController: ViewAttributes {
         
         output.username.asDriver(onErrorJustReturn: "")
             .drive(with: self) { owner, username in
-                let text = "\(username) \(owner.headerLabel.text ?? Self.kHeaderLabelText)"
+                let text = "\(username) \(Self.kHeaderLabelText)"
                 owner.headerLabel.text = text
                 let attributedString = NSMutableAttributedString(string: text)
                 attributedString.addAttribute(

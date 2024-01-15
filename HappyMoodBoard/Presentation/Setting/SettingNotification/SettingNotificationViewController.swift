@@ -93,12 +93,19 @@ extension SettingNotificationViewController {
     
     func setupBindings() {
         let input = SettingNotificationViewModel.Input(
-            navigateToBack: navigationItemBack.rxTap.asObservable()
+            navigateToBack: navigationItemBack.rxTap.asObservable(),
+            viewWillAppear: rx.viewWillAppear.asObservable()
         )
         let output = viewModel.transform(input: input)
         
         output.navigateToBack.bind { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }
+        .disposed(by: disposeBag)
+        
+        output.notificationSettings.bind { [weak self] in
+            traceLog($0)
+        }
+        .disposed(by: disposeBag)
     }
 }

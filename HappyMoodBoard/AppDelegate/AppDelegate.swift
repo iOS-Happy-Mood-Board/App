@@ -8,6 +8,12 @@
 import UIKit
 import Firebase
 
+import RxKakaoSDKCommon
+
+enum SDKAppKey: String {
+    case kakao = "71a4cb131a30b12c0b617bfebaa70cef"
+}
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
     let userNotificationCenter = UNUserNotificationCenter.current()
@@ -15,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         tabbarInit()
         pushInit()
+        kakaoInit()
         return true
     }
     
@@ -38,15 +45,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         
         Messaging.messaging().apnsToken = deviceToken
     }
-    
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        guard let fcmToken = fcmToken else {return}
-        print("fcmToken => \(fcmToken)")
-        UserDefaults.standard.set(fcmToken, forKey: "deviceToken")
-    }
 }
 
 extension AppDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        guard let fcmToken = fcmToken else {return}
+        traceLog("fcmToken => \(fcmToken)")
+        UserDefaults.standard.set(fcmToken, forKey: "deviceToken")
+    }
+    
     func tabbarInit() {
         let appearance = UITabBarAppearance()
         appearance.configureWithTransparentBackground()
@@ -71,5 +78,9 @@ extension AppDelegate {
                 }
             }
         }
+    }
+    
+    func kakaoInit() {
+        RxKakaoSDK.initSDK(appKey: SDKAppKey.kakao.rawValue)
     }
 }

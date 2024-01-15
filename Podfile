@@ -6,18 +6,32 @@ target 'HappyMoodBoard' do
   use_frameworks!
 
   # Pods for HappyMoodBoard
+  
+  # SwiftLint
+  pod 'SwiftLint'
+  
+  # UI
   pod 'Then'
   pod 'SnapKit'
+  
+  # Reactive
   pod 'RxAlamofire'
-  pod 'SwiftLint'
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxGesture'
   pod 'RxViewController'
   pod 'RxKeyboard'
   
+  # Firebase
   pod 'Firebase/Messaging'
   pod 'Firebase/Analytics'
+  
+  # Kakao
+  pod 'RxKakaoSDKCommon'
+  pod 'RxKakaoSDKAuth'
+  pod 'RxKakaoSDKUser'
+  
+  
 
   target 'HappyMoodBoardTests' do
     inherit! :search_paths

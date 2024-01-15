@@ -70,10 +70,11 @@ extension LoginViewController {
         output.kakaoLogin.bind { [weak self] in
             print("카카오 로그인")
         }
+        .disposed(by: disposeBag)
         
         // 애플 로그인
         output.appleLogin
-            .subscribe(onNext: { [weak self] result in
+            .bind { [weak self] result in
                 
                 switch result {
                 case MemberStatus.REQUIRED_CONSENT.rawValue: // 약관 동의 전 (= 회원가입 미완료 / 약관동의 화면 렌더링)
@@ -123,7 +124,7 @@ extension LoginViewController {
                 default:
                     break
                 }
-            })
+            }
             .disposed(by: disposeBag)
     }
 }
