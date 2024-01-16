@@ -50,11 +50,11 @@
 		5DB6866A2B4E2C2B0027ABAB /* SocialLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB686692B4E2C2B0027ABAB /* SocialLogin.swift */; };
 		5DB6866E2B4E62C00027ABAB /* MyInformationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6866D2B4E62C00027ABAB /* MyInformationResponse.swift */; };
 		5DB686702B4E68EA0027ABAB /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6866F2B4E68EA0027ABAB /* UIViewController+Rx.swift */; };
-		5DF686032B35151700479D54 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF686022B35151700479D54 /* HomeViewModel.swift */; };
-		676E999C798E7795F8DED6EC /* Pods_HappyMoodBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6E437ECCF20FBB94EF85D6F /* Pods_HappyMoodBoard.framework */; };
-		A2D4CBC22B3D8F1C0066E89D /* SocialLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D4CBC12B3D8F1C0066E89D /* SocialLoginButton.swift */; };
-		A2D4CBC32B3D8F1C0066E89D /* SocialLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D4CBC12B3D8F1C0066E89D /* SocialLoginButton.swift */; };
-		A2D4CBC42B3D8F1C0066E89D /* SocialLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D4CBC12B3D8F1C0066E89D /* SocialLoginButton.swift */; };
+		5DB686B42B50F8040027ABAB /* TagListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB686B32B50F8040027ABAB /* TagListViewController.swift */; };
+		5DB687232B51333B0027ABAB /* TagListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB687222B51333B0027ABAB /* TagListViewModel.swift */; };
+		5DB687282B54BF3F0027ABAB /* TagTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB687272B54BF3F0027ABAB /* TagTarget.swift */; };
+		5DB6872A2B54C38F0027ABAB /* UpdatePostTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB687292B54C38F0027ABAB /* UpdatePostTag.swift */; };
+		5DB6872C2B54EA810027ABAB /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6872B2B54EA810027ABAB /* TagCollectionViewCell.swift */; };
 		5DF686032B35151700479D54 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF686022B35151700479D54 /* HomeViewModel.swift */; };
 		676E999C798E7795F8DED6EC /* Pods_HappyMoodBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6E437ECCF20FBB94EF85D6F /* Pods_HappyMoodBoard.framework */; };
 		A2D4CBBA2B3D8C730066E89D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D4CBB92B3D8C730066E89D /* LoginViewController.swift */; };
@@ -180,11 +180,15 @@
 		5DB686692B4E2C2B0027ABAB /* SocialLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLogin.swift; sourceTree = "<group>"; };
 		5DB6866D2B4E62C00027ABAB /* MyInformationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInformationResponse.swift; sourceTree = "<group>"; };
 		5DB6866F2B4E68EA0027ABAB /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
+		5DB686B32B50F8040027ABAB /* TagListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListViewController.swift; sourceTree = "<group>"; };
+		5DB687222B51333B0027ABAB /* TagListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListViewModel.swift; sourceTree = "<group>"; };
+		5DB687272B54BF3F0027ABAB /* TagTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTarget.swift; sourceTree = "<group>"; };
+		5DB687292B54C38F0027ABAB /* UpdatePostTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePostTag.swift; sourceTree = "<group>"; };
+		5DB6872B2B54EA810027ABAB /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
 		5DF686022B35151700479D54 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		6575D7DDF37C8F4547644BF0 /* Pods-HappyMoodBoardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyMoodBoardTests.debug.xcconfig"; path = "Target Support Files/Pods-HappyMoodBoardTests/Pods-HappyMoodBoardTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7AD9B74EF4837EEE55C75F63 /* Pods_HappyMoodBoardTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyMoodBoardTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		928F15A5095CBB78C4957AD4 /* Pods-HappyMoodBoard-HappyMoodBoardUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyMoodBoard-HappyMoodBoardUITests.release.xcconfig"; path = "Target Support Files/Pods-HappyMoodBoard-HappyMoodBoardUITests/Pods-HappyMoodBoard-HappyMoodBoardUITests.release.xcconfig"; sourceTree = "<group>"; };
-		A2D4CBC12B3D8F1C0066E89D /* SocialLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginButton.swift; sourceTree = "<group>"; };
 		A2A3D01D2B0BA0960041DCDE /* HappyMoodBoardDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HappyMoodBoardDebug.entitlements; sourceTree = "<group>"; };
 		A2D4CBB92B3D8C730066E89D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = HappyMoodBoard/Presentation/Setting/SettingOpenSourceLicense/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
 		A2D4CBBD2B3D8E0D0066E89D /* LoginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginType.swift; path = HappyMoodBoard/Presentation/Setting/SettingOpenSourceLicense/LoginType.swift; sourceTree = SOURCE_ROOT; };
@@ -257,16 +261,6 @@
 			path = Tab;
 			sourceTree = "<group>";
 		};
-		5D54D3E72B19B0C20008A5D7 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				A2D4CBBD2B3D8E0D0066E89D /* LoginType.swift */,
-				A2D4CBB92B3D8C730066E89D /* LoginViewController.swift */,
-				A2D4CBC52B3D9A200066E89D /* LoginViewModel.swift */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
 		5D54D3E82B19B0C90008A5D7 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,6 +297,7 @@
 		5D751F662B4CC87B003BAC2C /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				5DB687242B54BE520027ABAB /* Tag */,
 				5D751F862B4D205B003BAC2C /* Member */,
 				5D751F7F2B4CE02A003BAC2C /* Common */,
 				5D751F692B4CC8FA003BAC2C /* Auth */,
@@ -371,7 +366,9 @@
 				5D8F09CD2B3C242100B7BE3E /* RegisterViewModel.swift */,
 				5D8F09CF2B3E81AF00B7BE3E /* PhotoLibraryAuthorizationViewController.swift */,
 				5D8F09D42B3E8BFB00B7BE3E /* PhotoLibraryAuthorizationViewModel.swift */,
-				5D8F09D82B43F3E100B7BE3E /* Tag.swift */,
+				5DB686B32B50F8040027ABAB /* TagListViewController.swift */,
+				5DB687222B51333B0027ABAB /* TagListViewModel.swift */,
+				5DB6872B2B54EA810027ABAB /* TagCollectionViewCell.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -382,6 +379,26 @@
 				5D4978862B32F36D00059120 /* ListViewController.swift */,
 			);
 			path = List;
+			sourceTree = "<group>";
+		};
+		5DB686B22B50F2BD0027ABAB /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				A2D4CBBD2B3D8E0D0066E89D /* LoginType.swift */,
+				A2D4CBC52B3D9A200066E89D /* LoginViewModel.swift */,
+				A2D4CBB92B3D8C730066E89D /* LoginViewController.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		5DB687242B54BE520027ABAB /* Tag */ = {
+			isa = PBXGroup;
+			children = (
+				5D8F09D82B43F3E100B7BE3E /* Tag.swift */,
+				5DB687272B54BF3F0027ABAB /* TagTarget.swift */,
+				5DB687292B54C38F0027ABAB /* UpdatePostTag.swift */,
+			);
+			path = Tag;
 			sourceTree = "<group>";
 		};
 		A24CDD222B064F2F00A699E8 /* Resources */ = {
@@ -473,6 +490,7 @@
 				AC3A3BBD2B049FB90081BF32 /* Products */,
 				B7095465C023B9A3BA4A747D /* Pods */,
 				DFDFF6A46F475BEC94995B9F /* Frameworks */,
+				5DB686B22B50F2BD0027ABAB /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -873,6 +891,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DB686B42B50F8040027ABAB /* TagListViewController.swift in Sources */,
 				AC9E33CC2B35614000B0D9AE /* NavigationTitle.swift in Sources */,
 				AC9E33D12B35643000B0D9AE /* NavigtaionItemBack.swift in Sources */,
 				5DF686032B35151700479D54 /* HomeViewModel.swift in Sources */,
@@ -893,8 +912,10 @@
 				A2D4CBC62B3D9A200066E89D /* LoginViewModel.swift in Sources */,
 				5D7252872B21BEC100CF6688 /* CheckboxButton.swift in Sources */,
 				A2DFB8002B39C4C1008B95AC /* UIViewController+alert.swift in Sources */,
+				5DB6872C2B54EA810027ABAB /* TagCollectionViewCell.swift in Sources */,
 				5D751F7D2B4CDFD2003BAC2C /* ErrorResponse.swift in Sources */,
 				A2DFB8052B39C647008B95AC /* SettingOpenSourceLicenseViewController.swift in Sources */,
+				5DB6872A2B54C38F0027ABAB /* UpdatePostTag.swift in Sources */,
 				5D751F882B4D207D003BAC2C /* Consent.swift in Sources */,
 				A2DFB7E42B392A71008B95AC /* VersionInfoButton.swift in Sources */,
 				5D751F792B4CD757003BAC2C /* AuthInterceptor.swift in Sources */,
@@ -904,7 +925,9 @@
 				5D4978852B32F36500059120 /* RegisterViewController.swift in Sources */,
 				5D4977B32B327E4D00059120 /* UIViewController+backgroundColor.swift in Sources */,
 				5D8F09D92B43F3E100B7BE3E /* Tag.swift in Sources */,
+				5DB687282B54BF3F0027ABAB /* TagTarget.swift in Sources */,
 				5DB28DF02B2AF9DD00C4E594 /* EnterNicknameViewModel.swift in Sources */,
+				5DB687232B51333B0027ABAB /* TagListViewModel.swift in Sources */,
 				5D751F812B4CE05E003BAC2C /* APIEnvironment.swift in Sources */,
 				5D7252762B21ADD100CF6688 /* AgreeViewModel.swift in Sources */,
 				5D8F09CE2B3C242100B7BE3E /* RegisterViewModel.swift in Sources */,

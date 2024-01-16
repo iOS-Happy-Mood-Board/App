@@ -15,6 +15,7 @@ final class RegisterViewModel: ViewModel {
         let textChanged: Observable<String?>
         let backButtonTapped: Observable<Void>
         let registerButtonTapped: Observable<Void>
+        let imageViewTapped: Observable<UITapGestureRecognizer>
         let deleteImageAlertActionTapped: Observable<Int>
         let addImageButtonTapped: Observable<Void>
         let addTagButtonTapped: Observable<Void>
@@ -49,7 +50,7 @@ final class RegisterViewModel: ViewModel {
             .filter { $0 != RegisterViewController.Constants.textViewPlaceholder }
             .share()
         
-        let sampleTag: Tag? = Tag(name: "휴식", color: "#FFC895")
+        let sampleTag: Tag? = .init(id: 1, tagName: "음식", tagColorId: 0)
         let tag = Observable.just(sampleTag)
         // TODO: '뒤로가기' 눌렀을 때, 글씨, 이미지 등록, 태그 등록 중 1가지라도 되어있을 경우 -> "작성한 내용이 저장되지 않아요.\n정말 뒤로 가시겠어요?" 팝업 노출
         

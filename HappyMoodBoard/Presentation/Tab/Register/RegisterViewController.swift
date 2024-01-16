@@ -13,6 +13,7 @@ import SnapKit
 
 import RxSwift
 import RxCocoa
+import RxGesture
 import RxKeyboard
 
 final class RegisterViewController: UIViewController {
@@ -233,15 +234,11 @@ extension RegisterViewController: ViewAttributes {
                 )
             }
         
-        let addTagButtonTapped = addTagButton.rx.tap
-            .flatMap {
-                self.showTagListViewController()
-            }
-        
         let input = RegisterViewModel.Input(
             textChanged: textView.rx.text.asObservable(),
             backButtonTapped: backButton.rx.tap.asObservable(),
             registerButtonTapped: registerButton.rx.tap.asObservable(),
+            imageViewTapped: imageView.rx.tapGesture().when(.recognized).asObservable(),
             deleteImageAlertActionTapped: deleteImageAlertActionTapped,
             addImageButtonTapped: addImageButton.rx.tap.asObservable(),
             addTagButtonTapped: addTagButton.rx.tap.asObservable(),
@@ -298,8 +295,8 @@ extension RegisterViewController: ViewAttributes {
                 var configuration = owner.tagButton.configuration
                 var container = AttributeContainer()
                 container.font = UIFont(name: "Pretendard-Medium", size: 14)
-                configuration?.attributedTitle = AttributedString(tag.name, attributes: container)
-                configuration?.baseBackgroundColor = .init(hexString: tag.color)
+                configuration?.attributedTitle = AttributedString(tag.tagName, attributes: container)
+                configuration?.baseBackgroundColor = .tagColor(for: tag.tagColorId)
                 configuration?.baseForegroundColor = .gray700
                 owner.tagButton.configuration = configuration
                 owner.tagButton.isHidden = false
@@ -403,16 +400,12 @@ extension RegisterViewController {
         present(viewController, animated: true, completion: nil)
     }
     
-    func showTagListViewController() -> Observable<Void> {
-        return Observable.create { observer in
-            let viewController = UIViewController()
-            viewController.sheetPresentationController?.detents = [.medium()]
-            viewController.sheetPresentationController?.prefersGrabberVisible = true
-            self.present(viewController, animated: true, completion: nil)
-            return Disposables.create {
-                viewController.dismiss(animated: true, completion: nil)
-            }
-        }
+    func showTagListViewController() {
+        let viewController = TagListViewController()
+        let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.sheetPresentationController?.detents = [.medium()]
+        navigationController.sheetPresentationController?.prefersGrabberVisible = true
+        show(navigationController, sender: nil)
     }
     
 }
