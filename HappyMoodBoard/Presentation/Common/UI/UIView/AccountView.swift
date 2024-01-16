@@ -13,16 +13,17 @@ final class AccountView: UIView {
     var socialImage: UIImage?
     
     private let label = CustomLabel(
-        font: UIFont(name: "Pretendard-Regular", size: 16),
+        text: nil,
         textColor: UIColor.black,
-        text: nil
+        font: UIFont(name: "Pretendard-Regular", size: 16)
     )
     
     // 닉네임
     private lazy var nicknameLabel = CustomLabel(
-        font: UIFont(name: "Pretendard-Regular", size: 16),
+        text: nil,
         textColor: UIColor.gray500,
-        text: nil
+        font: UIFont(name: "Pretendard-Regular", size: 16)
+        
     )
     private let disclosureButton = UIButton().then {
         $0.setImage(UIImage(named: "arrow.right"), for: .normal)
@@ -32,9 +33,9 @@ final class AccountView: UIView {
     
     // 연결된 계정
     private lazy var socialLoginLabel = CustomLabel(
-        font: UIFont(name: "Pretendard-Regular", size: 16),
+        text: nil,
         textColor: UIColor.black,
-        text: nil
+        font: UIFont(name: "Pretendard-Regular", size: 16)
     )
     private let socialImageView = UIImageView().then {
         $0.image = UIImage(named: "KakaoLogin")
@@ -45,9 +46,9 @@ final class AccountView: UIView {
     
     // 이메일
     private lazy var emailLabel = CustomLabel(
-        font: UIFont(name: "Pretendard-Regular", size: 16),
+        text: nil,
         textColor: UIColor.black,
-        text: nil
+        font: UIFont(name: "Pretendard-Regular", size: 16)
     )
     
     init(type: MyAccount) {

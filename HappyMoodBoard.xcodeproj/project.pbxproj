@@ -575,8 +575,8 @@
 				AC185D0B2B47AD1D007304CE /* Modal */,
 				A2C8868D2B497D93008E5437 /* DayOfTheWeek.swift */,
 				A2C8867D2B49700F008E5437 /* SettingNotificationType.swift */,
-				AC185CFF2B478BFF007304CE /* SettingNotificationViewModel.swift */,
 				A2DFB7F62B393873008B95AC /* SettingNotificationViewController.swift */,
+				AC185CFF2B478BFF007304CE /* SettingNotificationViewModel.swift */,
 			);
 			path = SettingNotification;
 			sourceTree = "<group>";

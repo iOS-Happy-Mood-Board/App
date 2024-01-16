@@ -148,6 +148,7 @@ PODS:
   - SnapKit (5.6.0)
   - SwiftLint (0.54.0)
   - Then (3.0.0)
+  - Toast-Swift (5.1.0)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -164,6 +165,7 @@ DEPENDENCIES:
   - SnapKit
   - SwiftLint
   - Then
+  - Toast-Swift (~> 5.1.0)
 
 SPEC REPOS:
   trunk:
@@ -195,6 +197,7 @@ SPEC REPOS:
     - SnapKit
     - SwiftLint
     - Then
+    - Toast-Swift
 
 SPEC CHECKSUMS:
   Alamofire: 3ca42e259043ee0dc5c0cdd76c4bc568b8e42af7
@@ -225,7 +228,8 @@ SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftLint: c1de071d9d08c8aba837545f6254315bc900e211
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
+  Toast-Swift: dd369e68ee529f542c65bd0d0c6c50cd743cf6f2
 
-PODFILE CHECKSUM: 72fdad836f0c228e0f642d082a0fe27fbcf8e47a
+PODFILE CHECKSUM: 3c4f7e85c29905f00a4fbbb749b56c09f3c293be
 
 COCOAPODS: 1.13.0

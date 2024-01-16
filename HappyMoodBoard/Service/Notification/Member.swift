@@ -14,7 +14,7 @@ struct MemberResponse: Decodable {
 
 struct HappyItemData: Decodable {
     let active: Bool
-    let dayOfWeek: [String]
+    let dayOfWeek: [Int]
     let time: String
 }
 

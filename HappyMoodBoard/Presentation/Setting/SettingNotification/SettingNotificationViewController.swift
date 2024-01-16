@@ -94,7 +94,9 @@ extension SettingNotificationViewController {
     func setupBindings() {
         let input = SettingNotificationViewModel.Input(
             navigateToBack: navigationItemBack.rxTap.asObservable(),
-            viewWillAppear: rx.viewWillAppear.asObservable()
+            viewWillAppear: rx.viewWillAppear.asObservable(),
+            recordPush: recordPushOnOffView.actionPublishSubject,
+            marketingPush: marketingPushOnOffView.actionPublishSubject
         )
         let output = viewModel.transform(input: input)
         
@@ -103,9 +105,37 @@ extension SettingNotificationViewController {
         }
         .disposed(by: disposeBag)
         
-        output.notificationSettings.bind { [weak self] in
-            traceLog($0)
-        }
-        .disposed(by: disposeBag)
+        // MARK: - 행복아이템 기록 알림 받기
+        output.happyItemActive.asDriver(onErrorJustReturn: false)
+            .drive(recordPushOnOffView.togglePublishSubject)
+            .disposed(by: disposeBag)
+        
+        // MARK: - 요일
+        output.dayOfWeek.asDriver(onErrorJustReturn: [])
+            .drive(titleDayOfWeekView.dayOfWeekPublicSubject)
+            .disposed(by: disposeBag)
+        
+        // MARK: - 최소 1개 이상의 요일을 선택하지 않았을때 => 뒤로가기 제스쳐 막기, 네비게이션 LeftbarButtonItem Disable, toast
+        output.dayOfWeek
+            .map {
+                $0.count == 0
+            }
+            .subscribe(onNext: { [weak self] in
+                self?.navigationItemBack.isEnabled = !$0
+                self?.navigationController?.interactivePopGestureRecognizer?.delegate = nil
+                
+                traceLog("최소 1개 이상의 요일을 선택해 주세요.")
+            })
+            .disposed(by: disposeBag)
+        
+        // MARK: - 시간
+        output.time.asDriver(onErrorJustReturn: "")
+            .drive(titleTimeView.timePublishSubject)
+            .disposed(by: disposeBag)
+        
+        // MARK: - 마케팅 동의 알림
+        output.marketingActive.asDriver(onErrorJustReturn: false)
+            .drive(marketingPushOnOffView.togglePublishSubject)
+            .disposed(by: disposeBag)
     }
 }

@@ -14,6 +14,9 @@ target 'HappyMoodBoard' do
   pod 'Then'
   pod 'SnapKit'
   
+  # Toast
+  pod 'Toast-Swift', '~> 5.1.0'
+  
   # Reactive
   pod 'RxAlamofire'
   pod 'RxSwift'

@@ -10,21 +10,26 @@ import Foundation
 import SnapKit
 import Then
 
+import RxSwift
+
 final class TitleTimeView: UIView, ViewAttributes {
     
     private let titleLabel = CustomLabel(
-        font: UIFont(name: "Pretendard-Regular", size: 16),
+        text: nil,
         textColor: UIColor.black,
-        text: nil
+        font: UIFont(name: "Pretendard-Regular", size: 16)
     )
     
     private let timeButton = PushNotificationButton(
-        title: "오후 8:00",
+        title: nil,
         titleColor: .black,
         titleFont: UIFont(name: "Pretendard-Regular", size: 14) ?? UIFont(),
         backgroundColor: .gray200 ?? UIColor(),
         radius: 4
     )
+    
+    let timePublishSubject = PublishSubject<String>()
+    let disposeBag: DisposeBag = .init()
     
     init(type: SettingNotificationType) {
         super.init(frame: .zero)
@@ -39,7 +44,9 @@ final class TitleTimeView: UIView, ViewAttributes {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+}
+
+extension TitleTimeView {
     func setupSubviews() {
         [
             titleLabel,
@@ -62,6 +69,10 @@ final class TitleTimeView: UIView, ViewAttributes {
     }
     
     func setupBindings() {
-        
+        timePublishSubject.asDriver(onErrorJustReturn: "")
+            .drive(onNext: { [weak self] title in
+                self?.timeButton.setTitle(title, for: .normal)
+            })
+            .disposed(by: disposeBag)
     }
 }
