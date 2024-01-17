@@ -34,9 +34,9 @@ extension NotificationTarget: TargetType {
         case .member:
             return "/api/notification/v1/member"
         case .happyItem:
-            return "/api/notification/v1/happy-item"
+            return "/api/notification/v1/member/happy-item"
         case .marketing:
-            return "/api/notification/v1/marketing"
+            return "/api/notification/v1/member/marketing"
         }
     }
     
