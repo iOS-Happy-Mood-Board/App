@@ -11,8 +11,8 @@ import Alamofire
 
 enum NotificationTarget {
     case member
-    case happyItem(UpdateNicknameParameters)
-    case marketing(UpdateNicknameParameters)
+    case happyItem(HappyItem)
+    case marketing(MarketingParameter)
 }
 
 extension NotificationTarget: TargetType {

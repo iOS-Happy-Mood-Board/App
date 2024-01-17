@@ -94,9 +94,10 @@ final class TitleDayOfWeekView: UIView, ViewAttributes {
     
     let disposeBag: DisposeBag = .init()
     let dayOfWeekPublicSubject = PublishSubject<[Int]>()
+    let actionPublishSubject = PublishSubject<[Int]>()
     
     // TODO: 테스트 데이터 삭제 해야함
-    let testArray = [0, 1, 3, 4, 5, 6]
+    let testArray = [1, 2, 3, 4, 5, 6, 7]
     
     init(type: SettingNotificationType) {
         super.init(frame: .zero)
@@ -146,31 +147,89 @@ extension TitleDayOfWeekView {
     }
     
     func setupBindings() {
+        let mondayButtonTapObservable = mondayButton.rx.tap.map { _ in return [1] }
+        let tuesdayButtonTapObservable = tuesdayButton.rx.tap.map { _ in return [2] }
+        let wednesdayButtonTapObservable = wednesdayButton.rx.tap.map { _ in return [3] }
+        let thursdayButtonTapObservable = thursdayButton.rx.tap.map { _ in return [4] }
+        let fridayButtonTapObservable = fridayButton.rx.tap.map { _ in return [5] }
+        let saturdayButtonTapObservable = saturdayButton.rx.tap.map { _ in return [6] }
+        let sundayButtonTapObservable = sundayButton.rx.tap.map { _ in return [7] }
+        let everydayButtonTapObservable = everydayButton.rx.tap.map { _ in return [8] }
+        
         dayOfWeekPublicSubject.bind { [weak self] in
             // TODO: 테스트 코드, 삭제
 //            self?.bindDayOfWeek(dayOfWeek: self!.testArray)
             self?.bindDayOfWeek(dayOfWeek: $0)
         }
         .disposed(by: disposeBag)
+        
+        Observable.combineLatest(dayOfWeekPublicSubject, mondayButtonTapObservable)
+            .map { r1, r2 in
+                return self.mergeArrays(r1, r2)
+            }
+            .bind(to: actionPublishSubject)
+            .disposed(by: disposeBag)
+        
+        Observable.combineLatest(dayOfWeekPublicSubject, tuesdayButtonTapObservable)
+            .map { r1, r2 in
+                return self.mergeArrays(r1, r2)
+            }
+            .bind(to: actionPublishSubject)
+            .disposed(by: disposeBag)
+        
+        Observable.combineLatest(dayOfWeekPublicSubject, wednesdayButtonTapObservable)
+            .map { r1, r2 in
+                return self.mergeArrays(r1, r2)
+            }
+            .bind(to: actionPublishSubject)
+            .disposed(by: disposeBag)
+        
+        Observable.combineLatest(dayOfWeekPublicSubject, thursdayButtonTapObservable)
+            .map { r1, r2 in
+                return self.mergeArrays(r1, r2)
+            }
+            .bind(to: actionPublishSubject)
+            .disposed(by: disposeBag)
+        
+        Observable.combineLatest(dayOfWeekPublicSubject, saturdayButtonTapObservable)
+            .map { r1, r2 in
+                return self.mergeArrays(r1, r2)
+            }
+            .bind(to: actionPublishSubject)
+            .disposed(by: disposeBag)
+        
+        Observable.combineLatest(dayOfWeekPublicSubject, sundayButtonTapObservable)
+            .map { r1, r2 in
+                return self.mergeArrays(r1, r2)
+            }
+            .bind(to: actionPublishSubject)
+            .disposed(by: disposeBag)
+        
+        Observable.combineLatest(dayOfWeekPublicSubject, everydayButtonTapObservable)
+//            .map { r1, r2 in
+//                return self.mergeArrays(r1, r2)
+//            }
+//            .bind(to: actionPublishSubject)
+//            .disposed(by: disposeBag)
     }
     
     /// 서버의 Response값을 토대로 ON/OFF 요일 표시
     func bindDayOfWeek(dayOfWeek: [Int]) {
         for element in dayOfWeek {
             switch element {
-            case 0:
-                mondayButton.backgroundColor = .primary500
             case 1:
-                tuesdayButton.backgroundColor = .primary500
+                mondayButton.backgroundColor = .primary500
             case 2:
-                wednesdayButton.backgroundColor = .primary500
+                tuesdayButton.backgroundColor = .primary500
             case 3:
-                thursdayButton.backgroundColor = .primary500
+                wednesdayButton.backgroundColor = .primary500
             case 4:
-                fridayButton.backgroundColor = .primary500
+                thursdayButton.backgroundColor = .primary500
             case 5:
-                saturdayButton.backgroundColor = .primary500
+                fridayButton.backgroundColor = .primary500
             case 6:
+                saturdayButton.backgroundColor = .primary500
+            case 7:
                 sundayButton.backgroundColor = .primary500
             default:
                 break
@@ -181,12 +240,29 @@ extension TitleDayOfWeekView {
         everydayButton.backgroundColor = everyday ? .primary500 : .gray200
     }
     
-    /// 서버의 Response값이 [0, 1, 2, 3, 4, 5, 6] 일때 '매일' 버튼도 활성화
+    /// 서버의 Response값이 [1, 2, 3, 4, 5, 6, 7] 일때 '매일' 버튼도 활성화
     /// - Parameter dayOfWeek: 서버의 Reponse값
-    /// - Returns: [0, 1, 2, 3, 4, 5, 6] => true / [0, 1, 2, 3, 4, 5, 6]이 아니면 => false
+    /// - Returns: [1, 2, 3, 4, 5, 6, 7] => true / [1, 2, 3, 4, 5, 6, 7]이 아니면 => false
     func isSequentialDaysOfWeek(dayOfWeek: [Int]) -> Bool {
-        let expectedSet: Set<Int> = [0, 1, 2, 3, 4, 5, 6]
+        let expectedSet: Set<Int> = [1, 2, 3, 4, 5, 6, 7]
         let inputSet = Set(dayOfWeek)
         return expectedSet == inputSet
+    }
+    
+    func mergeArrays(_ array1: [Int], _ array2: [Int]) -> [Int] {
+        var resultArray = array1
+
+        for element in array2 {
+            if !resultArray.contains(element) {
+                resultArray.append(element)
+            } else {
+                // 중복된 요소가 있을 경우 제거
+                if let index = resultArray.firstIndex(of: element) {
+                    resultArray.remove(at: index)
+                }
+            }
+        }
+
+        return resultArray.sorted()
     }
 }

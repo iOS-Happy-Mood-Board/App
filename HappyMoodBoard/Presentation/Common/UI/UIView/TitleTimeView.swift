@@ -29,6 +29,7 @@ final class TitleTimeView: UIView, ViewAttributes {
     )
     
     let timePublishSubject = PublishSubject<String>()
+    let timeButtonEvent = PublishSubject<Void>()
     let disposeBag: DisposeBag = .init()
     
     init(type: SettingNotificationType) {
@@ -70,9 +71,16 @@ extension TitleTimeView {
     
     func setupBindings() {
         timePublishSubject.asDriver(onErrorJustReturn: "")
+            .map {
+                convertTo12HourFormat(timeString: $0)
+            }
             .drive(onNext: { [weak self] title in
                 self?.timeButton.setTitle(title, for: .normal)
             })
+            .disposed(by: disposeBag)
+        
+        timeButton.rx.tap
+            .bind(to: timeButtonEvent)
             .disposed(by: disposeBag)
     }
 }

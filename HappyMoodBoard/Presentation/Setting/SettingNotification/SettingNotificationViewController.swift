@@ -29,6 +29,38 @@ final class SettingNotificationViewController: UIViewController, ViewAttributes,
         $0.spacing = 20
     }
     
+    private let pickerView = UIDatePicker().then {
+        $0.datePickerMode = .time
+        $0.locale = Locale(identifier: "ko_KR")
+        $0.preferredDatePickerStyle = .wheels
+        $0.backgroundColor = .white
+        $0.isHidden = true
+        $0.minuteInterval = 5
+    }
+    
+    private let accessoryView = UIView().then {
+        $0.backgroundColor = .white
+        $0.isHidden = true
+        
+        let cornerRadius: CGFloat = 30.0
+        $0.layer.cornerRadius = cornerRadius
+        $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+    }
+    
+    private let cancelButton = UIButton(type: .system).then {
+        $0.setTitle("취소", for: .normal)
+        $0.titleLabel?.font = UIFont(name: "Pretendard-Regular", size: 16)
+        $0.setTitleColor(.black, for: .normal)
+        $0.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
+    }
+    
+    private let saveButton = UIButton(type: .system).then {
+        $0.setTitle("저장", for: .normal)
+        $0.titleLabel?.font = UIFont(name: "Pretendard-Regular", size: 16)
+        $0.setTitleColor(.black, for: .normal)
+        $0.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
+    }
+    
     private let recordPushOnOffView = TitleToggleView(type: .recordPushOnOff)
     private let titleDayOfWeekView = TitleDayOfWeekView(type: .dayOfTheWeek)
     private let titleTimeView = TitleTimeView(type: .time)
@@ -36,6 +68,8 @@ final class SettingNotificationViewController: UIViewController, ViewAttributes,
     
     private let disposeBag: DisposeBag = .init()
     private let viewModel: SettingNotificationViewModel = .init()
+    
+    private lazy var timeButtonEvent = titleTimeView.timeButtonEvent
     
     override func viewDidLoad() {
         
@@ -56,8 +90,15 @@ extension SettingNotificationViewController {
     
     func setupSubviews() {
         [
-            contentStackView
+            contentStackView,
+            pickerView,
+            accessoryView
         ].forEach { self.view.addSubview($0) }
+        
+        [
+            cancelButton,
+            saveButton
+        ].forEach { self.accessoryView.addSubview($0) }
         
         [
             recordPushOnOffView,
@@ -89,14 +130,40 @@ extension SettingNotificationViewController {
             $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(24)
             $0.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
         }
+        
+        pickerView.snp.makeConstraints {
+            $0.leading.trailing.bottom.equalToSuperview()
+            $0.height.equalTo(216) // PickerView의 기본 높이
+        }
+        
+        accessoryView.snp.makeConstraints {
+            $0.leading.trailing.equalTo(pickerView)
+            $0.bottom.equalTo(pickerView.snp.top)
+            $0.height.equalTo(50)
+        }
+        
+        cancelButton.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().inset(5)
+        }
+        
+        saveButton.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(5)
+        }
     }
     
     func setupBindings() {
         let input = SettingNotificationViewModel.Input(
             navigateToBack: navigationItemBack.rxTap.asObservable(),
             viewWillAppear: rx.viewWillAppear.asObservable(),
-            recordPush: recordPushOnOffView.actionPublishSubject,
-            marketingPush: marketingPushOnOffView.actionPublishSubject
+            recordPushEvent: recordPushOnOffView.actionPublishSubject,
+            dayOfWeekEvent: titleDayOfWeekView.actionPublishSubject,
+            timeButtonEvent: timeButtonEvent,
+            pickerViewEvent: pickerView.rx.date.asObservable(),
+            pickerViewCancel: cancelButton.rx.tap.asObservable(),
+            pickerViewSave: saveButton.rx.tap.asObservable(),
+            marketingPushEvent: marketingPushOnOffView.actionPublishSubject
         )
         let output = viewModel.transform(input: input)
         
@@ -129,13 +196,38 @@ extension SettingNotificationViewController {
             .disposed(by: disposeBag)
         
         // MARK: - 시간
-        output.time.asDriver(onErrorJustReturn: "")
-            .drive(titleTimeView.timePublishSubject)
+        output.time
+            .bind { [weak self] in
+                self?.titleTimeView.timePublishSubject.onNext($0)
+                if let setUpDate = convertStringToDate(dateString: $0, dateFormat: "HH:mm") {
+                    traceLog(setUpDate)
+                    self?.pickerView.date = setUpDate
+                } else {
+                    self?.pickerView.date = Date()
+                }
+            }
             .disposed(by: disposeBag)
+        
+        output.timeButtonEvent.bind { [weak self] _ in
+            self?.hiddenPickerView(false)
+        }
+        .disposed(by: disposeBag)
+        
+        output.pickerViewCancel.bind { [weak self] _ in
+            self?.hiddenPickerView(true)
+        }
+        .disposed(by: disposeBag)
         
         // MARK: - 마케팅 동의 알림
         output.marketingActive.asDriver(onErrorJustReturn: false)
             .drive(marketingPushOnOffView.togglePublishSubject)
             .disposed(by: disposeBag)
     }
+    
+    func hiddenPickerView(_ handler: Bool) {
+        self.pickerView.isHidden = handler
+        self.accessoryView.isHidden = handler
+    }
 }
+
+    

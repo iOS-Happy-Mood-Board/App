@@ -181,7 +181,7 @@ final class SettingIndexViewModel: ViewModel {
                     return
                 }
                 do {
-                    traceLog(String(data: data, encoding: .utf8))
+//                    traceLog(String(data: data, encoding: .utf8))
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
                        let results = json["results"] as? [[String: Any]],
                        let appStoreVersion = results.first?["version"] as? String {
