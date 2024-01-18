@@ -17,6 +17,9 @@ PODS:
   - RxRelay (6.6.0):
     - RxSwift (= 6.6.0)
   - RxSwift (6.6.0)
+  - RxViewController (2.0.0):
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
   - SnapKit (5.6.0)
   - SwiftLint (0.54.0)
   - Then (3.0.0)
@@ -27,6 +30,7 @@ DEPENDENCIES:
   - RxGesture
   - RxKeyboard
   - RxSwift
+  - RxViewController
   - SnapKit
   - SwiftLint
   - Then
@@ -40,6 +44,7 @@ SPEC REPOS:
     - RxKeyboard
     - RxRelay
     - RxSwift
+    - RxViewController
     - SnapKit
     - SwiftLint
     - Then
@@ -52,10 +57,11 @@ SPEC CHECKSUMS:
   RxKeyboard: 4f5863f43b4ff0cbb2a20b94688d6b80c8a43c14
   RxRelay: 45eaa5db8ee4fb50e5ebd57deec0159e97fa51e6
   RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
+  RxViewController: 56486fa0afd629a1d6b5ba077f3b8cd9dc31b5d2
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftLint: c1de071d9d08c8aba837545f6254315bc900e211
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
-PODFILE CHECKSUM: e9cb2c84de17794ba6453394f74966d9ef5ccb12
+PODFILE CHECKSUM: 3ed8793567abcbb868a7f23c7946a62d028670ce
 
 COCOAPODS: 1.12.0
