@@ -38,6 +38,7 @@ target 'HappyMoodBoard' do
   pod 'JWTDecode'
   
   
+  pod 'RxGesture'
 
   target 'HappyMoodBoardTests' do
     inherit! :search_paths

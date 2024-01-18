@@ -16,7 +16,6 @@ class AuthInterceptor: RequestInterceptor {
     
     // TODO: UserDefaults에 저장된 값으로 accessToken 설정
     var accessToken: String {
-//        "eyJhbGciOiJIUzI1NiJ9.eyJtZW1iZXJJZCI6MiwiaWF0IjoxNzA1MDE5NTg0LCJleHAiOjE3MDUxMDU5ODR9.vFszu24KBkcS7u53mIPJkh_7a2_zwJp0AqQLj05mFyc"
         UserDefaults.standard.string(forKey: "accessToken") ?? ""
     }
     

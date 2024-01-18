@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         tabbarInit()
         pushInit()
         kakaoInit()
+        setTabBarAppearance()
+        setNavigationBarAppearance()
         return true
     }
     
@@ -39,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
     
+
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let deviceTokenString = deviceToken.map { String(format: "%02x", $0) }.joined()
         print("[Log] deviceToken :", deviceTokenString)
@@ -46,6 +49,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         Messaging.messaging().apnsToken = deviceToken
     }
 }
+
+    fileprivate func setTabBarAppearance() {
+        let appearance = UITabBarAppearance()
+        appearance.configureWithTransparentBackground()
+        appearance.backgroundImage = UIImage(named: "tabbar.background")
+        UITabBar.appearance().standardAppearance = appearance
+        UITabBar.appearance().scrollEdgeAppearance = appearance
+    }
+    
+    fileprivate func setNavigationBarAppearance() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        
+        let backButtonImage = UIImage(named: "navigation.back")?.withAlignmentRectInsets(.init(top: 6, left: 0, bottom: 6, right: 0))
+        appearance.shadowColor = .gray200
+        appearance.setBackIndicatorImage(backButtonImage, transitionMaskImage: backButtonImage)
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.gray900,
+            .font: UIFont(name: "Pretendard-Bold", size: 18)
+        ]
+        appearance.titlePositionAdjustment = .init(
+            horizontal: -(UIScreen.main.bounds.width/2),
+            vertical: 0
+        )
+
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+    }
 
 extension AppDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
