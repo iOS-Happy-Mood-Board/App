@@ -69,8 +69,6 @@ final class SettingNotificationViewController: UIViewController, ViewAttributes,
     private let disposeBag: DisposeBag = .init()
     private let viewModel: SettingNotificationViewModel = .init()
     
-    private lazy var timeButtonEvent = titleTimeView.timeButtonEvent
-    
     override func viewDidLoad() {
         
         setCommonBackgroundColor()
@@ -159,7 +157,7 @@ extension SettingNotificationViewController {
             viewWillAppear: rx.viewWillAppear.asObservable(),
             recordPushEvent: recordPushOnOffView.actionPublishSubject,
             dayOfWeekEvent: titleDayOfWeekView.actionPublishSubject,
-            timeButtonEvent: timeButtonEvent,
+            timeButtonEvent: titleTimeView.timeButtonEvent,
             pickerViewEvent: pickerView.rx.date.asObservable(),
             pickerViewCancel: cancelButton.rx.tap.asObservable(),
             pickerViewSave: saveButton.rx.tap.asObservable(),
@@ -173,17 +171,17 @@ extension SettingNotificationViewController {
         .disposed(by: disposeBag)
         
         // MARK: - 행복아이템 기록 알림 받기
-        output.happyItemActive.asDriver(onErrorJustReturn: false)
+        Observable.merge(output.initRecordPush, output.responseRecordPush).asDriver(onErrorJustReturn: false)
             .drive(recordPushOnOffView.togglePublishSubject)
             .disposed(by: disposeBag)
         
         // MARK: - 요일
-        output.dayOfWeek.asDriver(onErrorJustReturn: [])
+        Observable.merge(output.initDayOfWeek, output.responseDayOfWeek).asDriver(onErrorJustReturn: [])
             .drive(titleDayOfWeekView.dayOfWeekPublicSubject)
             .disposed(by: disposeBag)
         
         // MARK: - 최소 1개 이상의 요일을 선택하지 않았을때 => 뒤로가기 제스쳐 막기, 네비게이션 LeftbarButtonItem Disable, toast
-        output.dayOfWeek
+        Observable.merge(output.initDayOfWeek, output.responseDayOfWeek)
             .map {
                 $0.count == 0
             }
@@ -196,11 +194,13 @@ extension SettingNotificationViewController {
             .disposed(by: disposeBag)
         
         // MARK: - 시간
-        output.time
+        Observable.merge(output.initTime, output.responseTime)
             .bind { [weak self] in
                 self?.titleTimeView.timePublishSubject.onNext($0)
                 if let setUpDate = convertStringToDate(dateString: $0, dateFormat: "HH:mm") {
                     traceLog(setUpDate)
+                    
+                    self?.hiddenPickerView(true)
                     self?.pickerView.date = setUpDate
                 } else {
                     self?.pickerView.date = Date()
@@ -208,18 +208,20 @@ extension SettingNotificationViewController {
             }
             .disposed(by: disposeBag)
         
+        // MARK: - stackview의 시간 버튼 터치
         output.timeButtonEvent.bind { [weak self] _ in
             self?.hiddenPickerView(false)
         }
         .disposed(by: disposeBag)
         
+        // MARK: - Date PickerView에 accessoryView [취소]버튼 터치
         output.pickerViewCancel.bind { [weak self] _ in
             self?.hiddenPickerView(true)
         }
         .disposed(by: disposeBag)
         
         // MARK: - 마케팅 동의 알림
-        output.marketingActive.asDriver(onErrorJustReturn: false)
+        Observable.merge(output.initMarketingPush, output.responseMarketingPush).asDriver(onErrorJustReturn: false)
             .drive(marketingPushOnOffView.togglePublishSubject)
             .disposed(by: disposeBag)
     }

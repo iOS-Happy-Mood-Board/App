@@ -67,24 +67,24 @@ final class LoginViewModel: NSObject, ViewModel {
             .disposed(by: disposeBag)
         
         appleLoginResult = appleLoginSubject.map {
-            AuthTarget.login(
-                .init(
-                    accessToken: $0.accessToken,
-                    provider: $0.provider,
-                    deviceToken: $0.deviceToken,
-                    deviceType: $0.deviceType,
-                    deviceId: $0.deviceId
-                )
-            )
-//            AuthTarget.internalLogin(
+//            AuthTarget.login(
 //                .init(
+//                    accessToken: $0.accessToken,
 //                    provider: $0.provider,
-//                    providerId: "123",
 //                    deviceToken: $0.deviceToken,
 //                    deviceType: $0.deviceType,
 //                    deviceId: $0.deviceId
 //                )
 //            )
+            AuthTarget.internalLogin(
+                .init(
+                    provider: $0.provider,
+                    providerId: "123",
+                    deviceToken: $0.deviceToken,
+                    deviceType: $0.deviceType,
+                    deviceId: $0.deviceId
+                )
+            )
         }
         .do(onNext: {
             dump($0)

@@ -96,8 +96,7 @@ final class TitleDayOfWeekView: UIView, ViewAttributes {
     let dayOfWeekPublicSubject = PublishSubject<[Int]>()
     let actionPublishSubject = PublishSubject<[Int]>()
     
-    // TODO: 테스트 데이터 삭제 해야함
-    let testArray = [1, 2, 3, 4, 5, 6, 7]
+    var currentArray: [Int] = []
     
     init(type: SettingNotificationType) {
         super.init(frame: .zero)
@@ -154,93 +153,88 @@ extension TitleDayOfWeekView {
         let fridayButtonTapObservable = fridayButton.rx.tap.map { _ in return [5] }
         let saturdayButtonTapObservable = saturdayButton.rx.tap.map { _ in return [6] }
         let sundayButtonTapObservable = sundayButton.rx.tap.map { _ in return [7] }
-        let everydayButtonTapObservable = everydayButton.rx.tap.map { _ in return [8] }
+        let everydayButtonTapObservable = everydayButton.rx.tap
         
+        // MARK: - 서버에서 받아오는 값 set
         dayOfWeekPublicSubject.bind { [weak self] in
-            // TODO: 테스트 코드, 삭제
-//            self?.bindDayOfWeek(dayOfWeek: self!.testArray)
+            self?.currentArray = $0
             self?.bindDayOfWeek(dayOfWeek: $0)
         }
         .disposed(by: disposeBag)
         
-        Observable.combineLatest(dayOfWeekPublicSubject, mondayButtonTapObservable)
-            .map { r1, r2 in
-                return self.mergeArrays(r1, r2)
+        mondayButtonTapObservable
+            .map {
+                self.mergeArrays(self.currentArray, $0)
             }
             .bind(to: actionPublishSubject)
             .disposed(by: disposeBag)
         
-        Observable.combineLatest(dayOfWeekPublicSubject, tuesdayButtonTapObservable)
-            .map { r1, r2 in
-                return self.mergeArrays(r1, r2)
+        tuesdayButtonTapObservable
+            .map {
+                self.mergeArrays(self.currentArray, $0)
             }
             .bind(to: actionPublishSubject)
             .disposed(by: disposeBag)
         
-        Observable.combineLatest(dayOfWeekPublicSubject, wednesdayButtonTapObservable)
-            .map { r1, r2 in
-                return self.mergeArrays(r1, r2)
+        wednesdayButtonTapObservable
+            .map {
+                self.mergeArrays(self.currentArray, $0)
             }
             .bind(to: actionPublishSubject)
             .disposed(by: disposeBag)
         
-        Observable.combineLatest(dayOfWeekPublicSubject, thursdayButtonTapObservable)
-            .map { r1, r2 in
-                return self.mergeArrays(r1, r2)
+        thursdayButtonTapObservable
+            .map {
+                self.mergeArrays(self.currentArray, $0)
             }
             .bind(to: actionPublishSubject)
             .disposed(by: disposeBag)
         
-        Observable.combineLatest(dayOfWeekPublicSubject, saturdayButtonTapObservable)
-            .map { r1, r2 in
-                return self.mergeArrays(r1, r2)
+        fridayButtonTapObservable
+            .map {
+                self.mergeArrays(self.currentArray, $0)
             }
             .bind(to: actionPublishSubject)
             .disposed(by: disposeBag)
         
-        Observable.combineLatest(dayOfWeekPublicSubject, sundayButtonTapObservable)
-            .map { r1, r2 in
-                return self.mergeArrays(r1, r2)
+        saturdayButtonTapObservable
+            .map {
+                self.mergeArrays(self.currentArray, $0)
             }
             .bind(to: actionPublishSubject)
             .disposed(by: disposeBag)
         
-        Observable.combineLatest(dayOfWeekPublicSubject, everydayButtonTapObservable)
-//            .map { r1, r2 in
-//                return self.mergeArrays(r1, r2)
-//            }
-//            .bind(to: actionPublishSubject)
-//            .disposed(by: disposeBag)
+        sundayButtonTapObservable
+            .map {
+                self.mergeArrays(self.currentArray, $0)
+            }
+            .bind(to: actionPublishSubject)
+            .disposed(by: disposeBag)
+        
+        everydayButtonTapObservable
+            .map { _ in
+                self.isSequentialDaysOfWeek(dayOfWeek: self.currentArray) ? [] : [1, 2, 3, 4, 5, 6, 7]
+            }
+            .bind(to: actionPublishSubject)
+            .disposed(by: disposeBag)
     }
     
     /// 서버의 Response값을 토대로 ON/OFF 요일 표시
     func bindDayOfWeek(dayOfWeek: [Int]) {
-        for element in dayOfWeek {
-            switch element {
-            case 1:
-                mondayButton.backgroundColor = .primary500
-            case 2:
-                tuesdayButton.backgroundColor = .primary500
-            case 3:
-                wednesdayButton.backgroundColor = .primary500
-            case 4:
-                thursdayButton.backgroundColor = .primary500
-            case 5:
-                fridayButton.backgroundColor = .primary500
-            case 6:
-                saturdayButton.backgroundColor = .primary500
-            case 7:
-                sundayButton.backgroundColor = .primary500
-            default:
-                break
-            }
-        }
+
+        mondayButton.backgroundColor = dayOfWeek.contains(1) ? .primary500 : .gray200
+        tuesdayButton.backgroundColor = dayOfWeek.contains(2) ? .primary500 : .gray200
+        wednesdayButton.backgroundColor = dayOfWeek.contains(3) ? .primary500 : .gray200
+        thursdayButton.backgroundColor = dayOfWeek.contains(4) ? .primary500 : .gray200
+        fridayButton.backgroundColor = dayOfWeek.contains(5) ? .primary500 : .gray200
+        saturdayButton.backgroundColor = dayOfWeek.contains(6) ? .primary500 : .gray200
+        sundayButton.backgroundColor = dayOfWeek.contains(7) ? .primary500 : .gray200
         
         let everyday = isSequentialDaysOfWeek(dayOfWeek: dayOfWeek)
         everydayButton.backgroundColor = everyday ? .primary500 : .gray200
     }
     
-    /// 서버의 Response값이 [1, 2, 3, 4, 5, 6, 7] 일때 '매일' 버튼도 활성화
+    /// 서버의 Response값이 [1, 2, 3, 4, 5, 6, 7] 인지 판단하는 함수
     /// - Parameter dayOfWeek: 서버의 Reponse값
     /// - Returns: [1, 2, 3, 4, 5, 6, 7] => true / [1, 2, 3, 4, 5, 6, 7]이 아니면 => false
     func isSequentialDaysOfWeek(dayOfWeek: [Int]) -> Bool {

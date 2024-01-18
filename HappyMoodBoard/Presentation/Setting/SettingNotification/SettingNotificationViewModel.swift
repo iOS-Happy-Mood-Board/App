@@ -24,20 +24,23 @@ final class SettingNotificationViewModel: ViewModel {
     
     struct Output {
         let navigateToBack: Observable<Void>
-//        let notificationSettings: Observable<MemberResponse?>
-        let happyItemActive: Observable<Bool>
-        let dayOfWeek: Observable<[Int]>
-        let time: Observable<String>
+        let initRecordPush: Observable<Bool>
+        let initDayOfWeek: Observable<[Int]>
+        let initTime: Observable<String>
+        let initMarketingPush: Observable<Bool>
         let timeButtonEvent: Observable<Void>
         let pickerViewCancel: Observable<Void>
         let pickerViewSave: Observable<Void>
-        let marketingActive: Observable<Bool>
+        let responseRecordPush: Observable<Bool>
+        let responseDayOfWeek: Observable<[Int]>
+        let responseTime: Observable<String>
+        let responseMarketingPush: Observable<Bool>
     }
     
     func transform(input: Input) -> Output {
-        let happyItemActive: Observable<Bool>
-        let dayOfWeek: Observable<[Int]>
-        let time: Observable<String>
+        let initRecordPush: Observable<Bool>
+        let initDayOfWeek: Observable<[Int]>
+        let initTime: Observable<String>
         let dateString: Observable<String>
         let timeSaveString: Observable<String>
         let marketingActive: Observable<Bool>
@@ -54,7 +57,7 @@ final class SettingNotificationViewModel: ViewModel {
             .share()
         
         // MARK: - 행복아이템 기록 알림 받기
-        happyItemActive = notificationSettings
+        initRecordPush = notificationSettings
             .filter {
                 $0 != nil
             }
@@ -63,7 +66,7 @@ final class SettingNotificationViewModel: ViewModel {
             }
 
         // MARK: - 요일
-        dayOfWeek = notificationSettings
+        initDayOfWeek = notificationSettings
             .filter {
                 $0 != nil
             }
@@ -72,7 +75,7 @@ final class SettingNotificationViewModel: ViewModel {
             }
         
         // MARK: - 시간
-        time = notificationSettings
+        initTime = notificationSettings
             .filter {
                 $0 != nil
             }
@@ -89,12 +92,12 @@ final class SettingNotificationViewModel: ViewModel {
                 let formattedDate = dateFormatter.string(from: selectedDate)
                 return formattedDate
             }
+            .share()
         
         timeSaveString = input.pickerViewSave
             .flatMapLatest { _ in
-                dateString
+                return dateString.take(1)
             }
-        
         
         // MARK: - 마케팅 동의 알림
         marketingActive = notificationSettings
@@ -106,8 +109,8 @@ final class SettingNotificationViewModel: ViewModel {
             }
         
         // MARK: - /api/notification/v1/member/happy-item, 행복 아이템 알림 설정 변경
-        Observable.combineLatest(input.recordPushEvent,
-            Observable.combineLatest(dayOfWeek, time)
+        let responseRecordPush = Observable.combineLatest(input.recordPushEvent,
+            Observable.combineLatest(initDayOfWeek, initTime)
         )
         .map { (recordPush, tuple) in
             let (dayOfWeek, time) = tuple
@@ -125,13 +128,13 @@ final class SettingNotificationViewModel: ViewModel {
         .flatMapLatest {
             ApiService().request(type: HappyItem.self, target: $0)
         }
-        .subscribe(onNext: {
-            traceLog($0)
-        })
+        .compactMap {
+            $0?.active
+        }
         
         // MARK: - /api/notification/v1/member/happy-item, 행복 아이템 알림 설정 변경, 요일 설정 변경
-        Observable.combineLatest(input.dayOfWeekEvent,
-            Observable.combineLatest(happyItemActive, time)
+        let responseDayOfWeek = Observable.combineLatest(input.dayOfWeekEvent,
+            Observable.combineLatest(initRecordPush, initTime)
         )
         .map { (dayOfWeek, tuple) in
             let (recordPush, time) = tuple
@@ -149,13 +152,13 @@ final class SettingNotificationViewModel: ViewModel {
         .flatMapLatest {
             ApiService().request(type: HappyItem.self, target: $0)
         }
-        .subscribe(onNext: {
-            traceLog($0)
-        })
+        .compactMap {
+            $0?.dayOfWeek
+        }
         
 //        // MARK: - /api/notification/v1/member/happy-item, 행복 아이템 알림 설정 변경, 시간 설정 변경
-        Observable.combineLatest(timeSaveString,
-            Observable.combineLatest(happyItemActive, dayOfWeek)
+        let responseTime = Observable.combineLatest(timeSaveString,
+            Observable.combineLatest(initRecordPush, initDayOfWeek)
         )
         .map { (time, tuple) in
             let (recordPush, dayOfWeek) = tuple
@@ -173,12 +176,12 @@ final class SettingNotificationViewModel: ViewModel {
         .flatMapLatest {
             ApiService().request(type: HappyItem.self, target: $0)
         }
-        .subscribe(onNext: {
-            traceLog($0)
-        })
+        .compactMap {
+            $0?.time
+        }
         
         // MARK: - /api/notification/v1/member/marketing, 마케팅 알림 설정 변경
-        input.marketingPushEvent
+        let responseMarketingPush = input.marketingPushEvent
             .map {
                 NotificationTarget.marketing(
                     .init(
@@ -189,19 +192,23 @@ final class SettingNotificationViewModel: ViewModel {
             .flatMapLatest {
                 ApiService().request(type: MarketingResponse.self, target: $0)
             }
-            .subscribe(onNext: {
-                traceLog($0)
-            })
+            .compactMap {
+                $0?.active
+            }
             
         return Output(
             navigateToBack: input.navigateToBack,
-            happyItemActive: happyItemActive,
-            dayOfWeek: dayOfWeek,
-            time: time,
+            initRecordPush: initRecordPush,
+            initDayOfWeek: initDayOfWeek,
+            initTime: initTime,
+            initMarketingPush: marketingActive,
             timeButtonEvent: input.timeButtonEvent,
             pickerViewCancel: input.pickerViewCancel,
             pickerViewSave: input.pickerViewSave,
-            marketingActive: marketingActive
+            responseRecordPush: responseRecordPush,
+            responseDayOfWeek: responseDayOfWeek,
+            responseTime: responseTime,
+            responseMarketingPush: responseMarketingPush
         )
     }
 }
