@@ -11,7 +11,7 @@
 		5D4978812B32F26700059120 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4978802B32F26600059120 /* TabBarController.swift */; };
 		5D4978832B32F27300059120 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4978822B32F27300059120 /* HomeViewController.swift */; };
 		5D4978852B32F36500059120 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4978842B32F36500059120 /* RegisterViewController.swift */; };
-		5D4978872B32F36D00059120 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4978862B32F36D00059120 /* ListViewController.swift */; };
+		5D4978872B32F36D00059120 /* MyTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4978862B32F36D00059120 /* MyTabViewController.swift */; };
 		5D54D3F12B19CCD40008A5D7 /* ViewAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D54D3F02B19CCD40008A5D7 /* ViewAttributes.swift */; };
 		5D54D3F32B19CD4F0008A5D7 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D54D3F22B19CD4F0008A5D7 /* ViewModel.swift */; };
 		5D7252762B21ADD100CF6688 /* AgreeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7252752B21ADD100CF6688 /* AgreeViewModel.swift */; };
@@ -67,6 +67,9 @@
 		5DF0A1572B58A9B200D4C15C /* materialized+elements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0A1562B58A9B200D4C15C /* materialized+elements.swift */; };
 		5DF686032B35151700479D54 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF686022B35151700479D54 /* HomeViewModel.swift */; };
 		676E999C798E7795F8DED6EC /* Pods_HappyMoodBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6E437ECCF20FBB94EF85D6F /* Pods_HappyMoodBoard.framework */; };
+		A25747382B594AC70067F20D /* MyTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25747372B594AC70067F20D /* MyTabViewModel.swift */; };
+		A25747392B594AC70067F20D /* MyTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25747372B594AC70067F20D /* MyTabViewModel.swift */; };
+		A257473A2B594AC70067F20D /* MyTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25747372B594AC70067F20D /* MyTabViewModel.swift */; };
 		A28402D22B4589B0007C0A0D /* MyAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28402D12B4589B0007C0A0D /* MyAccount.swift */; };
 		A28402D32B4589B0007C0A0D /* MyAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28402D12B4589B0007C0A0D /* MyAccount.swift */; };
 		A28402D42B4589B0007C0A0D /* MyAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28402D12B4589B0007C0A0D /* MyAccount.swift */; };
@@ -230,7 +233,7 @@
 		5D4978802B32F26600059120 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		5D4978822B32F27300059120 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5D4978842B32F36500059120 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		5D4978862B32F36D00059120 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		5D4978862B32F36D00059120 /* MyTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTabViewController.swift; sourceTree = "<group>"; };
 		5D54D3F02B19CCD40008A5D7 /* ViewAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAttributes.swift; sourceTree = "<group>"; };
 		5D54D3F22B19CD4F0008A5D7 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		5D7252752B21ADD100CF6688 /* AgreeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreeViewModel.swift; sourceTree = "<group>"; };
@@ -284,6 +287,7 @@
 		6575D7DDF37C8F4547644BF0 /* Pods-HappyMoodBoardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyMoodBoardTests.debug.xcconfig"; path = "Target Support Files/Pods-HappyMoodBoardTests/Pods-HappyMoodBoardTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7AD9B74EF4837EEE55C75F63 /* Pods_HappyMoodBoardTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyMoodBoardTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		928F15A5095CBB78C4957AD4 /* Pods-HappyMoodBoard-HappyMoodBoardUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyMoodBoard-HappyMoodBoardUITests.release.xcconfig"; path = "Target Support Files/Pods-HappyMoodBoard-HappyMoodBoardUITests/Pods-HappyMoodBoard-HappyMoodBoardUITests.release.xcconfig"; sourceTree = "<group>"; };
+		A25747372B594AC70067F20D /* MyTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTabViewModel.swift; sourceTree = "<group>"; };
 		A28402D12B4589B0007C0A0D /* MyAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccount.swift; sourceTree = "<group>"; };
 		A28402D52B458AB3007C0A0D /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		A28402DA2B45952F007C0A0D /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
@@ -504,7 +508,8 @@
 		5D8F09D32B3E873A00B7BE3E /* List */ = {
 			isa = PBXGroup;
 			children = (
-				5D4978862B32F36D00059120 /* ListViewController.swift */,
+				5D4978862B32F36D00059120 /* MyTabViewController.swift */,
+				A25747372B594AC70067F20D /* MyTabViewModel.swift */,
 				5DD1B6D12B5912C200DEBD07 /* PostDetailViewController.swift */,
 			);
 			path = List;
@@ -570,7 +575,6 @@
 			children = (
 				5D54D3EF2B19CCC60008A5D7 /* Common */,
 				5D54D3E82B19B0C90008A5D7 /* Onboarding */,
-				5D54D3E72B19B0C20008A5D7 /* Login */,
 				AC9E33BD2B35483700B0D9AE /* Setting */,
 				5D49787F2B32F23300059120 /* Tab */,
 			);
@@ -1202,6 +1206,7 @@
 				5DF0A1572B58A9B200D4C15C /* materialized+elements.swift in Sources */,
 				5D7252782B21ADE000CF6688 /* AgreeViewController.swift in Sources */,
 				AC9E33BF2B35486E00B0D9AE /* SettingIndexViewController.swift in Sources */,
+				A25747382B594AC70067F20D /* MyTabViewModel.swift in Sources */,
 				A2D4CBC62B3D9A200066E89D /* LoginViewModel.swift in Sources */,
 				5D7252872B21BEC100CF6688 /* CheckboxButton.swift in Sources */,
 				A2DFB8002B39C4C1008B95AC /* UIViewController+alert.swift in Sources */,
@@ -1265,7 +1270,7 @@
 				5DD1B6D02B590B5300DEBD07 /* PostService.swift in Sources */,
 				5D72528A2B231CE300CF6688 /* UIColor+BeeHappy.swift in Sources */,
 				AC3A3BC22B049FB90081BF32 /* SceneDelegate.swift in Sources */,
-				5D4978872B32F36D00059120 /* ListViewController.swift in Sources */,
+				5D4978872B32F36D00059120 /* MyTabViewController.swift in Sources */,
 				5D7252842B21BE8300CF6688 /* AgreeType.swift in Sources */,
 				AC185D082B4795E3007304CE /* NotificationModalViewController.swift in Sources */,
 			);
@@ -1311,6 +1316,7 @@
 				A2D0F9242B500B8C003BE282 /* PopUpViewController.swift in Sources */,
 				AC9E33D22B35643000B0D9AE /* NavigtaionItemBack.swift in Sources */,
 				A2C8868F2B497D93008E5437 /* DayOfTheWeek.swift in Sources */,
+				A25747392B594AC70067F20D /* MyTabViewModel.swift in Sources */,
 				AC185D0F2B47AD58007304CE /* NotificationModalViewModel.swift in Sources */,
 				A2C886872B497C70008E5437 /* TitleDayOfWeekView.swift in Sources */,
 				AC185D012B478BFF007304CE /* SettingNotificationViewModel.swift in Sources */,
@@ -1338,6 +1344,7 @@
 				5D7252852B21BE8300CF6688 /* AgreeType.swift in Sources */,
 				A28402E12B459DBE007C0A0D /* SettingMyAccountViewModel.swift in Sources */,
 				A2D0F9252B500B8C003BE282 /* PopUpViewController.swift in Sources */,
+				A257473A2B594AC70067F20D /* MyTabViewModel.swift in Sources */,
 				A2DFB8022B39C4C1008B95AC /* UIViewController+alert.swift in Sources */,
 				A2C886802B49700F008E5437 /* SettingNotificationType.swift in Sources */,
 				AC7FDD642B57656900E6F7FC /* UpdateNotification.swift in Sources */,

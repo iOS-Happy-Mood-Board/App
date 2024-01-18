@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  MyTabViewController.swift
 //  HappyMoodBoard
 //
 //  Created by 홍다희 on 2023/12/20.
@@ -12,31 +12,31 @@ import SnapKit
 
 import RxSwift
 import RxCocoa
-import RxViewController
 
-final class HomeViewController: UIViewController {
+final class MyTabViewController: UIViewController {
     
-    static let kHeaderLabelText = " 님,\n오늘의 행복 아이템을 남겨주세요."
+    private let settingButton: UIBarButtonItem = .init(
+        image: .init(named: "setting"),
+        style: .plain,
+        target: nil,
+        action: nil
+    )
+    
+    static let kHeaderLabelText = "님께 필요한\n행복을 꺼내 먹어요."
     
     private let headerLabel: UILabel = .init().then {
-//        $0.text = " 님,\n오늘의 행복 아이템을 남겨주세요."
         $0.textColor = .gray900
         $0.font = UIFont(name: "Pretendard-Bold", size: 24)
         $0.numberOfLines = 0
         $0.lineBreakMode = .byWordWrapping
     }
     
-    private let mainImageView: UIImageView = .init(image: .init(named: "main"))
-    
-    private let viewModel: HomeViewModel = .init()
-    private let disposeBag: DisposeBag = .init()
+    let disposeBag : DisposeBag = .init()
+    let viewModel: MyTabViewModel = .init()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        traceLog("accessToken =>\n\(UserDefaults.standard.string(forKey: "accessToken") ?? "")")
-        
-        setCommonBackgroundColor()
         setupNavigationBar()
         setupSubviews()
         setupLayouts()
@@ -45,7 +45,7 @@ final class HomeViewController: UIViewController {
 
 }
 
-extension HomeViewController: ViewAttributes {
+extension MyTabViewController: ViewAttributes {
     
     func setupNavigationBar() {
         let spacing = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
@@ -67,14 +67,13 @@ extension HomeViewController: ViewAttributes {
 //        titleLabel.sizeToFit()
         
         navigationItem.leftBarButtonItems = [spacing, .init(customView: titleLabel)]
-//        navigationItem.rightBarButtonItems = [settingButton, spacing]
+        navigationItem.rightBarButtonItems = [settingButton, spacing]
     }
     
     func setupSubviews() {
         [
-            headerLabel,
-            mainImageView
-        ].forEach { view.addSubview($0) }
+            headerLabel
+        ].forEach { self.view.addSubview($0) }
     }
     
     func setupLayouts() {
@@ -82,19 +81,15 @@ extension HomeViewController: ViewAttributes {
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(8)
             make.leading.trailing.equalToSuperview().offset(24)
         }
-        
-        mainImageView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-        }
     }
     
     func setupBindings() {
-        let input = HomeViewModel.Input(
+        let input = MyTabViewModel.Input (
             viewWillAppear: rx.viewWillAppear.asObservable(),
-            viewWillDisAppear: rx.viewWillDisappear.asObservable()
+            navigationRight: settingButton.rx.tap.asObservable()
         )
         let output = viewModel.transform(input: input)
-        
+
         output.username.asDriver(onErrorJustReturn: "")
             .debug("사용자명")
             .drive(with: self) { owner, username in
@@ -109,6 +104,13 @@ extension HomeViewController: ViewAttributes {
                 owner.headerLabel.attributedText = attributedString
             }
             .disposed(by: disposeBag)
+        
+        output.navigationRight.asDriver(onErrorJustReturn: ())
+            .drive(with: self) { owner, _ in
+                let settingViewController = SettingIndexViewController()
+                settingViewController.hidesBottomBarWhenPushed = true // Tabbar 숨기기
+                owner.show(settingViewController, sender: nil)
+            }
+            .disposed(by: disposeBag)
     }
-    
 }

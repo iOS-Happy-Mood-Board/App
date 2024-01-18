@@ -64,7 +64,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             registerViewController.tabBarItem.imageInsets = imageInsets
             
             // list
-            let listViewController = ListViewController()
+            let listViewController = MyTabViewController()
             listViewController.tabBarItem.image = .init(named: "tabbar.list")
             listViewController.tabBarItem.selectedImage = .init(named: "tabbar.list.selected")
             listViewController.tabBarItem.imageInsets = imageInsets

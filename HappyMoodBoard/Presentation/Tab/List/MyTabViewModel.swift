@@ -1,24 +1,23 @@
 //
-//  HomeViewModel.swift
+//  MyTabViewModel.swift
 //  HappyMoodBoard
 //
-//  Created by 홍다희 on 2023/12/22.
+//  Created by ukBook on 1/18/24.
 //
 
 import Foundation
 
 import RxSwift
 
-final class HomeViewModel: ViewModel {
-    
+final class MyTabViewModel: ViewModel {
     struct Input {
         let viewWillAppear: Observable<Void>
-        let viewWillDisAppear: Observable<Bool>
+        let navigationRight: Observable<Void>
     }
     
     struct Output {
         let viewWillAppear: Observable<Void>
-        let viewWillDisAppear: Observable<Bool>
+        let navigationRight: Observable<Void>
         let username: Observable<String>
     }
     
@@ -32,9 +31,12 @@ final class HomeViewModel: ViewModel {
         
         return Output(
             viewWillAppear: input.viewWillAppear,
-            viewWillDisAppear: input.viewWillDisAppear,
+            navigationRight: input.navigationRight,
             username: username
         )
     }
+}
+
+extension MyTabViewModel {
     
 }
