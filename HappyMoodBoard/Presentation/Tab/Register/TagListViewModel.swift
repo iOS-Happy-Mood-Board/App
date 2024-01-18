@@ -40,10 +40,15 @@ final class TagListViewModel: ViewModel {
             }
         let itemSelected = input.itemSelected.share()
         let tagSelected = itemSelected.map {
-            if case let .tag(tag) = $0 { return tag }
+            if case let .tag(tag) = $0 {
+                PreferencesService.shared.setTag(tag)
+                return tag
+            }
             return nil
         }
             .filter { $0 != nil }
+            .share()
+    
         let navigateToAdd = itemSelected.map { if case .add = $0 { return Void() } }
         let dismiss = Observable<Tag?>.merge(
             tagSelected,

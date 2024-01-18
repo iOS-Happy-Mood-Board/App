@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Tag: Decodable {
+struct Tag: Codable {
     let id: Int
     let tagName: String
     let tagColorId: Int

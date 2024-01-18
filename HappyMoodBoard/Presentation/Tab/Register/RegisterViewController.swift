@@ -87,6 +87,7 @@ final class RegisterViewController: UIViewController {
         configuration.imagePadding = 10
         configuration.imagePlacement = .trailing
         $0.configuration = configuration
+        $0.isHidden = true
     }
     
     private let textView: UITextView = .init().then {
@@ -253,12 +254,15 @@ extension RegisterViewController: ViewAttributes {
                 owner.registerButton.image = isEnabled ? Constants.normalImage : Constants.disabledImage
             })
             .disposed(by: disposeBag)
-        
-        output.navigateToBack
-            .withUnretained(self)
-            .subscribe(onNext: { owner, _ in
-                owner.navigationController?.popViewController(animated: false)
-            })
+                
+        output.showNavigateToBackAlert.asDriver(onErrorJustReturn: false)
+            .drive(with: self) { owner, isShow in
+                if isShow {
+                    owner.showNavigateToBackAlert()
+                } else {
+                    owner.navigateToBack()
+                }
+            }
             .disposed(by: disposeBag)
         
         output.showImagePicker
@@ -287,6 +291,7 @@ extension RegisterViewController: ViewAttributes {
         
         output.tag
             .withUnretained(self)
+            .debug("태그")
             .subscribe { owner, tag in
                 guard let tag = tag else {
                     owner.tagButton.isHidden = true
@@ -300,6 +305,14 @@ extension RegisterViewController: ViewAttributes {
                 configuration?.baseForegroundColor = .gray700
                 owner.tagButton.configuration = configuration
                 owner.tagButton.isHidden = false
+            }
+            .disposed(by: disposeBag)
+        
+        output.navigateToDetail.asDriver(onErrorJustReturn: 0) // TODO: error 처리 어떻게할지에 대해
+            .drive(with: self) { owner, postId in
+                let viewController = PostDetailViewController()
+                viewController.textLabel.text = "\(postId)"
+                owner.navigationController?.pushViewController(viewController, animated: true)
             }
             .disposed(by: disposeBag)
         
@@ -344,6 +357,8 @@ extension RegisterViewController: ViewAttributes {
     }
     
 }
+
+// MARK: 이미지 처리
 
 extension RegisterViewController {
     
@@ -400,12 +415,38 @@ extension RegisterViewController {
         present(viewController, animated: true, completion: nil)
     }
     
+}
+
+extension RegisterViewController {
+
     func showTagListViewController() {
         let viewController = TagListViewController()
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.sheetPresentationController?.detents = [.medium()]
         navigationController.sheetPresentationController?.prefersGrabberVisible = false
         show(navigationController, sender: nil)
+    }
+    
+    func navigateToBack() {
+        navigationController?.popViewController(animated: true)
+        PreferencesService.shared.removeTag()
+    }
+    
+    func showNavigateToBackAlert() {
+        showAlert(
+            title: nil,
+            message: "작성한 내용이 저장되지 않아요.\n정말 뒤로 가시겠어요?",
+            style: .alert,
+            actions: [
+                .action(title: "아니오", style: .cancel),
+                .action(title: "네", style: .default)
+            ]
+        )
+        .filter { $0 == 1 }
+        .subscribe(onNext: { _ in
+            self.navigateToBack()
+        })
+        .disposed(by: disposeBag)
     }
     
 }
