@@ -404,7 +404,7 @@ extension RegisterViewController {
         let viewController = TagListViewController()
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.sheetPresentationController?.detents = [.medium()]
-        navigationController.sheetPresentationController?.prefersGrabberVisible = true
+        navigationController.sheetPresentationController?.prefersGrabberVisible = false
         show(navigationController, sender: nil)
     }
     

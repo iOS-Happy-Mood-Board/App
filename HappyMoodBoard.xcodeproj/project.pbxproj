@@ -55,6 +55,10 @@
 		5DB687282B54BF3F0027ABAB /* TagTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB687272B54BF3F0027ABAB /* TagTarget.swift */; };
 		5DB6872A2B54C38F0027ABAB /* UpdatePostTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB687292B54C38F0027ABAB /* UpdatePostTag.swift */; };
 		5DB6872C2B54EA810027ABAB /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6872B2B54EA810027ABAB /* TagCollectionViewCell.swift */; };
+		5DF0A1512B56797800D4C15C /* AddTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0A1502B56797800D4C15C /* AddTagViewController.swift */; };
+		5DF0A1532B56798400D4C15C /* AddTagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0A1522B56798400D4C15C /* AddTagViewModel.swift */; };
+		5DF0A1552B57C56E00D4C15C /* UIImage+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0A1542B57C56E00D4C15C /* UIImage+Utils.swift */; };
+		5DF0A1572B58A9B200D4C15C /* materialized+elements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0A1562B58A9B200D4C15C /* materialized+elements.swift */; };
 		5DF686032B35151700479D54 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF686022B35151700479D54 /* HomeViewModel.swift */; };
 		676E999C798E7795F8DED6EC /* Pods_HappyMoodBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6E437ECCF20FBB94EF85D6F /* Pods_HappyMoodBoard.framework */; };
 		A2D4CBBA2B3D8C730066E89D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D4CBB92B3D8C730066E89D /* LoginViewController.swift */; };
@@ -185,6 +189,10 @@
 		5DB687272B54BF3F0027ABAB /* TagTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTarget.swift; sourceTree = "<group>"; };
 		5DB687292B54C38F0027ABAB /* UpdatePostTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePostTag.swift; sourceTree = "<group>"; };
 		5DB6872B2B54EA810027ABAB /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
+		5DF0A1502B56797800D4C15C /* AddTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTagViewController.swift; sourceTree = "<group>"; };
+		5DF0A1522B56798400D4C15C /* AddTagViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTagViewModel.swift; sourceTree = "<group>"; };
+		5DF0A1542B57C56E00D4C15C /* UIImage+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Utils.swift"; sourceTree = "<group>"; };
+		5DF0A1562B58A9B200D4C15C /* materialized+elements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "materialized+elements.swift"; sourceTree = "<group>"; };
 		5DF686022B35151700479D54 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		6575D7DDF37C8F4547644BF0 /* Pods-HappyMoodBoardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyMoodBoardTests.debug.xcconfig"; path = "Target Support Files/Pods-HappyMoodBoardTests/Pods-HappyMoodBoardTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7AD9B74EF4837EEE55C75F63 /* Pods_HappyMoodBoardTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyMoodBoardTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -369,6 +377,8 @@
 				5DB686B32B50F8040027ABAB /* TagListViewController.swift */,
 				5DB687222B51333B0027ABAB /* TagListViewModel.swift */,
 				5DB6872B2B54EA810027ABAB /* TagCollectionViewCell.swift */,
+				5DF0A1502B56797800D4C15C /* AddTagViewController.swift */,
+				5DF0A1522B56798400D4C15C /* AddTagViewModel.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -574,6 +584,8 @@
 				A2DFB7FF2B39C4C1008B95AC /* UIViewController+alert.swift */,
 				5D4977B22B327E4D00059120 /* UIViewController+backgroundColor.swift */,
 				5DB6866F2B4E68EA0027ABAB /* UIViewController+Rx.swift */,
+				5DF0A1542B57C56E00D4C15C /* UIImage+Utils.swift */,
+				5DF0A1562B58A9B200D4C15C /* materialized+elements.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -898,6 +910,7 @@
 				5D751F772B4CD717003BAC2C /* DeviceType.swift in Sources */,
 				5D8F09D52B3E8BFB00B7BE3E /* PhotoLibraryAuthorizationViewModel.swift in Sources */,
 				5DB28DEC2B2AD0CD00C4E594 /* EnterNicknameViewController.swift in Sources */,
+				5DF0A1512B56797800D4C15C /* AddTagViewController.swift in Sources */,
 				5DB686702B4E68EA0027ABAB /* UIViewController+Rx.swift in Sources */,
 				5D4978812B32F26700059120 /* TabBarController.swift in Sources */,
 				5D751F8C2B4D21A6003BAC2C /* UpdateNickname.swift in Sources */,
@@ -907,6 +920,7 @@
 				A2DFB7DF2B383150008B95AC /* SettingIndexButton.swift in Sources */,
 				5D751F832B4CE48B003BAC2C /* BaseResponse.swift in Sources */,
 				5D751F752B4CD689003BAC2C /* ProvderType.swift in Sources */,
+				5DF0A1572B58A9B200D4C15C /* materialized+elements.swift in Sources */,
 				5D7252782B21ADE000CF6688 /* AgreeViewController.swift in Sources */,
 				AC9E33BF2B35486E00B0D9AE /* SettingIndexViewController.swift in Sources */,
 				A2D4CBC62B3D9A200066E89D /* LoginViewModel.swift in Sources */,
@@ -916,6 +930,7 @@
 				5D751F7D2B4CDFD2003BAC2C /* ErrorResponse.swift in Sources */,
 				A2DFB8052B39C647008B95AC /* SettingOpenSourceLicenseViewController.swift in Sources */,
 				5DB6872A2B54C38F0027ABAB /* UpdatePostTag.swift in Sources */,
+				5DF0A1532B56798400D4C15C /* AddTagViewModel.swift in Sources */,
 				5D751F882B4D207D003BAC2C /* Consent.swift in Sources */,
 				A2DFB7E42B392A71008B95AC /* VersionInfoButton.swift in Sources */,
 				5D751F792B4CD757003BAC2C /* AuthInterceptor.swift in Sources */,
@@ -932,6 +947,7 @@
 				5D7252762B21ADD100CF6688 /* AgreeViewModel.swift in Sources */,
 				5D8F09CE2B3C242100B7BE3E /* RegisterViewModel.swift in Sources */,
 				5DB6866E2B4E62C00027ABAB /* MyInformationResponse.swift in Sources */,
+				5DF0A1552B57C56E00D4C15C /* UIImage+Utils.swift in Sources */,
 				5D8F09D72B43A97600B7BE3E /* UIImagePickerController+Rx.swift in Sources */,
 				5D751F7B2B4CD772003BAC2C /* TargetType.swift in Sources */,
 				5D54D3F12B19CCD40008A5D7 /* ViewAttributes.swift in Sources */,

@@ -82,19 +82,20 @@ public extension UIColor {
  
     // MARK: Tag Color
     
+    static let tagColors: [UIColor?] = [
+        .white,
+        .accent600,
+        .primary300,
+        .accent300,
+        .accent400,
+        .accent700,
+        .accent200,
+        .accent800,
+        .accent500,
+        .gray300
+    ]
+    
     static func tagColor(for id: Int) -> UIColor? {
-        let tagColors: [UIColor?] = [
-            .white,
-            .accent600,
-            .primary300,
-            .accent300,
-            .accent400,
-            .accent700,
-            .accent200,
-            .accent800,
-            .accent500,
-            .gray300,
-        ]
         return tagColors.indices.contains(id) ? tagColors[id] : nil
     }
     

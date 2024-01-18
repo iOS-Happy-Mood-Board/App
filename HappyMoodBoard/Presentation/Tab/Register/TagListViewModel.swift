@@ -14,31 +14,45 @@ final class TagListViewModel: ViewModel {
     struct Input {
         let viewWillAppear: Observable<Void>
         let editButtonTapped: Observable<Void>
-        let itemSelected: Observable<Tag>
+        let itemSelected: Observable<TagListItemType>
         let closeButtonTapped: Observable<Void>
     }
     
     struct Output {
         let navigateToEdit: Observable<Void>
-        let tags: Observable<[Tag]>
+        let items: Observable<[TagListItemType]>
+        let navigateToAdd: Observable<Void>
         let dismiss: Observable<Tag?>
     }
     
     func transform(input: Input) -> Output {
-        let tags = input.viewWillAppear
+        let items = input.viewWillAppear
             .flatMapLatest {
                 ApiService()
                     .request(type: [Tag].self, target: TagTarget.fetch())
+                    .map { $0 != nil ? $0! : [] }
+                    .map { $0.map(TagListItemType.tag) }
+                    .map {
+                        var copy = $0
+                        copy.append(.add)
+                        return copy
+                    }
             }
-            .map { $0 != nil ? $0! : [] }
-            
+        let itemSelected = input.itemSelected.share()
+        let tagSelected = itemSelected.map {
+            if case let .tag(tag) = $0 { return tag }
+            return nil
+        }
+            .filter { $0 != nil }
+        let navigateToAdd = itemSelected.map { if case .add = $0 { return Void() } }
         let dismiss = Observable<Tag?>.merge(
-            input.itemSelected.map { tag -> Tag? in return tag },
+            tagSelected,
             input.closeButtonTapped.map { _ -> Tag? in return nil }
         )
         return .init(
             navigateToEdit: input.editButtonTapped,
-            tags: tags,
+            items: items,
+            navigateToAdd: navigateToAdd,
             dismiss: dismiss
         )
     }

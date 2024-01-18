@@ -13,6 +13,11 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
+enum TagListItemType {
+    case tag(Tag)
+    case add
+}
+
 final class TagListViewController: UIViewController {
     
     private let editButton: UIBarButtonItem = .init(systemItem: .edit)
@@ -66,15 +71,11 @@ final class TagListViewController: UIViewController {
 extension TagListViewController: ViewAttributes {
     
     func setupNavigationBar() {
+        navigationItem.title = "태그 선택"
         let spacing = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         spacing.width = 20
-        let titleLabel = UILabel().then {
-            $0.textColor = .gray900
-            $0.font = .init(name: "Pretendard-Bold", size: 18)
-            $0.text = "태그 선택"
-        }
-        navigationItem.leftBarButtonItems = [spacing, .init(customView: titleLabel)]
         navigationItem.rightBarButtonItems = [editButton, spacing]
+        navigationItem.backButtonDisplayMode = .minimal
     }
     
     func setupSubviews() {
@@ -99,7 +100,7 @@ extension TagListViewController: ViewAttributes {
         let input = TagListViewModel.Input(
             viewWillAppear: rx.viewWillAppear.asObservable(),
             editButtonTapped: editButton.rx.tap.asObservable(),
-            itemSelected: collectionView.rx.modelSelected(Tag.self).asObservable(),
+            itemSelected: collectionView.rx.modelSelected(TagListItemType.self).asObservable(),
             closeButtonTapped: closeButton.rx.tap.asObservable()
         )
         let output = viewModel.transform(input: input)
@@ -112,30 +113,41 @@ extension TagListViewController: ViewAttributes {
             }
             .disposed(by: disposeBag)
         
-        output.tags.asDriver(onErrorJustReturn: [])
+        output.items.asDriver(onErrorJustReturn: [])
             .drive(
                 collectionView.rx.items(
                     cellIdentifier: "TagCollectionViewCell",
                     cellType: TagCollectionViewCell.self
                 )
-            ) { _, tag, cell in
-                var configuration = UIButton.Configuration.filled()
-                configuration.cornerStyle = .capsule
-                let verticalInset: CGFloat = 4.5
-                let horizontalInset: CGFloat = 24
-                configuration.contentInsets = .init(
-                    top: verticalInset,
-                    leading: horizontalInset,
-                    bottom: verticalInset,
-                    trailing: horizontalInset
-                )
-                configuration.background.backgroundColor = .tagColor(for: tag.tagColorId)
-                var container = AttributeContainer()
-                container.font = UIFont(name: "Pretendard-Medium", size: 14)
-                container.foregroundColor = .gray900
-                configuration.attributedTitle = .init(tag.tagName, attributes: container)
-                cell.nameButton.configuration = configuration
-                cell.nameButton.titleLabel?.numberOfLines = 1
+            ) { _, element, cell in
+                switch element {
+                case .tag(let tag):
+                    var configuration = UIButton.Configuration.filled()
+                    configuration.cornerStyle = .capsule
+                    let verticalInset: CGFloat = 4.5
+                    let horizontalInset: CGFloat = 24
+                    configuration.contentInsets = .init(
+                        top: verticalInset,
+                        leading: horizontalInset,
+                        bottom: verticalInset,
+                        trailing: horizontalInset
+                    )
+                    configuration.background.backgroundColor = .tagColor(for: tag.tagColorId)
+                    var container = AttributeContainer()
+                    container.font = UIFont(name: "Pretendard-Medium", size: 14)
+                    container.foregroundColor = .gray900
+                    configuration.attributedTitle = .init(tag.tagName, attributes: container)
+                    cell.nameButton.configuration = configuration
+                    cell.nameButton.titleLabel?.numberOfLines = 1
+                case .add:
+                    cell.nameButton.setImage(.init(named: "add"), for: .init())
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        output.navigateToAdd.asDriver(onErrorJustReturn: ())
+            .drive(with: self) { owner, _ in
+                owner.navigateToAdd()
             }
             .disposed(by: disposeBag)
         
@@ -152,4 +164,8 @@ extension TagListViewController: ViewAttributes {
         }
     }
     
+    func navigateToAdd() {
+        let viewController = AddTagViewController()
+        show(viewController, sender: nil)
+    }
 }
