@@ -33,7 +33,7 @@ final class LoginViewModel: NSObject, ViewModel {
     }
     
     let disposeBag: DisposeBag = .init()
-    let appleLoginSubject = PublishSubject<SocialLoginParameters>()
+    let socialLoginSubject = PublishSubject<SocialLoginParameters>()
     
     func transform(input: Input) -> Output {
         let appleLoginResult: Observable<String?>
@@ -43,19 +43,43 @@ final class LoginViewModel: NSObject, ViewModel {
                 // TODO: 실제 기기에서 테스트 해야함. 현재 Certificates, Identifiers & Profiles에 디바이스 등록이 제한되어 있음....
                 if (UserApi.isKakaoTalkLoginAvailable()) {
                     UserApi.shared.rx.loginWithKakaoTalk()
-                        .subscribe(onNext:{ (oauthToken) in
-                            print("loginWithKakaoTalk() success.")
+                        .subscribe(onNext:{ [weak self] (oAuthToken) in
+                            let accessToken = oAuthToken.accessToken
                             
-                            //let idToken = oAuthToken.idToken ?? ""
-                            //let accessToken = oAuthToken.accessToken
-                            
-                            self?.kakaoGetUserInfo()
+                            if let deviceToken = UserDefaults.standard.string(forKey: "deviceToken"),
+                               let deviceId = getDeviceUUID() {
+                                let paramters = SocialLoginParameters(
+                                    accessToken: accessToken,
+                                    provider: ProviderType.kakao.rawValue,
+                                    deviceToken: deviceToken,
+                                    deviceType: DeviceType.ios.rawValue,
+                                    deviceId: deviceId
+                                )
+                                
+                                self?.socialLoginSubject.onNext(paramters)
+                            }
                         }, onError: {error in
                             print(error)
                         })
                     //                        .disposed(by: self?.disposeBag)
                 } else {
-                    traceLog("카카오 로그인 사용불가")
+                    UserApi.shared.rx.loginWithKakaoAccount(prompts: [.Login])
+                        .subscribe(onNext: {  [weak self] (oAuthToken) in
+                            let accessToken = oAuthToken.accessToken
+                            
+                            if let deviceToken = UserDefaults.standard.string(forKey: "deviceToken"),
+                               let deviceId = getDeviceUUID() {
+                                let paramters = SocialLoginParameters(
+                                    accessToken: accessToken,
+                                    provider: ProviderType.kakao.rawValue,
+                                    deviceToken: deviceToken,
+                                    deviceType: DeviceType.ios.rawValue,
+                                    deviceId: deviceId
+                                )
+                                
+                                self?.socialLoginSubject.onNext(paramters)
+                            }
+                        })
                 }
             })
             .disposed(by: disposeBag)
@@ -66,7 +90,8 @@ final class LoginViewModel: NSObject, ViewModel {
             })
             .disposed(by: disposeBag)
         
-        appleLoginResult = appleLoginSubject.map {
+        appleLoginResult = socialLoginSubject.map {
+            // TODO: 운영 API
 //            AuthTarget.login(
 //                .init(
 //                    accessToken: $0.accessToken,
@@ -76,10 +101,11 @@ final class LoginViewModel: NSObject, ViewModel {
 //                    deviceId: $0.deviceId
 //                )
 //            )
+            // TODO: 개발 API
             AuthTarget.internalLogin(
                 .init(
                     provider: $0.provider,
-                    providerId: "123",
+                    providerId: "12345",
                     deviceToken: $0.deviceToken,
                     deviceType: $0.deviceType,
                     deviceId: $0.deviceId
@@ -150,6 +176,8 @@ extension LoginViewModel: ASAuthorizationControllerDelegate, ASAuthorizationCont
                 print("authCodeString: \(authCodeString)")
                 print("identifyTokenString: \(identifyTokenString)")
                 
+                parseAppleIdentityToken(identityToken: identifyTokenString)
+                
                 let paramters = SocialLoginParameters(
                     accessToken: identifyTokenString,
                     provider: ProviderType.apple.rawValue,
@@ -158,7 +186,7 @@ extension LoginViewModel: ASAuthorizationControllerDelegate, ASAuthorizationCont
                     deviceId: deviceId
                 )
                 
-                appleLoginSubject.onNext(paramters)
+                socialLoginSubject.onNext(paramters)
             }
             
             print("useridentifier: \(userIdentifier)")
@@ -169,15 +197,6 @@ extension LoginViewModel: ASAuthorizationControllerDelegate, ASAuthorizationCont
             //let validVC = SignValidViewController()
             //validVC.modalPresentationStyle = .fullScreen
             //present(validVC, animated: true, completion: nil)
-            
-        case let passwordCredential as ASPasswordCredential:
-            // Sign in using an existing iCloud Keychain credential.
-            let username = passwordCredential.user
-            let password = passwordCredential.password
-            
-            print("username: \(username)")
-            print("password: \(password)")
-            
         default:
             break
         }

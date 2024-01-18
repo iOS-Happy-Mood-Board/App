@@ -34,6 +34,9 @@ target 'HappyMoodBoard' do
   pod 'RxKakaoSDKAuth'
   pod 'RxKakaoSDKUser'
   
+  # Token Parsing
+  pod 'JWTDecode'
+  
   
 
   target 'HappyMoodBoardTests' do
