@@ -420,8 +420,8 @@
 		5D751F662B4CC87B003BAC2C /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				5DEB7EC12B5A11BB001654FE /* PreferencesService */,
-				5DEB7EC02B5A11B3001654FE /* ApiService */,
+				5DEB7EC12B5A11BB001654FE /* Preferences */,
+				5DEB7EC02B5A11B3001654FE /* Api */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -540,7 +540,7 @@
 			path = Post;
 			sourceTree = "<group>";
 		};
-		5DEB7EC02B5A11B3001654FE /* ApiService */ = {
+		5DEB7EC02B5A11B3001654FE /* Api */ = {
 			isa = PBXGroup;
 			children = (
 				ACD6D0FD2B5519480039E5AE /* Notification */,
@@ -552,15 +552,15 @@
 				5D751F672B4CC8B4003BAC2C /* ApiService.swift */,
 				5D751F782B4CD756003BAC2C /* AuthInterceptor.swift */,
 			);
-			path = ApiService;
+			path = Api;
 			sourceTree = "<group>";
 		};
-		5DEB7EC12B5A11BB001654FE /* PreferencesService */ = {
+		5DEB7EC12B5A11BB001654FE /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
 				5DD1B6CF2B590B5300DEBD07 /* PreferencesService.swift */,
 			);
-			path = PreferencesService;
+			path = Preferences;
 			sourceTree = "<group>";
 		};
 		A24CDD222B064F2F00A699E8 /* Resources */ = {

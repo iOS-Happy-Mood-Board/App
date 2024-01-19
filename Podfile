@@ -24,7 +24,8 @@ target 'HappyMoodBoard' do
   pod 'RxGesture'
   pod 'RxViewController'
   pod 'RxKeyboard'
-  
+  pod 'RxDataSources'
+
   # Firebase
   pod 'Firebase/Messaging'
   pod 'Firebase/Analytics'
