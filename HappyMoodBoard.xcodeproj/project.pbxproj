@@ -61,6 +61,10 @@
 		5DD1B6CE2B5909BF00DEBD07 /* Constnats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD1B6CD2B5909BF00DEBD07 /* Constnats.swift */; };
 		5DD1B6D02B590B5300DEBD07 /* PreferencesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD1B6CF2B590B5300DEBD07 /* PreferencesService.swift */; };
 		5DD1B6D22B5912C200DEBD07 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD1B6D12B5912C200DEBD07 /* PostDetailViewController.swift */; };
+		5DEB7EC32B5A13ED001654FE /* EditTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEB7EC22B5A13ED001654FE /* EditTagViewController.swift */; };
+		5DEB7EC52B5A1440001654FE /* EditTagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEB7EC42B5A1440001654FE /* EditTagTableViewCell.swift */; };
+		5DEB7EC72B5A21C3001654FE /* EditTagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEB7EC62B5A21C3001654FE /* EditTagViewModel.swift */; };
+		5DEB7EC92B5A23CA001654FE /* EditTagSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEB7EC82B5A23CA001654FE /* EditTagSection.swift */; };
 		5DF0A1512B56797800D4C15C /* AddTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0A1502B56797800D4C15C /* AddTagViewController.swift */; };
 		5DF0A1532B56798400D4C15C /* AddTagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0A1522B56798400D4C15C /* AddTagViewModel.swift */; };
 		5DF0A1552B57C56E00D4C15C /* UIImage+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0A1542B57C56E00D4C15C /* UIImage+Utils.swift */; };
@@ -276,6 +280,10 @@
 		5DD1B6CD2B5909BF00DEBD07 /* Constnats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constnats.swift; sourceTree = "<group>"; };
 		5DD1B6CF2B590B5300DEBD07 /* PreferencesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesService.swift; sourceTree = "<group>"; };
 		5DD1B6D12B5912C200DEBD07 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
+		5DEB7EC22B5A13ED001654FE /* EditTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTagViewController.swift; sourceTree = "<group>"; };
+		5DEB7EC42B5A1440001654FE /* EditTagTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTagTableViewCell.swift; sourceTree = "<group>"; };
+		5DEB7EC62B5A21C3001654FE /* EditTagViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTagViewModel.swift; sourceTree = "<group>"; };
+		5DEB7EC82B5A23CA001654FE /* EditTagSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTagSection.swift; sourceTree = "<group>"; };
 		5DF0A1502B56797800D4C15C /* AddTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTagViewController.swift; sourceTree = "<group>"; };
 		5DF0A1522B56798400D4C15C /* AddTagViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTagViewModel.swift; sourceTree = "<group>"; };
 		5DF0A1542B57C56E00D4C15C /* UIImage+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Utils.swift"; sourceTree = "<group>"; };
@@ -481,15 +489,11 @@
 		5D8F09D22B3E873500B7BE3E /* Register */ = {
 			isa = PBXGroup;
 			children = (
-				5D4978842B32F36500059120 /* RegisterViewController.swift */,
-				5D8F09CD2B3C242100B7BE3E /* RegisterViewModel.swift */,
 				5D8F09CF2B3E81AF00B7BE3E /* PhotoLibraryAuthorizationViewController.swift */,
 				5D8F09D42B3E8BFB00B7BE3E /* PhotoLibraryAuthorizationViewModel.swift */,
-				5DB686B32B50F8040027ABAB /* TagListViewController.swift */,
-				5DB687222B51333B0027ABAB /* TagListViewModel.swift */,
-				5DB6872B2B54EA810027ABAB /* TagCollectionViewCell.swift */,
-				5DF0A1502B56797800D4C15C /* AddTagViewController.swift */,
-				5DF0A1522B56798400D4C15C /* AddTagViewModel.swift */,
+				5D4978842B32F36500059120 /* RegisterViewController.swift */,
+				5D8F09CD2B3C242100B7BE3E /* RegisterViewModel.swift */,
+				5DEB7ECA2B5A2425001654FE /* Tag */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -561,6 +565,22 @@
 				5DD1B6CF2B590B5300DEBD07 /* PreferencesService.swift */,
 			);
 			path = Preferences;
+			sourceTree = "<group>";
+		};
+		5DEB7ECA2B5A2425001654FE /* Tag */ = {
+			isa = PBXGroup;
+			children = (
+				5DF0A1502B56797800D4C15C /* AddTagViewController.swift */,
+				5DF0A1522B56798400D4C15C /* AddTagViewModel.swift */,
+				5DEB7EC82B5A23CA001654FE /* EditTagSection.swift */,
+				5DEB7EC42B5A1440001654FE /* EditTagTableViewCell.swift */,
+				5DEB7EC22B5A13ED001654FE /* EditTagViewController.swift */,
+				5DEB7EC62B5A21C3001654FE /* EditTagViewModel.swift */,
+				5DB6872B2B54EA810027ABAB /* TagCollectionViewCell.swift */,
+				5DB686B32B50F8040027ABAB /* TagListViewController.swift */,
+				5DB687222B51333B0027ABAB /* TagListViewModel.swift */,
+			);
+			path = Tag;
 			sourceTree = "<group>";
 		};
 		A24CDD222B064F2F00A699E8 /* Resources */ = {
@@ -1171,6 +1191,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DEB7EC72B5A21C3001654FE /* EditTagViewModel.swift in Sources */,
 				5DB686B42B50F8040027ABAB /* TagListViewController.swift in Sources */,
 				A28402DB2B45952F007C0A0D /* CustomLabel.swift in Sources */,
 				ACD6D1032B5524670039E5AE /* Member.swift in Sources */,
@@ -1247,6 +1268,7 @@
 				5DF0A1552B57C56E00D4C15C /* UIImage+Utils.swift in Sources */,
 				5D8F09D72B43A97600B7BE3E /* UIImagePickerController+Rx.swift in Sources */,
 				5DD1B6D22B5912C200DEBD07 /* PostDetailViewController.swift in Sources */,
+				5DEB7EC52B5A1440001654FE /* EditTagTableViewCell.swift in Sources */,
 				5D751F7B2B4CD772003BAC2C /* TargetType.swift in Sources */,
 				5D54D3F12B19CCD40008A5D7 /* ViewAttributes.swift in Sources */,
 				5DD1B6CC2B59048F00DEBD07 /* FetchPost.swift in Sources */,
@@ -1256,6 +1278,7 @@
 				AC7FDD672B57AE0200E6F7FC /* Date.swift in Sources */,
 				A2C8868A2B497D14008E5437 /* PushNotificationButton.swift in Sources */,
 				A2DFB7F72B393873008B95AC /* SettingNotificationViewController.swift in Sources */,
+				5DEB7EC32B5A13ED001654FE /* EditTagViewController.swift in Sources */,
 				AC3A3BC02B049FB90081BF32 /* AppDelegate.swift in Sources */,
 				A2C8867A2B496ED1008E5437 /* TitleToggleView.swift in Sources */,
 				A2DFB7F22B3935E1008B95AC /* SettingMyAccountViewController.swift in Sources */,
@@ -1278,6 +1301,7 @@
 				A2DFB7DA2B37C37C008B95AC /* SettingType.swift in Sources */,
 				5D751F8A2B4D211B003BAC2C /* MemberTarget.swift in Sources */,
 				5DD1B6D02B590B5300DEBD07 /* PreferencesService.swift in Sources */,
+				5DEB7EC92B5A23CA001654FE /* EditTagSection.swift in Sources */,
 				5D72528A2B231CE300CF6688 /* UIColor+BeeHappy.swift in Sources */,
 				AC3A3BC22B049FB90081BF32 /* SceneDelegate.swift in Sources */,
 				5D4978872B32F36D00059120 /* ListViewController.swift in Sources */,

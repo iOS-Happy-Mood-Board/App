@@ -20,7 +20,14 @@ enum TagListItemType {
 
 final class TagListViewController: UIViewController {
     
-    private let editButton: UIBarButtonItem = .init(systemItem: .edit)
+    private let editButton: UIBarButtonItem = .init(title: "편집", style: .plain, target: nil, action: nil).then {
+        $0.tintColor = .gray500
+        $0.setTitleTextAttributes(
+            [.font: UIFont(name: "Pretendard-Medium", size: 16)]
+            , for: .init()
+        )
+    }
+    
     private let contentStackView = UIStackView().then {
         $0.axis = .vertical
         $0.alignment = .fill
@@ -106,9 +113,7 @@ extension TagListViewController: ViewAttributes {
         let output = viewModel.transform(input: input)
         output.navigateToEdit.asDriver(onErrorJustReturn: ())
             .drive(with: self) { owner, _ in
-                let viewController = UIViewController()
-                viewController.sheetPresentationController?.detents = [.medium()]
-                viewController.sheetPresentationController?.prefersGrabberVisible = true
+                let viewController = EditTagViewController()
                 owner.show(viewController, sender: nil)
             }
             .disposed(by: disposeBag)

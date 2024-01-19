@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.8.1)
+  - Differentiator (5.0.0)
   - Firebase/Analytics (10.20.0):
     - Firebase/Core
   - Firebase/Core (10.20.0):
@@ -117,6 +118,10 @@ PODS:
   - RxCocoa (6.6.0):
     - RxRelay (= 6.6.0)
     - RxSwift (= 6.6.0)
+  - RxDataSources (5.0.0):
+    - Differentiator (~> 5.0)
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
   - RxGesture (4.0.4):
     - RxCocoa (~> 6.0)
     - RxSwift (~> 6.0)
@@ -157,6 +162,7 @@ DEPENDENCIES:
   - JWTDecode
   - RxAlamofire
   - RxCocoa
+  - RxDataSources
   - RxGesture
   - RxKakaoSDKAuth
   - RxKakaoSDKCommon
@@ -172,6 +178,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Differentiator
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -189,6 +196,7 @@ SPEC REPOS:
     - PromisesObjC
     - RxAlamofire
     - RxCocoa
+    - RxDataSources
     - RxGesture
     - RxKakaoSDKAuth
     - RxKakaoSDKCommon
@@ -204,6 +212,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 3ca42e259043ee0dc5c0cdd76c4bc568b8e42af7
+  Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   Firebase: 10c8cb12fb7ad2ae0c09ffc86cd9c1ab392a0031
   FirebaseAnalytics: a2731bf3670747ce8f65368b118d18aa8e368246
   FirebaseCore: 28045c1560a2600d284b9c45a904fe322dc890b6
@@ -221,6 +230,7 @@ SPEC CHECKSUMS:
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   RxAlamofire: beb75a1c452d0de225651db4903f5d29d034a620
   RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
+  RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
   RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
   RxKakaoSDKAuth: b516c70a37074ad9b0f285e33f309d973f3c522c
   RxKakaoSDKCommon: 61fb2457dcd90f0d4d984896fc3333518734f262
@@ -234,6 +244,6 @@ SPEC CHECKSUMS:
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
   Toast-Swift: dd369e68ee529f542c65bd0d0c6c50cd743cf6f2
 
-PODFILE CHECKSUM: ef0a408621921c2bd0d682915ed0f9a8514404c7
+PODFILE CHECKSUM: 08af246d24b1caaf652913a9ab1857fbe0cf1e02
 
 COCOAPODS: 1.13.0
