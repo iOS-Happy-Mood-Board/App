@@ -70,6 +70,15 @@
 		A25747382B594AC70067F20D /* MyTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25747372B594AC70067F20D /* MyTabViewModel.swift */; };
 		A25747392B594AC70067F20D /* MyTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25747372B594AC70067F20D /* MyTabViewModel.swift */; };
 		A257473A2B594AC70067F20D /* MyTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25747372B594AC70067F20D /* MyTabViewModel.swift */; };
+		A26285192B5CF4D00016C4C6 /* FetchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26285182B5CF4D00016C4C6 /* FetchResponse.swift */; };
+		A262851A2B5CF4D00016C4C6 /* FetchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26285182B5CF4D00016C4C6 /* FetchResponse.swift */; };
+		A262851B2B5CF4D00016C4C6 /* FetchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26285182B5CF4D00016C4C6 /* FetchResponse.swift */; };
+		A262851D2B5D02120016C4C6 /* TagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A262851C2B5D02120016C4C6 /* TagButton.swift */; };
+		A262851E2B5D02120016C4C6 /* TagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A262851C2B5D02120016C4C6 /* TagButton.swift */; };
+		A262851F2B5D02120016C4C6 /* TagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A262851C2B5D02120016C4C6 /* TagButton.swift */; };
+		A26285222B5D5C520016C4C6 /* MyTabTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26285212B5D5C520016C4C6 /* MyTabTableViewCell.swift */; };
+		A26285232B5D5C520016C4C6 /* MyTabTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26285212B5D5C520016C4C6 /* MyTabTableViewCell.swift */; };
+		A26285242B5D5C520016C4C6 /* MyTabTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26285212B5D5C520016C4C6 /* MyTabTableViewCell.swift */; };
 		A28402D22B4589B0007C0A0D /* MyAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28402D12B4589B0007C0A0D /* MyAccount.swift */; };
 		A28402D32B4589B0007C0A0D /* MyAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28402D12B4589B0007C0A0D /* MyAccount.swift */; };
 		A28402D42B4589B0007C0A0D /* MyAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28402D12B4589B0007C0A0D /* MyAccount.swift */; };
@@ -288,6 +297,9 @@
 		7AD9B74EF4837EEE55C75F63 /* Pods_HappyMoodBoardTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyMoodBoardTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		928F15A5095CBB78C4957AD4 /* Pods-HappyMoodBoard-HappyMoodBoardUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyMoodBoard-HappyMoodBoardUITests.release.xcconfig"; path = "Target Support Files/Pods-HappyMoodBoard-HappyMoodBoardUITests/Pods-HappyMoodBoard-HappyMoodBoardUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A25747372B594AC70067F20D /* MyTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTabViewModel.swift; sourceTree = "<group>"; };
+		A26285182B5CF4D00016C4C6 /* FetchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchResponse.swift; sourceTree = "<group>"; };
+		A262851C2B5D02120016C4C6 /* TagButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagButton.swift; sourceTree = "<group>"; };
+		A26285212B5D5C520016C4C6 /* MyTabTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTabTableViewCell.swift; sourceTree = "<group>"; };
 		A28402D12B4589B0007C0A0D /* MyAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccount.swift; sourceTree = "<group>"; };
 		A28402D52B458AB3007C0A0D /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		A28402DA2B45952F007C0A0D /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
@@ -541,6 +553,7 @@
 				5DD1B6C72B59033400DEBD07 /* PostTarget.swift */,
 				5DD1B6C92B59036B00DEBD07 /* UpdatePost.swift */,
 				5DD1B6CB2B59048F00DEBD07 /* FetchPost.swift */,
+				A26285182B5CF4D00016C4C6 /* FetchResponse.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -579,6 +592,14 @@
 				5D49787F2B32F23300059120 /* Tab */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		A26285202B5D5C430016C4C6 /* UItableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				A26285212B5D5C520016C4C6 /* MyTabTableViewCell.swift */,
+			);
+			path = UItableViewCell;
 			sourceTree = "<group>";
 		};
 		A28402D92B459526007C0A0D /* UILabel */ = {
@@ -800,6 +821,7 @@
 				A2DFB7E32B392A71008B95AC /* VersionInfoButton.swift */,
 				A2D4CBC12B3D8F1C0066E89D /* SocialLoginButton.swift */,
 				A2C886892B497D14008E5437 /* PushNotificationButton.swift */,
+				A262851C2B5D02120016C4C6 /* TagButton.swift */,
 			);
 			path = UIButton;
 			sourceTree = "<group>";
@@ -830,6 +852,7 @@
 		AC9E33C92B3558A100B0D9AE /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				A26285202B5D5C430016C4C6 /* UItableViewCell */,
 				A2D0F9212B500B7F003BE282 /* UIViewController */,
 				AC185D0C2B47AD2E007304CE /* UIPresentationController */,
 				A28402D92B459526007C0A0D /* UILabel */,
@@ -1197,6 +1220,7 @@
 				5D751F8C2B4D21A6003BAC2C /* UpdateNickname.swift in Sources */,
 				5DB6866A2B4E2C2B0027ABAB /* SocialLogin.swift in Sources */,
 				5DD1B6CA2B59036B00DEBD07 /* UpdatePost.swift in Sources */,
+				A262851D2B5D02120016C4C6 /* TagButton.swift in Sources */,
 				A2D4CBBE2B3D8E0D0066E89D /* LoginType.swift in Sources */,
 				5D54D3F32B19CD4F0008A5D7 /* ViewModel.swift in Sources */,
 				A2DFB7DF2B383150008B95AC /* SettingIndexButton.swift in Sources */,
@@ -1218,6 +1242,7 @@
 				5D751F882B4D207D003BAC2C /* Consent.swift in Sources */,
 				A2DFB7E42B392A71008B95AC /* VersionInfoButton.swift in Sources */,
 				5D751F792B4CD757003BAC2C /* AuthInterceptor.swift in Sources */,
+				A26285222B5D5C520016C4C6 /* MyTabTableViewCell.swift in Sources */,
 				A2D4CBBA2B3D8C730066E89D /* LoginViewController.swift in Sources */,
 				5DD1B6CE2B5909BF00DEBD07 /* Constnats.swift in Sources */,
 				5D4978832B32F27300059120 /* HomeViewController.swift in Sources */,
@@ -1225,6 +1250,7 @@
 				5D4978852B32F36500059120 /* RegisterViewController.swift in Sources */,
 				A2B58B782B528E1D003FCFA9 /* TraceLog.swift in Sources */,
 				5D4977B32B327E4D00059120 /* UIViewController+backgroundColor.swift in Sources */,
+				A26285192B5CF4D00016C4C6 /* FetchResponse.swift in Sources */,
 				5D8F09D92B43F3E100B7BE3E /* Tag.swift in Sources */,
 				AC7FDD622B57656900E6F7FC /* UpdateNotification.swift in Sources */,
 				5DB687282B54BF3F0027ABAB /* TagTarget.swift in Sources */,
@@ -1291,6 +1317,7 @@
 				A2DFB7EA2B392E4B008B95AC /* Version.swift in Sources */,
 				A2DFB7F82B393873008B95AC /* SettingNotificationViewController.swift in Sources */,
 				A28402D32B4589B0007C0A0D /* MyAccount.swift in Sources */,
+				A262851A2B5CF4D00016C4C6 /* FetchResponse.swift in Sources */,
 				A2C886832B4977E1008E5437 /* TitleTimeView.swift in Sources */,
 				A2DFB7F32B3935E1008B95AC /* SettingMyAccountViewController.swift in Sources */,
 				A28402DC2B45952F007C0A0D /* CustomLabel.swift in Sources */,
@@ -1315,6 +1342,7 @@
 				A2C8868B2B497D14008E5437 /* PushNotificationButton.swift in Sources */,
 				A2D0F9242B500B8C003BE282 /* PopUpViewController.swift in Sources */,
 				AC9E33D22B35643000B0D9AE /* NavigtaionItemBack.swift in Sources */,
+				A262851E2B5D02120016C4C6 /* TagButton.swift in Sources */,
 				A2C8868F2B497D93008E5437 /* DayOfTheWeek.swift in Sources */,
 				A25747392B594AC70067F20D /* MyTabViewModel.swift in Sources */,
 				AC185D0F2B47AD58007304CE /* NotificationModalViewModel.swift in Sources */,
@@ -1329,6 +1357,7 @@
 				A2DFB7FD2B39B4F7008B95AC /* SettingWebViewController.swift in Sources */,
 				AC9E33D22B35643000B0D9AE /* NavigtaionItemBack.swift in Sources */,
 				AC9E33CD2B35614000B0D9AE /* NavigationTitle.swift in Sources */,
+				A26285232B5D5C520016C4C6 /* MyTabTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1344,6 +1373,7 @@
 				5D7252852B21BE8300CF6688 /* AgreeType.swift in Sources */,
 				A28402E12B459DBE007C0A0D /* SettingMyAccountViewModel.swift in Sources */,
 				A2D0F9252B500B8C003BE282 /* PopUpViewController.swift in Sources */,
+				A262851B2B5CF4D00016C4C6 /* FetchResponse.swift in Sources */,
 				A257473A2B594AC70067F20D /* MyTabViewModel.swift in Sources */,
 				A2DFB8022B39C4C1008B95AC /* UIViewController+alert.swift in Sources */,
 				A2C886802B49700F008E5437 /* SettingNotificationType.swift in Sources */,
@@ -1352,6 +1382,7 @@
 				AC185D0A2B4795E3007304CE /* NotificationModalViewController.swift in Sources */,
 				AC7B6B2C2B5907C400C32F0D /* TokenParsing.swift in Sources */,
 				A2DFB7F42B3935E1008B95AC /* SettingMyAccountViewController.swift in Sources */,
+				A26285242B5D5C520016C4C6 /* MyTabTableViewCell.swift in Sources */,
 				A2DFB7FE2B39B4F7008B95AC /* SettingWebViewController.swift in Sources */,
 				A28402E62B45A4A0007C0A0D /* ModifyNickNameViewController.swift in Sources */,
 				A28402D42B4589B0007C0A0D /* MyAccount.swift in Sources */,
@@ -1379,6 +1410,7 @@
 				A2DFB7F92B393873008B95AC /* SettingNotificationViewController.swift in Sources */,
 				A2D4CBC42B3D8F1C0066E89D /* SocialLoginButton.swift in Sources */,
 				A2B58B7A2B528E1D003FCFA9 /* TraceLog.swift in Sources */,
+				A262851F2B5D02120016C4C6 /* TagButton.swift in Sources */,
 				A2C886842B4977E1008E5437 /* TitleTimeView.swift in Sources */,
 				AC185D102B47AD58007304CE /* NotificationModalViewModel.swift in Sources */,
 				A28402D82B458AB3007C0A0D /* AccountView.swift in Sources */,

@@ -48,7 +48,7 @@ final class MyTabViewController: UIViewController {
     }
     
     private let tagStackView = UIStackView().then {
-        $0.layer.borderWidth = 1
+//        $0.layer.borderWidth = 1
 //        $0.backgroundColor = .green
         $0.axis = .horizontal
         $0.spacing = 8
@@ -56,14 +56,27 @@ final class MyTabViewController: UIViewController {
         $0.distribution = .fill
     }
     
-    private let stickyHeaderView = UIScrollView().then {
-        $0.backgroundColor = .systemRed
+    private let stickyScrollView = UIScrollView().then {
+        $0.backgroundColor = .primary100
         $0.isHidden = true
     }
     
-    private let tableView = UITableView().then {
+    private let stickyHeaderTagStackView = UIStackView().then {
+//        $0.layer.borderWidth = 1
+//        $0.backgroundColor = .green
+        $0.axis = .horizontal
+        $0.spacing = 8
+        $0.alignment = .center
+        $0.distribution = .fill
+    }
+    
+    private lazy var tableView = UITableView().then {
         $0.layer.borderWidth = 1
         $0.backgroundColor = .systemCyan
+        $0.register(MyTabTableViewCell.self, forCellReuseIdentifier: "MyTabTableViewCell")
+        // 셀의 높이 자동 조절
+        $0.rowHeight = UITableView.automaticDimension
+        $0.estimatedRowHeight = 100.0 // 셀의 기본 예상 높이
     }
     
     let disposeBag : DisposeBag = .init()
@@ -100,7 +113,7 @@ extension MyTabViewController: ViewAttributes {
                 ]
             )
         }
-//        titleLabel.sizeToFit()
+        //        titleLabel.sizeToFit()
         
         navigationItem.leftBarButtonItems = [spacing, .init(customView: titleLabel)]
         navigationItem.rightBarButtonItems = [settingButton, spacing]
@@ -109,7 +122,7 @@ extension MyTabViewController: ViewAttributes {
     func setupSubviews() {
         [
             scrollView,
-            stickyHeaderView
+            stickyScrollView
         ].forEach { self.view.addSubview($0) }
         
         [
@@ -123,6 +136,10 @@ extension MyTabViewController: ViewAttributes {
         ].forEach { self.contentView.addSubview($0) }
         
         [
+            stickyHeaderTagStackView
+        ].forEach { self.stickyScrollView.addSubview($0) }
+        
+        [
             tagStackView
         ].forEach { self.tagScrollView.addSubview($0) }
     }
@@ -133,9 +150,14 @@ extension MyTabViewController: ViewAttributes {
             $0.bottom.equalToSuperview()
         }
         
-        stickyHeaderView.snp.makeConstraints {
+        stickyScrollView.snp.makeConstraints {
             $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(46)
+        }
+        
+        stickyHeaderTagStackView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+            $0.centerY.equalToSuperview()
         }
         
         contentView.snp.makeConstraints {
@@ -168,31 +190,10 @@ extension MyTabViewController: ViewAttributes {
     }
     
     func setupBindings() {
-        // 스택 뷰에 추가할 뷰들 생성
-        for i in 0 ..< 6 {
-            let subview = UIButton()
-            subview.setTitle("전체", for: .normal)
-            subview.setTitleColor(.black, for: .normal)
-            subview.titleLabel?.font = UIFont(name: "Pretendard-Medium", size: 14)
-            subview.backgroundColor = .primary100
-            subview.layer.cornerRadius = 13
-            subview.layer.borderWidth = 1
-            subview.layer.borderColor = UIColor.primary600?.cgColor
-            tagStackView.addArrangedSubview(subview)
-
-            // Auto Layout 설정 (SnapKit 사용)
-            subview.snp.makeConstraints {
-                $0.width.equalTo(73)
-                $0.height.equalTo(30)
-//                $0.centerY.equalTo(tagStackView)
-                
-                if i == 0 {
-                    $0.leading.equalTo(tagStackView.snp.leading).offset(24)
-                } else if i == 5 {
-                    $0.trailing.equalTo(tagStackView.snp.trailing).offset(-24)
-                }
-            }
-        }
+        // 테이블 뷰 델리게이트 및 데이터 소스 설정
+        tableView.rx.setDelegate(self)
+            .disposed(by: disposeBag)
+        
         
         let input = MyTabViewModel.Input (
             viewWillAppear: rx.viewWillAppear.asObservable(),
@@ -200,7 +201,7 @@ extension MyTabViewController: ViewAttributes {
             scrollViewDidScroll: scrollView.rx.didScroll.asObservable()
         )
         let output = viewModel.transform(input: input)
-
+        
         output.username.asDriver(onErrorJustReturn: "")
             .debug("사용자명")
             .drive(with: self) { owner, username in
@@ -231,8 +232,81 @@ extension MyTabViewController: ViewAttributes {
                 //            traceLog(self?.scrollView.contentOffset.y)
                 //            traceLog(self?.tagView.frame.minY)
                 let shouldShowSticky = (self?.scrollView.contentOffset.y)! >= (self?.tagScrollView.frame.minY)!
-                self?.stickyHeaderView.isHidden = !shouldShowSticky
+                self?.stickyScrollView.isHidden = !shouldShowSticky
             }
             .disposed(by: disposeBag)
+        
+        // MARK: - TAG set, stickyView와 tagView
+        output.tag.subscribe(onNext: { [weak self] tag in
+            
+            // MARK: - StickyView
+            for (index, element) in tag.enumerated() {
+                let tagButton = TagButton(title: element.0, bgColor: .primary600/*element.1*/)
+                self?.stickyHeaderTagStackView.addArrangedSubview(tagButton)
+                
+                tagButton.snp.makeConstraints {
+//                    $0.width.equalTo(73)
+                    $0.height.equalTo(30)
+                    
+                    if index == 0 {
+                        $0.leading.equalTo((self?.stickyHeaderTagStackView.snp.leading)!).offset(24)
+                    }
+                    // TODO: trailing margin도 줘야하는지 ?
+//                        else if i == 5 {
+//                            $0.trailing.equalTo(tagStackView.snp.trailing).offset(-24)
+//                        }
+                }
+            }
+            
+            // MARK: - TagView
+            for (index, element) in tag.enumerated() {
+                let tagButton = TagButton(title: element.0, bgColor: .primary600/*element.1*/)
+                self?.tagStackView.addArrangedSubview(tagButton)
+                
+                tagButton.snp.makeConstraints {
+//                    $0.width.equalTo(73)
+                    $0.height.equalTo(30)
+                    
+                    if index == 0 {
+                        $0.leading.equalTo((self?.tagStackView.snp.leading)!).offset(24)
+                    }
+                    // TODO: trailing margin도 줘야하는지 ?
+//                        else if i == 5 {
+//                            $0.trailing.equalTo(tagStackView.snp.trailing).offset(-24)
+//                        }
+                }
+            }
+        })
+        .disposed(by: disposeBag)
+        
+        output.happyItem
+            .bind(to: tableView.rx.items(cellIdentifier: "MyTabTableViewCell", cellType: MyTabTableViewCell.self)) { (row, element, cell) in
+                // TODO: TEST 하드코딩
+                if row == 1 {
+                    cell.bindData(tuple: ("2024-01-21T16:08:42.262046", "adwqdweafawiuehfpuaiwehfaiuowlehfuaiowleafweljfhauiwefhawuieljkhawfepuhjkldsweioadnsfaweoij;kldsnwfeaojnfeweaoij;lnfewua9joi;lwaefu;ijlsfweaiojs;dlnfewu9[aji;lnkwefa9uji;lkfewa9u[ji;laefwu9[ji;ofwea9u0[ji;lkhfnaweiulfhaweiou;", "/path2"))
+                } else {
+                    cell.bindData(tuple: element)
+                }
+//                cell.bindData(tuple: element)
+            }
+            .disposed(by: disposeBag)
+        
+        // 셀 선택 이벤트 처리
+        tableView.rx.modelSelected(String.self)
+            .subscribe(onNext: { [weak self] item in
+//                print("선택된 아이템: \(item)")
+                // 여기에서 선택된 아이템에 대한 추가 작업 수행
+            })
+            .disposed(by: disposeBag)
+    }
+}
+
+extension MyTabViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 30 // 셀 간격 크기 조절
     }
 }
