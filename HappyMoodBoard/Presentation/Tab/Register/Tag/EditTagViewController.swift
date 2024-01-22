@@ -39,6 +39,9 @@ final class EditTagViewController: UIViewController {
     private let viewModel: EditTagViewModel = .init()
     private let disposeBag: DisposeBag = .init()
     
+    private var items: BehaviorSubject<[EditTagSection]> = .init(value: [.init(header: "", items: [])])
+    private var dataSource: RxTableViewSectionedAnimatedDataSource<EditTagSection>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,6 +52,52 @@ final class EditTagViewController: UIViewController {
         setupBindings()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewWillAppear()
+    }
+    
+}
+
+extension EditTagViewController {
+    
+    func viewWillAppear() {
+        ApiService()
+            .request(type: [Tag].self, target: TagTarget.fetch())
+            .debug()
+            .compactMap { [EditTagSection(header: "", items: $0 ?? [])] }
+            .subscribe { [weak self] sections in
+                self?.items.on(sections)
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    func itemDeleted(indexPath: IndexPath) {
+        guard var sections = try? items.value() else { return }
+        var currentSection = sections[indexPath.section]
+        let id = currentSection.items[indexPath.row].id
+        ApiService()
+            .request(type: Empty.self, target: TagTarget.delete(id))
+            .debug()
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { [weak self] _ in
+                self?.tableView.beginUpdates()
+                self?.items.onNext(sections)
+                self?.tableView.endUpdates()
+//                currentSection.items.remove(at: indexPath.row)
+//                sections[indexPath.section] = currentSection
+//                self?.users.onNext(sections)
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    func itemAccessoryButtonTapped(indexPath: IndexPath) {
+        guard var sections = try? items.value() else { return }
+        var currentSection = sections[indexPath.section]
+        let item = currentSection.items[indexPath.row]
+        print(item)
+    }
 }
 
 extension EditTagViewController: ViewAttributes {
@@ -78,9 +127,12 @@ extension EditTagViewController: ViewAttributes {
     }
     
     func setupBindings() {
-        let dataSource = RxTableViewSectionedAnimatedDataSource<EditTagSection>(
-            configureCell: { ds, tv, _, item in
-                guard let cell = tv.dequeueReusableCell(
+        tableView.rx.setDelegate(self)
+            .disposed(by: disposeBag)
+        
+        dataSource = RxTableViewSectionedAnimatedDataSource<EditTagSection>(
+            configureCell: { dataSource, tableView, indexPath, item in
+                guard let cell = tableView.dequeueReusableCell(
                     withIdentifier: EditTagTableViewCell.reuseIdentifier
                 ) as? EditTagTableViewCell else {
                     return .init()
@@ -88,21 +140,47 @@ extension EditTagViewController: ViewAttributes {
                 cell.nameLabel.text = item.tagName
                 return cell
             },
-            titleForHeaderInSection: { ds, index in
-                ds.sectionModels[index].header
-            }
+            canEditRowAtIndexPath: { _, _ in return true }
         )
-        let input = EditTagViewModel.Input(
-            viewWillAppear: rx.viewWillAppear.asObservable(),
-            completeButtonTapped: completeButton.rx.tap.asObservable()
-        )
-        let output = viewModel.transform(input: input)
-        output.items
+        
+        items
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
-        tableView.rx.setDelegate(self)
+        let itemDeleted = tableView.rx.itemDeleted
+            .share()
+        
+        itemDeleted
+            .map { Optional($0) }
+            .asDriver(onErrorJustReturn: nil)
+            .filter { $0 != nil }
+            .map { $0! } // asDriverSkippingErrors
+            .drive(with: self) { owner, indexPath in
+                owner.itemDeleted(indexPath: indexPath)
+            }
             .disposed(by: disposeBag)
+        
+        let itemAccessoryButtonTapped = tableView.rx.itemAccessoryButtonTapped
+            .share()
+        
+        itemAccessoryButtonTapped
+            .map { Optional($0) }
+            .asDriver(onErrorJustReturn: nil)
+            .filter { $0 != nil }
+            .map { $0! }
+            .drive(with: self) { owner, indexPath in
+                owner.itemAccessoryButtonTapped(indexPath: indexPath)
+            }
+            .disposed(by: disposeBag)
+        
+//        Observable.merge(
+//            rx.viewWillAppear.map { _ in }.asObservable(),
+//            itemDeleted.map { _ in }
+//        )
+//            .subscribe(onNext: { [weak self] _ in
+//                self?.viewWillAppear()
+//            })
+//            .disposed(by: disposeBag)
     }
     
 }

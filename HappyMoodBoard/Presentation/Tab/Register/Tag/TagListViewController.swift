@@ -34,6 +34,7 @@ final class TagListViewController: UIViewController {
         $0.distribution = .fill
         $0.spacing = 0
     }
+    
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -53,6 +54,7 @@ final class TagListViewController: UIViewController {
         collectionView.isScrollEnabled = false
         return collectionView
     }()
+    
     private let closeButton: UIButton = .init(type: .system).then {
         $0.setTitle("닫기", for: .normal)
         $0.setTitleColor(.gray900, for: .normal)

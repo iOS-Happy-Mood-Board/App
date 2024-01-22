@@ -10,27 +10,21 @@ import Foundation
 import RxSwift
 
 final class EditTagViewModel: ViewModel {
+    func transform(input: Input) -> Output {
+        .init()
+    }
     
     struct Input {
-        let viewWillAppear: Observable<Void>
-        let completeButtonTapped: Observable<Void>
+        //        let viewWillAppear: Observable<Void>
+        //        let completeButtonTapped: Observable<Void>
+        //        let itemDeleted: Observable<IndexPath>
+        //        let itemAccessoryButtonTapped: Observable<IndexPath>
     }
     
     struct Output {
-        let items: Observable<[EditTagSection]>
+        //        let items: Observable<[EditTagSection]>
     }
     
-    func transform(input: Input) -> Output {
-        let items = input.viewWillAppear
-            .flatMapLatest {
-                ApiService()
-                    .request(type: [Tag].self, target: TagTarget.fetch())
-            }
-            .compactMap { [EditTagSection(header: "", items: $0 ?? [])] }
-        
-        return .init(
-            items: items
-        )
-    }
+   
     
 }

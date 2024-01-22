@@ -93,6 +93,7 @@ final class RegisterViewController: UIViewController {
     private let textView: UITextView = .init().then {
         $0.text = Constants.textViewPlaceholder
         $0.textColor = Constants.textViewPlaceholderColor
+        $0.font = UIFont(name: "Pretendard-Regular", size: 16)
         $0.backgroundColor = .clear
         $0.layer.cornerRadius = 16
         $0.layer.borderWidth = 1
@@ -248,11 +249,10 @@ extension RegisterViewController: ViewAttributes {
             imageSelected: imagePicker.rx.didFinishPickingMediaWithInfo.asObservable()
         )
         let output = viewModel.transform(input: input)
-        output.canRegister
-            .withUnretained(self)
-            .subscribe(onNext: { owner, isEnabled in
+        output.canRegister.asDriver(onErrorJustReturn: false)
+            .drive(with: self) { owner, isEnabled in
                 owner.registerButton.image = isEnabled ? Constants.normalImage : Constants.disabledImage
-            })
+            }
             .disposed(by: disposeBag)
                 
         output.showNavigateToBackAlert.asDriver(onErrorJustReturn: false)
@@ -265,11 +265,10 @@ extension RegisterViewController: ViewAttributes {
             }
             .disposed(by: disposeBag)
         
-        output.showImagePicker
-            .withUnretained(self)
-            .subscribe(onNext: { owner, _ in
+        output.showImagePicker.asDriver(onErrorJustReturn: ())
+            .drive(with: self) { owner, _ in
                 owner.requestPhotoLibraryAuthorization()
-            })
+            }
             .disposed(by: disposeBag)
         
         output.showTagListViewController.asDriver(onErrorJustReturn: ())
@@ -278,21 +277,18 @@ extension RegisterViewController: ViewAttributes {
             }
             .disposed(by: disposeBag)
         
-        output.image
-            .withUnretained(self)
-            .subscribe(onNext: { onwer, image in
+        output.image.asDriver(onErrorJustReturn: nil)
+            .drive(with: self) { onwer, image in
                 onwer.imageView.image = image
                 onwer.imageView.isHidden = (image == nil)
                 onwer.frameImageView.isHidden = (image == nil)
                 onwer.addImageButton.isEnabled = (image == nil)
                 onwer.imagePicker.dismiss(animated: true)
-            })
+            }
             .disposed(by: disposeBag)
         
-        output.tag
-            .withUnretained(self)
-            .debug("태그")
-            .subscribe { owner, tag in
+        output.tag.asDriver(onErrorJustReturn: nil)
+            .drive(with: self) { owner, tag in
                 guard let tag = tag else {
                     owner.tagButton.isHidden = true
                     return
@@ -310,8 +306,7 @@ extension RegisterViewController: ViewAttributes {
         
         output.navigateToDetail.asDriver(onErrorJustReturn: 0) // TODO: error 처리 어떻게할지에 대해
             .drive(with: self) { owner, postId in
-                let viewController = PostDetailViewController()
-                viewController.textLabel.text = "\(postId)"
+                let viewController = PostDetailViewController(viewModel: .init(postId: postId))
                 owner.navigationController?.pushViewController(viewController, animated: true)
             }
             .disposed(by: disposeBag)

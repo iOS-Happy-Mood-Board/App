@@ -29,6 +29,7 @@ target 'HappyMoodBoard' do
   # Firebase
   pod 'Firebase/Messaging'
   pod 'Firebase/Analytics'
+  pod 'Firebase/Storage'
   
   # Kakao
   pod 'RxKakaoSDKCommon'
