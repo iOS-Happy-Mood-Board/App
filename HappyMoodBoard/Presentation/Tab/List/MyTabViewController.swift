@@ -28,7 +28,7 @@ final class MyTabViewController: UIViewController {
     
     private let contentView = UIView()
     
-    static let kHeaderLabelText = "님께 필요한\n행복을 꺼내 먹어요."
+    static let kHeaderLabelText = "님의 꿀단지에는\n어떤 행복이 담겨있나요?"
     
     private let headerLabel: UILabel = .init().then {
         $0.textColor = .gray900
