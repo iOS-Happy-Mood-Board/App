@@ -220,7 +220,7 @@ extension SettingNotificationViewController {
         }
         .disposed(by: disposeBag)
         
-        // MARK: - 마케팅 동의 알림
+        // MARK: - 이벤트·혜택 알림 받기
         Observable.merge(output.initMarketingPush, output.responseMarketingPush).asDriver(onErrorJustReturn: false)
             .drive(marketingPushOnOffView.togglePublishSubject)
             .disposed(by: disposeBag)

@@ -99,7 +99,7 @@ final class SettingNotificationViewModel: ViewModel {
                 return dateString.take(1)
             }
         
-        // MARK: - 마케팅 동의 알림
+        // MARK: - 이벤트·혜택 알림 받기
         marketingActive = notificationSettings
             .filter {
                 $0 != nil
@@ -180,7 +180,7 @@ final class SettingNotificationViewModel: ViewModel {
             $0?.time
         }
         
-        // MARK: - /api/notification/v1/member/marketing, 마케팅 알림 설정 변경
+        // MARK: - /api/notification/v1/member/marketing, 이벤트·혜택 알림 설정 변경
         let responseMarketingPush = input.marketingPushEvent
             .map {
                 NotificationTarget.marketing(
