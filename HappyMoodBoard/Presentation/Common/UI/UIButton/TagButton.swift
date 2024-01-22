@@ -22,7 +22,7 @@ class TagButton: UIButton {
         setTitle(title, for: .normal)
         setTitleColor(.black, for: .normal)
         titleLabel?.font = UIFont(name: "Pretendard-Medium", size: 14)
-        backgroundColor = bgColor
+        backgroundColor = .white
         layer.cornerRadius = 13
         layer.borderWidth = 1
         layer.borderColor = bgColor?.cgColor

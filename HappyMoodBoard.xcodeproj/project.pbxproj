@@ -197,6 +197,9 @@
 		AC7FDD672B57AE0200E6F7FC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7FDD662B57AE0200E6F7FC /* Date.swift */; };
 		AC7FDD682B57AE0200E6F7FC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7FDD662B57AE0200E6F7FC /* Date.swift */; };
 		AC7FDD692B57AE0200E6F7FC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7FDD662B57AE0200E6F7FC /* Date.swift */; };
+		AC854BA62B5DFCA0004A607E /* CustomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC854BA52B5DFCA0004A607E /* CustomTableView.swift */; };
+		AC854BA72B5DFCA0004A607E /* CustomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC854BA52B5DFCA0004A607E /* CustomTableView.swift */; };
+		AC854BA82B5DFCA0004A607E /* CustomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC854BA52B5DFCA0004A607E /* CustomTableView.swift */; };
 		AC9E33BF2B35486E00B0D9AE /* SettingIndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9E33BE2B35486E00B0D9AE /* SettingIndexViewController.swift */; };
 		AC9E33C02B35486E00B0D9AE /* SettingIndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9E33BE2B35486E00B0D9AE /* SettingIndexViewController.swift */; };
 		AC9E33C12B35486E00B0D9AE /* SettingIndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9E33BE2B35486E00B0D9AE /* SettingIndexViewController.swift */; };
@@ -351,6 +354,7 @@
 		AC7B6B292B5907C400C32F0D /* TokenParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenParsing.swift; sourceTree = "<group>"; };
 		AC7FDD612B57656900E6F7FC /* UpdateNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNotification.swift; sourceTree = "<group>"; };
 		AC7FDD662B57AE0200E6F7FC /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		AC854BA52B5DFCA0004A607E /* CustomTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableView.swift; sourceTree = "<group>"; };
 		AC9E33BE2B35486E00B0D9AE /* SettingIndexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingIndexViewController.swift; sourceTree = "<group>"; };
 		AC9E33CB2B35614000B0D9AE /* NavigationTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTitle.swift; sourceTree = "<group>"; };
 		AC9E33D02B35643000B0D9AE /* NavigtaionItemBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigtaionItemBack.swift; sourceTree = "<group>"; };
@@ -594,12 +598,12 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
-		A26285202B5D5C430016C4C6 /* UItableViewCell */ = {
+		A26285202B5D5C430016C4C6 /* UITableViewCell */ = {
 			isa = PBXGroup;
 			children = (
 				A26285212B5D5C520016C4C6 /* MyTabTableViewCell.swift */,
 			);
-			path = UItableViewCell;
+			path = UITableViewCell;
 			sourceTree = "<group>";
 		};
 		A28402D92B459526007C0A0D /* UILabel */ = {
@@ -800,6 +804,14 @@
 			path = Date;
 			sourceTree = "<group>";
 		};
+		AC854BA42B5DFC93004A607E /* UITableView */ = {
+			isa = PBXGroup;
+			children = (
+				AC854BA52B5DFCA0004A607E /* CustomTableView.swift */,
+			);
+			path = UITableView;
+			sourceTree = "<group>";
+		};
 		AC9E33BD2B35483700B0D9AE /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -852,7 +864,8 @@
 		AC9E33C92B3558A100B0D9AE /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				A26285202B5D5C430016C4C6 /* UItableViewCell */,
+				AC854BA42B5DFC93004A607E /* UITableView */,
+				A26285202B5D5C430016C4C6 /* UITableViewCell */,
 				A2D0F9212B500B7F003BE282 /* UIViewController */,
 				AC185D0C2B47AD2E007304CE /* UIPresentationController */,
 				A28402D92B459526007C0A0D /* UILabel */,
@@ -1287,6 +1300,7 @@
 				5D751F852B4D0A43003BAC2C /* AuthTarget.swift in Sources */,
 				5D8F09D02B3E81AF00B7BE3E /* PhotoLibraryAuthorizationViewController.swift in Sources */,
 				A2DFB7F22B3935E1008B95AC /* SettingMyAccountViewController.swift in Sources */,
+				AC854BA62B5DFCA0004A607E /* CustomTableView.swift in Sources */,
 				5D751F6D2B4CC93D003BAC2C /* Logout.swift in Sources */,
 				A2DFB7FC2B39B4F7008B95AC /* SettingWebViewController.swift in Sources */,
 				5D751F682B4CC8B4003BAC2C /* ApiService.swift in Sources */,
@@ -1332,6 +1346,7 @@
 				A2C8867B2B496ED1008E5437 /* TitleToggleView.swift in Sources */,
 				A2DFB8012B39C4C1008B95AC /* UIViewController+alert.swift in Sources */,
 				AC7FDD632B57656900E6F7FC /* UpdateNotification.swift in Sources */,
+				AC854BA72B5DFCA0004A607E /* CustomTableView.swift in Sources */,
 				A28402E52B45A4A0007C0A0D /* ModifyNickNameViewController.swift in Sources */,
 				A28402D72B458AB3007C0A0D /* AccountView.swift in Sources */,
 				A2D4CBBF2B3D8E0D0066E89D /* LoginType.swift in Sources */,
@@ -1415,6 +1430,7 @@
 				AC185D102B47AD58007304CE /* NotificationModalViewModel.swift in Sources */,
 				A28402D82B458AB3007C0A0D /* AccountView.swift in Sources */,
 				A2D4CBC82B3D9A200066E89D /* LoginViewModel.swift in Sources */,
+				AC854BA82B5DFCA0004A607E /* CustomTableView.swift in Sources */,
 				A2C886902B497D93008E5437 /* DayOfTheWeek.swift in Sources */,
 				A2C886882B497C70008E5437 /* TitleDayOfWeekView.swift in Sources */,
 				AC185D022B478BFF007304CE /* SettingNotificationViewModel.swift in Sources */,

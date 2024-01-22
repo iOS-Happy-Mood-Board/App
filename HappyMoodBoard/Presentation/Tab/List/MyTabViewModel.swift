@@ -21,13 +21,12 @@ final class MyTabViewModel: ViewModel {
         let username: Observable<String>
         let scrollViewDidScroll: Observable<Void>
         let tag: Observable<[(String, Int)]>
-        let happyItem: Observable<[(String, String, String)]>
+        let happyItem: Observable<[Post]>
     }
     
     func transform(input: Input) -> Output {
         let post: Observable<[Post]>
         let tag: Observable<[(String, Int)]>
-        let happyItem: Observable<[(String, String, String)]>
         
         let username = input.viewWillAppear
             .flatMapLatest {
@@ -52,21 +51,12 @@ final class MyTabViewModel: ViewModel {
             .compactMap {
                 $0
             }
-            .do(onNext: {
-                dump($0)
-            })
         
         tag = post.map {
-            $0.compactMap {
+            [("전체", 0)] + $0.compactMap {
                 $0.postTag.map {
                     ($0.tagName, $0.tagColorId)
                 }
-            }
-        }
-        
-        happyItem = post.map {
-            $0.map {
-                ($0.createdAt, $0.comments, $0.imagePath)
             }
         }
         
@@ -75,7 +65,7 @@ final class MyTabViewModel: ViewModel {
             username: username,
             scrollViewDidScroll: input.scrollViewDidScroll,
             tag: tag,
-            happyItem: happyItem
+            happyItem: post
         )
     }
 }

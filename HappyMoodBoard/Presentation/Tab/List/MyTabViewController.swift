@@ -38,7 +38,6 @@ final class MyTabViewController: UIViewController {
     }
     
     private let tagScrollView = UIScrollView().then {
-//        $0.backgroundColor = .systemRed
         $0.showsVerticalScrollIndicator = false
         $0.showsHorizontalScrollIndicator = false // 수평 스크롤 인디케이터 표시 여부
         $0.isDirectionalLockEnabled = true // 수평 스크롤 고정 여부 (수직 스크롤을 막고 수평 스크롤만 허용)
@@ -48,8 +47,6 @@ final class MyTabViewController: UIViewController {
     }
     
     private let tagStackView = UIStackView().then {
-//        $0.layer.borderWidth = 1
-//        $0.backgroundColor = .green
         $0.axis = .horizontal
         $0.spacing = 8
         $0.alignment = .center
@@ -62,21 +59,21 @@ final class MyTabViewController: UIViewController {
     }
     
     private let stickyHeaderTagStackView = UIStackView().then {
-//        $0.layer.borderWidth = 1
-//        $0.backgroundColor = .green
         $0.axis = .horizontal
         $0.spacing = 8
         $0.alignment = .center
         $0.distribution = .fill
     }
     
-    private lazy var tableView = UITableView().then {
-        $0.layer.borderWidth = 1
-        $0.backgroundColor = .systemCyan
+    private lazy var tableView = CustomTableView().then {
+        $0.isScrollEnabled = false
+        $0.isUserInteractionEnabled = true
+        $0.backgroundColor = .primary100
         $0.register(MyTabTableViewCell.self, forCellReuseIdentifier: "MyTabTableViewCell")
         // 셀의 높이 자동 조절
         $0.rowHeight = UITableView.automaticDimension
         $0.estimatedRowHeight = 100.0 // 셀의 기본 예상 높이
+        $0.separatorStyle = .none
     }
     
     let disposeBag : DisposeBag = .init()
@@ -185,7 +182,6 @@ extension MyTabViewController: ViewAttributes {
             $0.top.equalTo(tagScrollView.snp.bottom).offset(16)
             $0.leading.trailing.equalToSuperview().inset(24)
             $0.bottom.equalToSuperview()
-            $0.height.equalTo(1900)
         }
     }
     
@@ -245,7 +241,6 @@ extension MyTabViewController: ViewAttributes {
                 self?.stickyHeaderTagStackView.addArrangedSubview(tagButton)
                 
                 tagButton.snp.makeConstraints {
-//                    $0.width.equalTo(73)
                     $0.height.equalTo(30)
                     
                     if index == 0 {
@@ -264,7 +259,6 @@ extension MyTabViewController: ViewAttributes {
                 self?.tagStackView.addArrangedSubview(tagButton)
                 
                 tagButton.snp.makeConstraints {
-//                    $0.width.equalTo(73)
                     $0.height.equalTo(30)
                     
                     if index == 0 {
@@ -281,22 +275,23 @@ extension MyTabViewController: ViewAttributes {
         
         output.happyItem
             .bind(to: tableView.rx.items(cellIdentifier: "MyTabTableViewCell", cellType: MyTabTableViewCell.self)) { (row, element, cell) in
-                // TODO: TEST 하드코딩
-                if row == 1 {
-                    cell.bindData(tuple: ("2024-01-21T16:08:42.262046", "adwqdweafawiuehfpuaiwehfaiuowlehfuaiowleafweljfhauiwefhawuieljkhawfepuhjkldsweioadnsfaweoij;kldsnwfeaojnfeweaoij;lnfewua9joi;lwaefu;ijlsfweaiojs;dlnfewu9[aji;lnkwefa9uji;lkfewa9u[ji;laefwu9[ji;ofwea9u0[ji;lkhfnaweiulfhaweiou;", "/path2"))
-                } else {
-                    cell.bindData(tuple: element)
-                }
-//                cell.bindData(tuple: element)
+                cell.bindData(post: element)
             }
             .disposed(by: disposeBag)
         
-        // 셀 선택 이벤트 처리
-        tableView.rx.modelSelected(String.self)
-            .subscribe(onNext: { [weak self] item in
-//                print("선택된 아이템: \(item)")
-                // 여기에서 선택된 아이템에 대한 추가 작업 수행
-            })
+        tableView.rx.itemSelected
+            .withLatestFrom(output.happyItem) { indexPath, happyItem in
+                return (indexPath, happyItem)
+            }
+            .map { (indexPath, happyItem) in
+                return (indexPath, happyItem[indexPath.row].id)
+            }
+            .subscribe { [weak self] (indexPath, postId) in
+                traceLog(postId)
+                // TODO: 게시글로 이동 merge할때 수정
+//                let viewController = PostDetailViewController(viewModel: .init(postId: postId))
+//                self.show(viewController, sender: nil)
+            }
             .disposed(by: disposeBag)
     }
 }
@@ -304,9 +299,5 @@ extension MyTabViewController: ViewAttributes {
 extension MyTabViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 30 // 셀 간격 크기 조절
     }
 }
