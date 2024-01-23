@@ -16,7 +16,7 @@ import RxViewController
 
 final class HomeViewController: UIViewController {
     
-    static let kHeaderLabelText = " 님,\n오늘의 행복 아이템을 남겨주세요."
+    static let kHeaderLabelText = "님,\n행복 아이템을 꿀단지에 담아보세요."
     
     private let headerLabel: UILabel = .init().then {
 //        $0.text = " 님,\n오늘의 행복 아이템을 남겨주세요."
@@ -64,7 +64,6 @@ extension HomeViewController: ViewAttributes {
                 ]
             )
         }
-//        titleLabel.sizeToFit()
         
         navigationItem.leftBarButtonItems = [spacing, .init(customView: titleLabel)]
 //        navigationItem.rightBarButtonItems = [settingButton, spacing]

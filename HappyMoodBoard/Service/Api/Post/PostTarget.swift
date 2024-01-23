@@ -1,22 +1,22 @@
 //
-//  TagTarget.swift
+//  PostTarget.swift
 //  HappyMoodBoard
 //
-//  Created by 홍다희 on 2024/01/09.
+//  Created by 홍다희 on 2024/01/18.
 //
 
 import Foundation
 
 import Alamofire
 
-enum TagTarget {
-    case create(UpdatePostTagParameters)
-    case update(UpdatePostTagParameters)
-    case fetch(Int? = nil)
+enum PostTarget {
+    case create(UpdatePostParameters)
+    case update(UpdatePostParameters)
+    case fetch(FetchPostParamaters)
     case delete(Int)
 }
 
-extension TagTarget: TargetType {
+extension PostTarget: TargetType {
     var baseURL: String { environment.rawValue }
     
     var method: HTTPMethod {
@@ -28,12 +28,12 @@ extension TagTarget: TargetType {
         case .fetch:
             return .get
         case .delete:
-            return .post
+            return .delete
         }
     }
     
     var path: String {
-        return "/api/v1/post/tag"
+        return "/api/v1/post"
     }
     
     var parameters: RequestParameters? {
@@ -43,13 +43,10 @@ extension TagTarget: TargetType {
         case .update(let parameters):
             return .body(parameters)
         case .fetch(let parameters):
-            guard let parameters = parameters else { return .none }
-            return .query([
-                "tagId": parameters
-            ])
+            return .query(parameters)
         case .delete(let parameters):
             return .query([
-                "tagId": parameters
+                "postId": parameters
             ])
         }
     }
