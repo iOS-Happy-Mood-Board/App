@@ -23,6 +23,7 @@ final class ApiService {
                     do {
                         let result = try JSONDecoder().decode(BaseResponse<T>.self, from: data)
 //                        traceLog(String(data: data, encoding: .utf8))
+
                         return result.responseData
                     } catch {
                         // TODO: 성공시 디코딩 에러 처리
