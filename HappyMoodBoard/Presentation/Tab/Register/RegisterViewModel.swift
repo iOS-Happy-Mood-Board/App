@@ -31,6 +31,7 @@ final class RegisterViewModel: ViewModel {
         let showNavigateToBackAlert: Observable<Bool>
         let showImagePicker: Observable<Void>
         let showTagListViewController: Observable<Void>
+        let showFullImageViewController: Observable<UIImage?>
         let image: Observable<UIImage?>
         let text: Observable<String?>
         let tag: Observable<Tag?>
@@ -130,11 +131,16 @@ final class RegisterViewModel: ViewModel {
         let success = result.elements()
             .compactMap { $0?.postId }
         
+        let showFullImageViewController = input.imageViewTapped.withLatestFrom(image)
+            .debug()
+            .asObservable()
+        
         return .init(
             canRegister: canRegister,
             showNavigateToBackAlert: showNavigateToBackAlert,
             showImagePicker: input.addImageButtonTapped,
             showTagListViewController: input.addTagButtonTapped,
+            showFullImageViewController: showFullImageViewController,
             image: image,
             text: text,
             tag: tag,

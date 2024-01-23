@@ -239,7 +239,7 @@ extension RegisterViewController: ViewAttributes {
             textChanged: textView.rx.text.asObservable(),
             backButtonTapped: backButton.rx.tap.asObservable(),
             registerButtonTapped: registerButton.rx.tap.asObservable(),
-            imageViewTapped: imageView.rx.tapGesture().when(.recognized).asObservable(),
+            imageViewTapped: frameImageView.rx.tapGesture().when(.recognized).asObservable(),
             deleteTagButtonTapped: tagButton.rx.tap.asObservable(),
             deleteImageAlertActionTapped: deleteImageAlertActionTapped,
             addImageButtonTapped: addImageButton.rx.tap.asObservable(),
@@ -275,6 +275,14 @@ extension RegisterViewController: ViewAttributes {
         output.showTagListViewController.asDriver(onErrorJustReturn: ())
             .drive(with: self) { owner, _ in
                 owner.showTagListViewController()
+            }
+            .disposed(by: disposeBag)
+        
+        output.showFullImageViewController.asDriver(onErrorJustReturn: nil)
+            .drive(with: self) { owner, image in
+                let viewController = FullImageViewController(image: image)
+                viewController.modalPresentationStyle = .overFullScreen
+                owner.present(viewController, animated: false)
             }
             .disposed(by: disposeBag)
         

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4BB8D553194DE8941764A245 /* Pods_HappyMoodBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC308A98FD44DFE9EB514385 /* Pods_HappyMoodBoard.framework */; };
+		5D26C15C2B5F9F3B009570EB /* FullImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D26C15B2B5F9F3B009570EB /* FullImageViewController.swift */; };
+		5D26C19E2B5FAF34009570EB /* AutoSizeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D26C19D2B5FAF34009570EB /* AutoSizeImageView.swift */; };
 		5D4977B32B327E4D00059120 /* UIViewController+backgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4977B22B327E4D00059120 /* UIViewController+backgroundColor.swift */; };
 		5D4978812B32F26700059120 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4978802B32F26600059120 /* TabBarController.swift */; };
 		5D4978832B32F27300059120 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4978822B32F27300059120 /* HomeViewController.swift */; };
@@ -233,6 +235,8 @@
 		2654E39708AD001AF603379C /* Pods-HappyMoodBoard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyMoodBoard.debug.xcconfig"; path = "Target Support Files/Pods-HappyMoodBoard/Pods-HappyMoodBoard.debug.xcconfig"; sourceTree = "<group>"; };
 		37AEFD1129344F3F769552C8 /* Pods_HappyMoodBoardTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyMoodBoardTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A6D12E40B69D872C4C5ED73 /* Pods-HappyMoodBoardTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyMoodBoardTests.release.xcconfig"; path = "Target Support Files/Pods-HappyMoodBoardTests/Pods-HappyMoodBoardTests.release.xcconfig"; sourceTree = "<group>"; };
+		5D26C15B2B5F9F3B009570EB /* FullImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullImageViewController.swift; sourceTree = "<group>"; };
+		5D26C19D2B5FAF34009570EB /* AutoSizeImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSizeImageView.swift; sourceTree = "<group>"; };
 		5D4977B22B327E4D00059120 /* UIViewController+backgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+backgroundColor.swift"; sourceTree = "<group>"; };
 		5D4978802B32F26600059120 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		5D4978822B32F27300059120 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -387,6 +391,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D26C19C2B5FAF2B009570EB /* UIImageView */ = {
+			isa = PBXGroup;
+			children = (
+				5D26C19D2B5FAF34009570EB /* AutoSizeImageView.swift */,
+			);
+			path = UIImageView;
+			sourceTree = "<group>";
+		};
 		5D49787F2B32F23300059120 /* Tab */ = {
 			isa = PBXGroup;
 			children = (
@@ -503,6 +515,7 @@
 				5D8F09D42B3E8BFB00B7BE3E /* PhotoLibraryAuthorizationViewModel.swift */,
 				5D4978842B32F36500059120 /* RegisterViewController.swift */,
 				5D8F09CD2B3C242100B7BE3E /* RegisterViewModel.swift */,
+				5D26C15B2B5F9F3B009570EB /* FullImageViewController.swift */,
 				5DEB7ECA2B5A2425001654FE /* Tag */,
 			);
 			path = Register;
@@ -884,6 +897,7 @@
 		AC9E33C92B3558A100B0D9AE /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				5D26C19C2B5FAF2B009570EB /* UIImageView */,
 				A2D0F9212B500B7F003BE282 /* UIViewController */,
 				AC185D0C2B47AD2E007304CE /* UIPresentationController */,
 				A28402D92B459526007C0A0D /* UILabel */,
@@ -1297,6 +1311,7 @@
 				AC3A3BC02B049FB90081BF32 /* AppDelegate.swift in Sources */,
 				A2C8867A2B496ED1008E5437 /* TitleToggleView.swift in Sources */,
 				A2DFB7F22B3935E1008B95AC /* SettingMyAccountViewController.swift in Sources */,
+				5D26C15C2B5F9F3B009570EB /* FullImageViewController.swift in Sources */,
 				A2DFB7FC2B39B4F7008B95AC /* SettingWebViewController.swift in Sources */,
 				A2C8868E2B497D93008E5437 /* DayOfTheWeek.swift in Sources */,
 				A2DFB7ED2B3930DB008B95AC /* SettingIndexViewModel.swift in Sources */,
@@ -1305,6 +1320,7 @@
 				AC185D002B478BFF007304CE /* SettingNotificationViewModel.swift in Sources */,
 				A2DFB7E92B392E4B008B95AC /* Version.swift in Sources */,
 				A2DFB7F72B393873008B95AC /* SettingNotificationViewController.swift in Sources */,
+				5D26C19E2B5FAF34009570EB /* AutoSizeImageView.swift in Sources */,
 				AC3A3BC02B049FB90081BF32 /* AppDelegate.swift in Sources */,
 				5D751F6F2B4CC975003BAC2C /* ReissueAccessToken.swift in Sources */,
 				5D751F852B4D0A43003BAC2C /* AuthTarget.swift in Sources */,
