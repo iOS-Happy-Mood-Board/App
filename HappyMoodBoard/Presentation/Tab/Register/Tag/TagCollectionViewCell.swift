@@ -12,6 +12,8 @@ import SnapKit
 
 final class TagCollectionViewCell: UICollectionViewCell {
     
+    static let reuseIdentifier = "TagCollectionViewCell"
+    
     let nameButton: UIButton = .init(type: .system)
     
     override init(frame: CGRect) {
@@ -26,6 +28,31 @@ final class TagCollectionViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(with item: TagListItem) {
+        switch item {
+        case .add:
+            nameButton.setImage(.init(named: "add"), for: .init())
+        case .tag(let tag):
+            var configuration = UIButton.Configuration.filled()
+            configuration.cornerStyle = .capsule
+            let verticalInset: CGFloat = 4.5
+            let horizontalInset: CGFloat = 24
+            configuration.contentInsets = .init(
+                top: verticalInset,
+                leading: horizontalInset,
+                bottom: verticalInset,
+                trailing: horizontalInset
+            )
+            configuration.background.backgroundColor = .tagColor(for: tag.tagColorId)
+            var container = AttributeContainer()
+            container.font = UIFont(name: "Pretendard-Medium", size: 14)
+            container.foregroundColor = .gray900
+            configuration.attributedTitle = .init(tag.tagName, attributes: container)
+            nameButton.configuration = configuration
+            nameButton.titleLabel?.numberOfLines = 1
+        }
     }
 
 }
