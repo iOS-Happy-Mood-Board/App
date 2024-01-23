@@ -111,7 +111,7 @@ final class ModifyNickNameViewController: UIViewController, ViewAttributes, UIGe
         let input = ModifyNickNameViewModel.Input(
             navigateToBack: navigationItemBack.rxTap.asObservable(),
             nickname: nicknameTextField.rx.text.orEmpty.asObservable(),
-            navigateToHome: nextButton.rx.tap.asObservable()
+            confirmEvent: nextButton.rx.tap.asObservable()
         )
         let output = viewModel.transform(input: input)
         
@@ -127,5 +127,10 @@ final class ModifyNickNameViewController: UIViewController, ViewAttributes, UIGe
         output.isValid.asDriver(onErrorJustReturn: false)
             .drive(nextButton.rx.isEnabled)
             .disposed(by: disposeBag)
+        
+        output.success.bind { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        .disposed(by: disposeBag)
     }
 }
