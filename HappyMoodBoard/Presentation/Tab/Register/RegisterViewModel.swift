@@ -17,6 +17,7 @@ final class RegisterViewModel: ViewModel {
         let backButtonTapped: Observable<Void>
         let registerButtonTapped: Observable<Void>
         let imageViewTapped: Observable<UITapGestureRecognizer>
+        let deleteTagButtonTapped: Observable<Void>
         let deleteImageAlertActionTapped: Observable<Int>
         let addImageButtonTapped: Observable<Void>
         let addTagButtonTapped: Observable<Void>
@@ -47,16 +48,18 @@ final class RegisterViewModel: ViewModel {
         )
             .startWith(nil)
             .share()
-            
+        
         let text = input.textChanged
             .filter { $0 != RegisterViewController.Constants.textViewPlaceholder }
             .startWith(nil)
             .share()
         
-        let tag = PreferencesService.shared.rx.tag
-            .startWith(nil)
+        let tag = Observable.merge(
+            PreferencesService.shared.rx.tag.startWith(nil),
+            input.deleteTagButtonTapped.map { _ in nil }
+        )
             .share()
-
+        
         let imageAndTextAndTag = Observable.combineLatest(
             image.startWith(nil),
             text.startWith(nil),
@@ -116,14 +119,14 @@ final class RegisterViewModel: ViewModel {
         
         // 이미지 업로드 후 게시글 등록
         let result = uploadImage
-                    .map { PostTarget.create($0) }
-                    .flatMapLatest {
-                        ApiService().request(type: UpdatePostResponse.self, target: $0)
-                            .materialize()
-                    }
-                    .share()
-                    .debug("게시글 등록")
-
+            .map { PostTarget.create($0) }
+            .flatMapLatest {
+                ApiService().request(type: UpdatePostResponse.self, target: $0)
+                    .materialize()
+            }
+            .share()
+            .debug("게시글 등록")
+        
         let success = result.elements()
             .compactMap { $0?.postId }
         

@@ -19,8 +19,7 @@ import RxKeyboard
 final class RegisterViewController: UIViewController {
     
     enum Constants {
-        static let normalImage: UIImage = .init(named: "navigation.register.normal") ?? .init()
-        static let disabledImage: UIImage = .init(named: "navigation.register.disabled") ?? .init()
+        static let registerImage: UIImage = .init(named: "navigation.register") ?? .init()
         static let textViewPlaceholder: String = "최대 1000자까지 작성 가능해요."
         static let textViewPlaceholderColor: UIColor? = .gray400
         static let textViewTextColor: UIColor? = .gray900
@@ -34,7 +33,7 @@ final class RegisterViewController: UIViewController {
     )
     
     private let registerButton: UIBarButtonItem = .init(
-        image: .init(named: "navigation.register.normal"),
+        image: Constants.registerImage,
         style: .done,
         target: nil,
         action: nil
@@ -241,6 +240,7 @@ extension RegisterViewController: ViewAttributes {
             backButtonTapped: backButton.rx.tap.asObservable(),
             registerButtonTapped: registerButton.rx.tap.asObservable(),
             imageViewTapped: imageView.rx.tapGesture().when(.recognized).asObservable(),
+            deleteTagButtonTapped: tagButton.rx.tap.asObservable(),
             deleteImageAlertActionTapped: deleteImageAlertActionTapped,
             addImageButtonTapped: addImageButton.rx.tap.asObservable(),
             addTagButtonTapped: addTagButton.rx.tap.asObservable(),
@@ -251,7 +251,8 @@ extension RegisterViewController: ViewAttributes {
         let output = viewModel.transform(input: input)
         output.canRegister.asDriver(onErrorJustReturn: false)
             .drive(with: self) { owner, isEnabled in
-                owner.registerButton.image = isEnabled ? Constants.normalImage : Constants.disabledImage
+                owner.registerButton.isEnabled = isEnabled
+                owner.registerButton.tintColor = isEnabled ? .primary900 : .gray200
             }
             .disposed(by: disposeBag)
                 
