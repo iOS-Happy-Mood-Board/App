@@ -182,6 +182,9 @@
 		AC185D0E2B47AD58007304CE /* NotificationModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC185D0D2B47AD58007304CE /* NotificationModalViewModel.swift */; };
 		AC185D0F2B47AD58007304CE /* NotificationModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC185D0D2B47AD58007304CE /* NotificationModalViewModel.swift */; };
 		AC185D102B47AD58007304CE /* NotificationModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC185D0D2B47AD58007304CE /* NotificationModalViewModel.swift */; };
+		AC27433C2B5F94B1006E1DC3 /* ToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC27433B2B5F94B1006E1DC3 /* ToastMessage.swift */; };
+		AC27433D2B5F94B1006E1DC3 /* ToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC27433B2B5F94B1006E1DC3 /* ToastMessage.swift */; };
+		AC27433E2B5F94B1006E1DC3 /* ToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC27433B2B5F94B1006E1DC3 /* ToastMessage.swift */; };
 		AC3A3BC02B049FB90081BF32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3A3BBF2B049FB90081BF32 /* AppDelegate.swift */; };
 		AC3A3BC22B049FB90081BF32 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3A3BC12B049FB90081BF32 /* SceneDelegate.swift */; };
 		AC3A3BC92B049FBA0081BF32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC3A3BC82B049FBA0081BF32 /* Assets.xcassets */; };
@@ -341,6 +344,7 @@
 		AC185D032B479581007304CE /* HalfModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalPresentationController.swift; sourceTree = "<group>"; };
 		AC185D072B4795E3007304CE /* NotificationModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModalViewController.swift; sourceTree = "<group>"; };
 		AC185D0D2B47AD58007304CE /* NotificationModalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModalViewModel.swift; sourceTree = "<group>"; };
+		AC27433B2B5F94B1006E1DC3 /* ToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMessage.swift; sourceTree = "<group>"; };
 		AC3A3BBC2B049FB90081BF32 /* HappyMoodBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyMoodBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC3A3BBF2B049FB90081BF32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC3A3BC12B049FB90081BF32 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -634,6 +638,7 @@
 		A2B58B7B2B5293E0003FCFA9 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				AC27433A2B5F94A5006E1DC3 /* ToastMessage */,
 				AC7B6B282B5907B300C32F0D /* TokenParsing */,
 				AC7FDD652B57ADFB00E6F7FC /* Date */,
 				AC680A422B54C3A1003D4729 /* Version */,
@@ -722,6 +727,14 @@
 				AC185D032B479581007304CE /* HalfModalPresentationController.swift */,
 			);
 			path = UIPresentationController;
+			sourceTree = "<group>";
+		};
+		AC27433A2B5F94A5006E1DC3 /* ToastMessage */ = {
+			isa = PBXGroup;
+			children = (
+				AC27433B2B5F94B1006E1DC3 /* ToastMessage.swift */,
+			);
+			path = ToastMessage;
 			sourceTree = "<group>";
 		};
 		AC3A3BB32B049FB90081BF32 = {
@@ -1205,6 +1218,7 @@
 				5D751F772B4CD717003BAC2C /* DeviceType.swift in Sources */,
 				5D8F09D52B3E8BFB00B7BE3E /* PhotoLibraryAuthorizationViewModel.swift in Sources */,
 				5DD1B6C82B59033400DEBD07 /* PostTarget.swift in Sources */,
+				AC27433C2B5F94B1006E1DC3 /* ToastMessage.swift in Sources */,
 				5DB28DEC2B2AD0CD00C4E594 /* EnterNicknameViewController.swift in Sources */,
 				5DF0A1512B56797800D4C15C /* AddTagViewController.swift in Sources */,
 				5DB686702B4E68EA0027ABAB /* UIViewController+Rx.swift in Sources */,
@@ -1330,6 +1344,7 @@
 				AC9E33C02B35486E00B0D9AE /* SettingIndexViewController.swift in Sources */,
 				A2DFB7EA2B392E4B008B95AC /* Version.swift in Sources */,
 				A2DFB7F82B393873008B95AC /* SettingNotificationViewController.swift in Sources */,
+				AC27433D2B5F94B1006E1DC3 /* ToastMessage.swift in Sources */,
 				A28402D32B4589B0007C0A0D /* MyAccount.swift in Sources */,
 				A262851A2B5CF4D00016C4C6 /* FetchResponse.swift in Sources */,
 				A2C886832B4977E1008E5437 /* TitleTimeView.swift in Sources */,
@@ -1429,6 +1444,7 @@
 				A2C886842B4977E1008E5437 /* TitleTimeView.swift in Sources */,
 				AC185D102B47AD58007304CE /* NotificationModalViewModel.swift in Sources */,
 				A28402D82B458AB3007C0A0D /* AccountView.swift in Sources */,
+				AC27433E2B5F94B1006E1DC3 /* ToastMessage.swift in Sources */,
 				A2D4CBC82B3D9A200066E89D /* LoginViewModel.swift in Sources */,
 				AC854BA82B5DFCA0004A607E /* CustomTableView.swift in Sources */,
 				A2C886902B497D93008E5437 /* DayOfTheWeek.swift in Sources */,
