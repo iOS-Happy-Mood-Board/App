@@ -128,8 +128,13 @@ final class ModifyNickNameViewController: UIViewController, ViewAttributes, UIGe
             .drive(nextButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        output.success.bind { [weak self] _ in
+        output.success.bind { [weak self] in
             self?.navigationController?.popViewController(animated: true)
+        }
+        .disposed(by: disposeBag)
+        
+        output.failure.bind { [weak self] in
+            makeToast($0)
         }
         .disposed(by: disposeBag)
     }

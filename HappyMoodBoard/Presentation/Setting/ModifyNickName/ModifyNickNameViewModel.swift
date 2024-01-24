@@ -26,6 +26,7 @@ final class ModifyNickNameViewModel: ViewModel {
         let nickname: Observable<String>
         let isValid: Observable<Bool>
         let success: Observable<Void>
+        let failure: Observable<String>
     }
 
     private let disposeBag: DisposeBag = .init()
@@ -61,12 +62,15 @@ final class ModifyNickNameViewModel: ViewModel {
             .map { _ in }
         
         // TODO: 응답 에러 처리
+        let failure = result.errors()
+            .map { $0.localizedDescription }
 
         return Output(
             navigateToBack: input.navigateToBack,
             nickname: nickname,
             isValid: isNicknameValid,
-            success: success
+            success: success,
+            failure: failure
         )
     }
     
