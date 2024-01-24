@@ -64,13 +64,14 @@ final class MyTabViewModel: ViewModel {
                 }
             }
             .map { result in
+                // 태그 중복제거 및 순서 정렬
                 self.removeDuplicates(by: \.0, from: result)
             }
         
-        // MARK: - /api/v1/post, 버튼 누르면 재요청
-        selectedIndex
-            .map {
-                $0.0 == 0 ? nil : $0.1
+        // MARK: - /api/v1/post, viwWillAppear 혹은 버튼 누르면 재요청
+        Observable.combineLatest(input.viewWillAppear, selectedIndex)
+            .map { _, values in
+                values.0 == 0 ? nil : values.1
             }
             .map {
                 PostTarget.fetch(
