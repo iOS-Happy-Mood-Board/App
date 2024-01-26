@@ -239,6 +239,7 @@ extension RegisterViewController: ViewAttributes {
                     ]
                 )
             }
+        let tagSelected: PublishSubject<Tag?> = .init()
         
         let input = RegisterViewModel.Input(
             textDidChanged: textView.rx.didChange.asObservable(),
@@ -250,6 +251,7 @@ extension RegisterViewController: ViewAttributes {
             deleteImageAlertActionTapped: deleteImageAlertActionTapped,
             addImageButtonTapped: addImageButton.rx.tap.asObservable(),
             addTagButtonTapped: addTagButton.rx.tap.asObservable(),
+            tagSelected: tagSelected.asObservable(),
             keyboardButtonTapped: keyboardToggleButton.rx.tap.asObservable(),
             keyboardWillShow: NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification),
             imageSelected: imagePicker.rx.didFinishPickingMediaWithInfo.asObservable()
@@ -299,7 +301,12 @@ extension RegisterViewController: ViewAttributes {
         
         output.showTagListViewController.asDriver(onErrorJustReturn: ())
             .drive(with: self) { owner, _ in
-                owner.showTagListViewController()
+                let viewModel = TagListViewModel(tagSelected: tagSelected)
+                let viewController = TagListViewController(viewModel: viewModel)
+                let navigationController = UINavigationController(rootViewController: viewController)
+                navigationController.sheetPresentationController?.detents = [.medium()]
+                navigationController.sheetPresentationController?.prefersGrabberVisible = false
+                owner.show(navigationController, sender: nil)
             }
             .disposed(by: disposeBag)
         
@@ -447,18 +454,9 @@ extension RegisterViewController {
 }
 
 extension RegisterViewController {
-
-    func showTagListViewController() {
-        let viewController = TagListViewController()
-        let navigationController = UINavigationController(rootViewController: viewController)
-        navigationController.sheetPresentationController?.detents = [.medium()]
-        navigationController.sheetPresentationController?.prefersGrabberVisible = false
-        show(navigationController, sender: nil)
-    }
     
     func navigateToBack() {
         navigationController?.popViewController(animated: true)
-        PreferencesService.shared.tag = nil
     }
     
     func showNavigateToBackAlert() {

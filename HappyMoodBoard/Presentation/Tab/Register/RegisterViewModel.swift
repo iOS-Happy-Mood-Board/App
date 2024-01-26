@@ -12,6 +12,10 @@ import FirebaseStorage
 
 final class RegisterViewModel: ViewModel {
     
+    enum Constants {
+        static let maxLength = 1000
+    }
+    
     struct Input {
         let textDidChanged: Observable<Void>
         let textChanged: Observable<String?>
@@ -22,6 +26,7 @@ final class RegisterViewModel: ViewModel {
         let deleteImageAlertActionTapped: Observable<Int>
         let addImageButtonTapped: Observable<Void>
         let addTagButtonTapped: Observable<Void>
+        let tagSelected: Observable<Tag?>
         let keyboardButtonTapped: Observable<Void>
         let keyboardWillShow: Observable<Notification>
         let imageSelected: Observable<[UIImagePickerController.InfoKey: Any]>
@@ -49,18 +54,19 @@ final class RegisterViewModel: ViewModel {
                 .filter { $0 == 1 } // "네" 버튼 클릭시
                 .map { _ in nil }
         )
-            .startWith(nil)
+            .debug("발행 이미지")
             .share()
         
         let text = input.textChanged
             .filter { $0 != RegisterViewController.Constants.textViewPlaceholder }
-            .startWith(nil)
+            .debug("발행 글")
             .share()
         
         let tag = Observable.merge(
-            PreferencesService.shared.rx.tag.startWith(nil),
+            input.tagSelected,
             input.deleteTagButtonTapped.map { _ in nil }
         )
+            .debug("발행 태그")
             .share()
         
         let imageAndTextAndTag = Observable.combineLatest(
