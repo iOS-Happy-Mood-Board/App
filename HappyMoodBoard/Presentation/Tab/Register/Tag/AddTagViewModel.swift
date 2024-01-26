@@ -11,6 +11,20 @@ import RxSwift
 
 final class AddTagViewModel: ViewModel {
     
+    enum UpdatePostTagMode {
+        case add
+        case edit
+        
+        var title: String {
+            switch self {
+            case .add:
+                return "태그 생성"
+            case .edit:
+                return "태그 편집"
+            }
+        }
+    }
+    
     struct Input {
         let name: Observable<String>
         let completeButtonTapped: Observable<Void>
@@ -18,15 +32,18 @@ final class AddTagViewModel: ViewModel {
     }
     
     struct Output {
+        let title: Observable<String>
         let tag: Observable<Tag>
         let dismiss: Observable<Void>
         let errorMessage: Observable<String>
     }
     
     private let tag: Tag
+    private let mode: UpdatePostTagMode
     
     init(tag: Tag = .init()) {
         self.tag = tag
+        self.mode = (tag.id == nil) ? .add : .edit
     }
     
     func transform(input: Input) -> Output {
@@ -65,6 +82,7 @@ final class AddTagViewModel: ViewModel {
             .map { $0.localizedDescription }
         
         return .init(
+            title: Observable.just(self.mode.title),
             tag: tag,
             dismiss: success,
             errorMessage: failure

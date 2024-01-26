@@ -139,7 +139,6 @@ final class AddTagViewController: UIViewController {
 extension AddTagViewController: ViewAttributes {
     
     func setupNavigationBar() {
-        navigationItem.title = "태그 생성"
         navigationItem.leftItemsSupplementBackButton = true
     }
     
@@ -187,6 +186,10 @@ extension AddTagViewController: ViewAttributes {
         )
         
         let output = viewModel.transform(input: input)
+        output.title.asDriver(onErrorJustReturn: "")
+            .drive(navigationItem.rx.title)
+            .disposed(by: disposeBag)
+        
         output.tag.asDriver(onErrorJustReturn: .init())
             .debug()
             .drive(with: self) { owner, tag in

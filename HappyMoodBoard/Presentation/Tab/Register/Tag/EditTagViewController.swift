@@ -63,6 +63,7 @@ override func viewDidLoad() {
 extension EditTagViewController: ViewAttributes {
     func setupNavigationBar() {
         navigationItem.title = "태그 편집"
+        navigationItem.backButtonDisplayMode = .minimal
     }
     
     func setupSubviews() {
