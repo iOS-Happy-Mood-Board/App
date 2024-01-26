@@ -110,11 +110,19 @@ final class AddTagViewController: UIViewController {
             configuration.attributedTitle = AttributedString("완료", attributes: container)
             button.configuration = configuration
         }
-//        $0.isEnabled = false
     }
     
-    private let viewModel: AddTagViewModel = .init()
+    private let viewModel: AddTagViewModel
     private let disposeBag: DisposeBag = .init()
+    
+    init(viewModel: AddTagViewModel = .init()) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -164,26 +172,30 @@ extension AddTagViewController: ViewAttributes {
     
     func setupBindings() {
         let colorButtons = colorButtonStackView.arrangedSubviews.compactMap { $0 as? UIButton }
-//        colorButtons.first?.isSelected = true
-        let colorButtonsTapped = Observable.from(
-            colorButtons.map { button in
-                button.rx.tap.map { button }
-            }
-        ).merge().startWith(colorButtons.first!)
-        colorButtons.reduce(Disposables.create()) { disposable, button in
-            let subscription = colorButtonsTapped.map { $0 == button }
-                .bind(to: button.rx.isSelected)
-            return Disposables.create(disposable, subscription)
-        }
-        .disposed(by: disposeBag)
+        let colorButtonTapped = Observable.from(colorButtons.map { button in
+            button.rx.tap.map { button }
+        })
+            .merge()
+            .share()
+        let colorButtonSelected = colorButtonTapped
+            .map { colorButtons.firstIndex(of: $0) ?? 0 }
         
         let input = AddTagViewModel.Input(
             name: nameTextField.rx.text.orEmpty.asObservable(),
             completeButtonTapped: completeButton.rx.tap.asObservable(),
-            colorButtonTapped: colorButtonsTapped
+            colorButtonTapped: colorButtonSelected
         )
         
         let output = viewModel.transform(input: input)
+        output.tag.asDriver(onErrorJustReturn: .init())
+            .debug()
+            .drive(with: self) { owner, tag in
+                owner.nameTextField.text = tag.tagName
+                for (index, colorButton) in colorButtons.enumerated() {
+                    colorButton.isSelected = (index == tag.tagColorId)
+                }
+            }.disposed(by: disposeBag)
+        
         output.errorMessage.asDriver(onErrorJustReturn: "")
             .drive(errorLabel.rx.text)
             .disposed(by: disposeBag)
