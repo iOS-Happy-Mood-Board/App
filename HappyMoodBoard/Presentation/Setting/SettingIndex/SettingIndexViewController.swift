@@ -262,7 +262,12 @@ extension SettingIndexViewController: ViewAttributes, UIViewControllerTransition
         
         // MARK: - 리뷰 남기기
         output.leaveReview.bind {
-            SKStoreReviewController.requestReview()
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                // SKStoreReviewController.requestReview(in:)를 호출하여 리뷰 요청을 합니다.
+                SKStoreReviewController.requestReview(in: windowScene)
+            } else {
+                makeToast("리뷰 남기기 에러")
+            }
         }
         .disposed(by: disposeBag)
         
