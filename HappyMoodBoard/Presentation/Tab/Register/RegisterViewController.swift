@@ -409,7 +409,8 @@ extension RegisterViewController: ViewAttributes {
                 }
                 
                 // comments
-                owner.textView.text = post.comments
+                owner.textView.text = post.comments ?? Constants.textViewPlaceholder
+                owner.textView.textColor = (post.comments?.isEmpty ?? true) ? Constants.textViewPlaceholderColor : Constants.textViewTextColor
             }
             .disposed(by: disposeBag)
         
@@ -531,9 +532,19 @@ extension RegisterViewController {
     
     func showPhotoLibraryAuthorizationAlert() {
         let viewController = PhotoLibraryAuthorizationViewController()
-        viewController.sheetPresentationController?.detents = [.medium()]
-        viewController.sheetPresentationController?.prefersGrabberVisible = true
+        viewController.modalPresentationStyle = .custom
+        viewController.transitioningDelegate = self
         present(viewController, animated: true, completion: nil)
+    }
+    
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+
+extension RegisterViewController: UIViewControllerTransitioningDelegate {
+    
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        return CustomPresentationController(presentedViewController: presented, presenting: presenting, height: 465)
     }
     
 }
