@@ -58,6 +58,13 @@ class MyTabTableViewCell: UITableViewCell {
         contentView.backgroundColor = .primary100
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        titleLabel.text = ""
+        postImageView.image = UIImage()
+    }
+    
     func setupSubviews() {
         
         [
