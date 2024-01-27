@@ -296,9 +296,14 @@ extension SettingIndexViewController: ViewAttributes, UIViewControllerTransition
         .disposed(by: disposeBag)
         
         // MARK: - 로그아웃 서버 response 이후
-        output.logoutAction.bind { [weak self] in
+        output.logoutSuccess.bind { [weak self] in
             UserDefaults.standard.set(false, forKey: "autoLogin")
             self?.setRootViewController(LoginViewController())
+        }
+        .disposed(by: disposeBag)
+        
+        output.logoutError.bind {
+            makeToast($0)
         }
         .disposed(by: disposeBag)
         
@@ -316,9 +321,14 @@ extension SettingIndexViewController: ViewAttributes, UIViewControllerTransition
         .disposed(by: disposeBag)
         
         // MARK: - 회원탈퇴 서버 response 이후
-        output.withdrawAction.bind { [weak self] in
+        output.withdrawSuccess.bind { [weak self] in
             UserDefaults.standard.set(false, forKey: "autoLogin")
             self?.setRootViewController(LoginViewController())
+        }
+        .disposed(by: disposeBag)
+        
+        output.withdrawError.bind {
+            makeToast($0)
         }
         .disposed(by: disposeBag)
     }
