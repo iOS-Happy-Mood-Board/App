@@ -201,7 +201,7 @@ extension SettingIndexViewController: ViewAttributes, UIViewControllerTransition
         output.checkNotification
             .bind { [weak self] handler in
                 
-                if !handler {
+                if handler {
                     self?.dimView.alpha = 0.0
                 } else {
                     self?.dimView.alpha = 0.5
