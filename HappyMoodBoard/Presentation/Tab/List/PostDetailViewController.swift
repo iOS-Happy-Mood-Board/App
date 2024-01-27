@@ -264,7 +264,7 @@ extension PostDetailViewController: ViewAttributes {
 extension PostDetailViewController: UIViewControllerTransitioningDelegate {
     
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return CustomPresentationController(presentedViewController: presented, presenting: presenting)
+        return CustomPresentationController(presentedViewController: presented, presenting: presenting, height: 245)
     }
     
 }
