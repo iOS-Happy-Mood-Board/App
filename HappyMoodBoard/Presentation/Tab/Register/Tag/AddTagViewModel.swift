@@ -49,7 +49,7 @@ final class AddTagViewModel: ViewModel {
     func transform(input: Input) -> Output {
         let nameAndColor = Observable.combineLatest(
             input.name,
-            input.colorButtonTapped
+            input.colorButtonTapped.startWith(self.tag.tagColorId)
         )
         
         let tag = Observable.combineLatest(Observable.just(self.tag), nameAndColor) { (tag, nameAndColor) -> Tag in
