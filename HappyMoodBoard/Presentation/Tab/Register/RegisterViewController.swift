@@ -292,13 +292,12 @@ extension RegisterViewController: ViewAttributes {
 
         animationView.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.width.equalTo(245)
-            make.height.equalTo(362)
+            make.edges.equalToSuperview()
         }
         
         loadingLabel.snp.makeConstraints { make in
+            make.center.equalToSuperview().offset(-view.frame.height * 0.25)
             make.leading.trailing.equalToSuperview()
-            make.top.equalTo(animationView).offset(74)
         }
     }
     
