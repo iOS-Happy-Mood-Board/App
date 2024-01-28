@@ -24,6 +24,7 @@ final class RegisterViewController: UIViewController {
         static let textViewPlaceholder: String = "최대 1000자까지 작성 가능해요."
         static let textViewPlaceholderColor: UIColor? = .gray400
         static let textViewTextColor: UIColor? = .gray900
+        static let textViewLineHeight: CGFloat = 1.26
         
         static let header = "어떤 행복을 담아볼까요?"
         static let deleteImageAlertTitle = "사진을 삭제하시겠어요?"
@@ -105,7 +106,7 @@ final class RegisterViewController: UIViewController {
     }
     
     private let textView: UITextView = .init().then {
-        $0.text = Constants.textViewPlaceholder
+        $0.setTextWithLineHeight(text: Constants.textViewPlaceholder, lineHeight: Constants.textViewLineHeight)
         $0.textColor = Constants.textViewPlaceholderColor
         $0.font = UIFont(name: "Pretendard-Regular", size: 16)
         $0.backgroundColor = .clear
@@ -437,7 +438,8 @@ extension RegisterViewController: ViewAttributes {
                 }
                 
                 // comments
-                owner.textView.text = post.comments ?? Constants.textViewPlaceholder
+                let text = post.comments ?? Constants.textViewPlaceholder
+                owner.textView.setTextWithLineHeight(text: text, lineHeight: Constants.textViewLineHeight)
                 owner.textView.textColor = (post.comments?.isEmpty ?? true) ? Constants.textViewPlaceholderColor : Constants.textViewTextColor
             }
             .disposed(by: disposeBag)
