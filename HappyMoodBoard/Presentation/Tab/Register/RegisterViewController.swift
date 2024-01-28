@@ -487,8 +487,25 @@ extension RegisterViewController: ViewAttributes {
         
         RxKeyboard.instance.visibleHeight
             .drive(with: self) { owner, keyboardVisibleHeight in
+                var bottomPadding: CGFloat
+                if #available(iOS 15.0, *) {
+                    let scenes = UIApplication.shared.connectedScenes
+                    let windowScene = scenes.first as? UIWindowScene
+                    let window = windowScene?.windows.first
+                    bottomPadding = window?.safeAreaInsets.bottom ?? .zero
+                } else {
+                    let window = UIApplication.shared.windows.first
+                    bottomPadding = window?.safeAreaInsets.bottom ?? .zero
+                }
+                
+                var offset: CGFloat
+                if keyboardVisibleHeight > 0 {
+                    offset = -keyboardVisibleHeight + bottomPadding
+                } else {
+                    offset = -keyboardVisibleHeight
+                }
                 owner.toolbar.snp.updateConstraints { make in
-                    make.bottom.equalTo(owner.view.safeAreaLayoutGuide.snp.bottom).offset(-keyboardVisibleHeight)
+                    make.bottom.equalTo(owner.view.safeAreaLayoutGuide.snp.bottom).offset(offset)
                 }
                 owner.view.setNeedsLayout()
             }
