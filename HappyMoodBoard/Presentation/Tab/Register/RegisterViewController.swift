@@ -24,7 +24,6 @@ final class RegisterViewController: UIViewController {
         static let textViewPlaceholder: String = "최대 1000자까지 작성 가능해요."
         static let textViewPlaceholderColor: UIColor? = .gray400
         static let textViewTextColor: UIColor? = .gray900
-        static let textViewLineHeight: CGFloat = 1.26
         
         static let header = "어떤 행복을 담아볼까요?"
         static let deleteImageAlertTitle = "사진을 삭제하시겠어요?"
@@ -106,7 +105,7 @@ final class RegisterViewController: UIViewController {
     }
     
     private let textView: UITextView = .init().then {
-        $0.setTextWithLineHeight(text: Constants.textViewPlaceholder, lineHeight: Constants.textViewLineHeight)
+        $0.text = Constants.textViewPlaceholder
         $0.textColor = Constants.textViewPlaceholderColor
         $0.font = UIFont(name: "Pretendard-Regular", size: 16)
         $0.backgroundColor = .clear
@@ -292,12 +291,13 @@ extension RegisterViewController: ViewAttributes {
 
         animationView.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.edges.equalToSuperview()
+            make.width.equalTo(245)
+            make.height.equalTo(362)
         }
         
         loadingLabel.snp.makeConstraints { make in
-            make.center.equalToSuperview().offset(-view.frame.height * 0.25)
             make.leading.trailing.equalToSuperview()
+            make.top.equalTo(animationView).offset(74)
         }
     }
     
@@ -437,8 +437,7 @@ extension RegisterViewController: ViewAttributes {
                 }
                 
                 // comments
-                let text = post.comments ?? Constants.textViewPlaceholder
-                owner.textView.setTextWithLineHeight(text: text, lineHeight: Constants.textViewLineHeight)
+                owner.textView.text = post.comments ?? Constants.textViewPlaceholder
                 owner.textView.textColor = (post.comments?.isEmpty ?? true) ? Constants.textViewPlaceholderColor : Constants.textViewTextColor
             }
             .disposed(by: disposeBag)
@@ -488,25 +487,8 @@ extension RegisterViewController: ViewAttributes {
         
         RxKeyboard.instance.visibleHeight
             .drive(with: self) { owner, keyboardVisibleHeight in
-                var bottomPadding: CGFloat
-                if #available(iOS 15.0, *) {
-                    let scenes = UIApplication.shared.connectedScenes
-                    let windowScene = scenes.first as? UIWindowScene
-                    let window = windowScene?.windows.first
-                    bottomPadding = window?.safeAreaInsets.bottom ?? .zero
-                } else {
-                    let window = UIApplication.shared.windows.first
-                    bottomPadding = window?.safeAreaInsets.bottom ?? .zero
-                }
-                
-                var offset: CGFloat
-                if keyboardVisibleHeight > 0 {
-                    offset = -keyboardVisibleHeight + bottomPadding
-                } else {
-                    offset = -keyboardVisibleHeight
-                }
                 owner.toolbar.snp.updateConstraints { make in
-                    make.bottom.equalTo(owner.view.safeAreaLayoutGuide.snp.bottom).offset(offset)
+                    make.bottom.equalTo(owner.view.safeAreaLayoutGuide.snp.bottom).offset(-keyboardVisibleHeight)
                 }
                 owner.view.setNeedsLayout()
             }
