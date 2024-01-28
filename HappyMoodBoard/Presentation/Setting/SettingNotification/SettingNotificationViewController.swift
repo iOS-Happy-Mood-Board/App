@@ -119,7 +119,7 @@ extension SettingNotificationViewController {
             view.snp.makeConstraints {
                 if index == 1 {
 //                    view.layer.borderColor = UIColor.red.cgColor
-                    $0.height.equalTo(75)
+                    $0.height.equalTo(80)
                 } else {
                     $0.height.equalTo(40)
                 }
@@ -173,8 +173,24 @@ extension SettingNotificationViewController {
         .disposed(by: disposeBag)
         
         // MARK: - 행복아이템 기록 알림 받기
-        output.recordPush.asDriver(onErrorJustReturn: false)
-            .drive(recordPushOnOffView.togglePublishSubject)
+        output.recordPush
+            .bind { [weak self] handler in
+                self?.recordPushOnOffView.togglePublishSubject.onNext(handler)
+                
+                if handler {
+                    self?.titleDayOfWeekView.isUserInteractionEnabled = true
+                    self?.titleTimeView.isUserInteractionEnabled = true
+                    
+                    self?.titleDayOfWeekView.backgroundColor = .primary100
+                    self?.titleTimeView.backgroundColor = .primary100
+                } else {
+                    self?.titleDayOfWeekView.isUserInteractionEnabled = false
+                    self?.titleTimeView.isUserInteractionEnabled = false
+                    
+                    self?.titleDayOfWeekView.backgroundColor = .black.withAlphaComponent(0.3)
+                    self?.titleTimeView.backgroundColor = .black.withAlphaComponent(0.3)
+                }
+            }
             .disposed(by: disposeBag)
         
         // MARK: - 요일
