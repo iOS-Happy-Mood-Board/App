@@ -477,10 +477,8 @@ extension RegisterViewController: ViewAttributes {
         keyboardToggleButton.rx.tap.asDriver()
             .drive(with: self) { owner, _ in
                 if owner.textView.isFirstResponder {
-                    owner.keyboardToggleButton.image = .init(named: "toolbar.keyboard.up")
                     owner.textView.resignFirstResponder()
                 } else {
-                    owner.keyboardToggleButton.image = .init(named: "toolbar.keyboard.down")
                     owner.textView.becomeFirstResponder()
                 }
             }
@@ -488,6 +486,7 @@ extension RegisterViewController: ViewAttributes {
         
         RxKeyboard.instance.visibleHeight
             .drive(with: self) { owner, keyboardVisibleHeight in
+                // 툴바 위치조정
                 var bottomPadding: CGFloat
                 if #available(iOS 15.0, *) {
                     let scenes = UIApplication.shared.connectedScenes
@@ -509,6 +508,11 @@ extension RegisterViewController: ViewAttributes {
                     make.bottom.equalTo(owner.view.safeAreaLayoutGuide.snp.bottom).offset(offset)
                 }
                 owner.view.setNeedsLayout()
+                
+                // 키보드 토글버튼
+                owner.keyboardToggleButton.image = keyboardVisibleHeight > 0 ?
+                    .init(named: "toolbar.keyboard.down") :
+                    .init(named: "toolbar.keyboard.up")
             }
             .disposed(by: disposeBag)
         
