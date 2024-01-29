@@ -401,8 +401,8 @@ extension RegisterViewController: ViewAttributes {
                 let viewModel = TagListViewModel(tagSelected: tagSelected)
                 let viewController = TagListViewController(viewModel: viewModel)
                 let navigationController = UINavigationController(rootViewController: viewController)
-                navigationController.sheetPresentationController?.detents = [.medium()]
-                navigationController.sheetPresentationController?.prefersGrabberVisible = false
+                navigationController.modalPresentationStyle = .custom
+                navigationController.transitioningDelegate = self
                 owner.show(navigationController, sender: nil)
             }
             .disposed(by: disposeBag)
@@ -604,12 +604,24 @@ extension RegisterViewController {
     
 }
 
+
 // MARK: - UIViewControllerTransitioningDelegate
 
 extension RegisterViewController: UIViewControllerTransitioningDelegate {
     
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return CustomPresentationController(presentedViewController: presented, presenting: presenting, height: 465)
+        var height: CGFloat
+        
+        if presented is UINavigationController { // 태그 목록
+            height = 396
+        } else {
+            height = 465 // 사진 권한
+        }
+        return CustomPresentationController(
+            presentedViewController: presented,
+            presenting: presenting,
+            height: height
+        )
     }
     
 }

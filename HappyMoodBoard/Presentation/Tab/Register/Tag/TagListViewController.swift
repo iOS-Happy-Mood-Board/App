@@ -162,9 +162,9 @@ extension TagListViewController: ViewAttributes {
             .bind(to: collectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
-        output.navigateToAdd.asDriver(onErrorJustReturn: ())
-            .drive(with: self) { owner, _ in
-                owner.navigateToAdd()
+        output.navigateToAdd.asDriver(onErrorJustReturn: false)
+            .drive(with: self) { owner, hidesBackButton in
+                owner.navigateToAdd(hidesBackButton: hidesBackButton)
             }
             .disposed(by: disposeBag)
         
@@ -181,9 +181,16 @@ extension TagListViewController: ViewAttributes {
         }
     }
     
-    func navigateToAdd() {
-        let viewController = AddTagViewController()
-        show(viewController, sender: nil)
+    func navigateToAdd(hidesBackButton: Bool) {
+        if hidesBackButton {
+            let viewController = AddTagViewController()
+            viewController.navigationItem.hidesBackButton = true
+            navigationController?.popViewController(animated: false)
+            navigationController?.pushViewController(viewController, animated: false)
+        } else {
+            let viewController = AddTagViewController()
+            show(viewController, sender: nil)
+        }
     }
 }
 
