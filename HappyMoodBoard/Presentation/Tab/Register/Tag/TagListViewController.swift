@@ -21,6 +21,20 @@ final class TagListViewController: UIViewController {
         static let lineHeight: CGFloat = 24
     }
     
+    private let titleLabel: UILabel = .init().then {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = 1.17
+        $0.attributedText = NSMutableAttributedString(
+            string: "태그 선택",
+            attributes: [
+                NSAttributedString.Key.kern: -0.36,
+                NSAttributedString.Key.paragraphStyle: paragraphStyle,
+                .font: UIFont(name: "Pretendard-Bold", size: 18),
+                .foregroundColor: UIColor.gray900
+            ]
+        )
+    }
+    
     private let editButton: UIBarButtonItem = .init(title: "편집", style: .plain, target: nil, action: nil).then {
         $0.tintColor = .gray500
         $0.setTitleTextAttributes(
@@ -116,9 +130,17 @@ final class TagListViewController: UIViewController {
 extension TagListViewController: ViewAttributes {
     
     func setupNavigationBar() {
-        navigationItem.title = "태그 선택"
-        navigationItem.rightBarButtonItems = [editButton, .fixedSpace(20)]
+        navigationItem.leftBarButtonItems = [.fixedSpace(20), .init(customView: titleLabel)]
+        navigationItem.rightBarButtonItem = editButton
         navigationItem.backButtonDisplayMode = .minimal
+        
+        // shadow
+        navigationController?.navigationBar.backgroundColor = .primary100
+        navigationController?.navigationBar.layer.masksToBounds = false
+        navigationController?.navigationBar.layer.shadowColor = UIColor.gray200?.cgColor
+        navigationController?.navigationBar.layer.shadowOpacity = 1
+        navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0, height: 0)
+        navigationController?.navigationBar.layer.shadowRadius = 1
     }
     
     func setupSubviews() {
@@ -214,3 +236,4 @@ extension TagListViewController: UICollectionViewDelegateFlowLayout {
     }
     
 }
+
